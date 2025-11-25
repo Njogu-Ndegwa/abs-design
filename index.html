@@ -43,6 +43,17 @@
             --radius-lg: 16px;
             --radius-xl: 24px;
             
+            /* Typography Scale */
+            --font-xs: 9px;    /* Badges, periods */
+            --font-sm: 10px;   /* Labels, captions */
+            --font-base: 11px; /* Detail values, muted text */
+            --font-md: 12px;   /* Body text, buttons, inputs */
+            --font-lg: 13px;   /* Emphasized body */
+            --font-xl: 14px;   /* Subtitles */
+            --font-2xl: 18px;  /* Page titles */
+            --font-3xl: 20px;  /* Large values */
+            --font-4xl: 24px;  /* Hero values */
+            
             --shadow-glow: 0 0 60px -15px var(--accent-glow);
             --shadow-card: 0 4px 24px -8px rgba(0, 0, 0, 0.5);
             
@@ -390,14 +401,14 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 220px;
+            max-width: 280px;
             margin: 0 auto;
-            padding-bottom: 4px;
+            padding-bottom: 6px;
         }
         
         @media (min-height: 800px) {
             .role-hero-image {
-                max-width: 280px;
+                max-width: 320px;
             }
         }
 
@@ -439,7 +450,7 @@
         /* Applet Grid */
         .role-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 130px));
+            grid-template-columns: repeat(2, minmax(0, 145px));
             justify-content: center;
             gap: 8px;
             padding: 0 0 6px;
@@ -539,7 +550,7 @@
         }
 
         .role-applet-label {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             text-align: center;
             position: relative;
@@ -571,7 +582,7 @@
 
         .role-action .btn {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             font-size: 13px;
         }
 
@@ -635,9 +646,9 @@
         }
 
         .onboarding-image {
-            width: 220px;
-            height: 220px;
-            margin-bottom: 40px;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -652,21 +663,21 @@
 
         .onboarding-content {
             text-align: center;
-            max-width: 300px;
+            max-width: 280px;
         }
 
         .onboarding-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             line-height: 1.2;
         }
 
         .onboarding-desc {
-            font-size: 15px;
+            font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* Pagination dots */
@@ -711,7 +722,7 @@
             border: none;
             color: var(--text-muted);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
             padding: 8px 16px;
             transition: color 0.2s ease;
@@ -919,7 +930,7 @@
             align-items: center;
             gap: 8px;
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .splash-loading-dots {
@@ -983,7 +994,7 @@
         }
 
         .scan-title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 4px;
             letter-spacing: -0.02em;
@@ -991,8 +1002,8 @@
 
         .scan-subtitle {
             color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 20px;
+            font-size: 12px;
+            margin-bottom: 16px;
         }
 
         .scanner-area {
@@ -1169,7 +1180,7 @@
         }
 
         .battery-name {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 600;
         }
 
@@ -1241,14 +1252,14 @@
         }
 
         .battery-charge {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
             margin-bottom: 2px;
             line-height: 1;
         }
 
         .battery-charge-label {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-secondary);
             margin-bottom: 6px;
         }
@@ -1280,21 +1291,21 @@
         }
 
         .customer-avatar {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: white;
             flex-shrink: 0;
         }
 
         .customer-name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             margin-bottom: 1px;
         }
@@ -1312,15 +1323,15 @@
         }
 
         .detail-label {
-            font-size: 9px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             color: var(--text-muted);
             margin-bottom: 2px;
         }
 
         .detail-value {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
         }
 
@@ -1366,12 +1377,12 @@
 
         .cost-total-label {
             font-weight: 500;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .cost-total-value {
             font-family: 'DM Mono', monospace;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--accent);
         }
@@ -1383,7 +1394,7 @@
         }
 
         .payment-title {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -1427,7 +1438,7 @@
 
         .payment-amount {
             font-family: 'DM Mono', monospace;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--accent);
             margin-bottom: 4px;
@@ -1435,7 +1446,7 @@
 
         .payment-status {
             color: var(--text-muted);
-            font-size: 11px;
+            font-size: 10px;
         }
 
         /* Success Screen */
@@ -1476,8 +1487,8 @@
 
         .success-message {
             color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 16px;
+            font-size: 12px;
+            margin-bottom: 14px;
         }
 
         .receipt-header {
@@ -1521,37 +1532,37 @@
 
         /* Form Styles */
         .form-section {
-            margin-bottom: 24px;
+            margin-bottom: 14px;
         }
 
         .form-section-title {
-            font-size: 12px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
         .form-label {
             display: block;
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             color: var(--text-secondary);
         }
 
         .form-input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 10px 12px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             font-family: inherit;
-            font-size: 15px;
+            font-size: 12px;
             color: var(--text-primary);
             transition: all 0.2s ease;
         }
@@ -1559,7 +1570,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-soft);
+            box-shadow: 0 0 0 2px var(--accent-soft);
         }
 
         .form-input::placeholder {
@@ -1569,26 +1580,26 @@
         .form-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 8px;
         }
 
         /* Product Selection */
         .product-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
         .product-card {
             background: var(--bg-secondary);
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 16px;
+            padding: 10px 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
         }
 
         .product-card:hover {
@@ -1601,8 +1612,8 @@
         }
 
         .product-radio {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border: 2px solid var(--border);
             border-radius: 50%;
             display: flex;
@@ -1619,8 +1630,8 @@
 
         .product-radio::after {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: white;
             border-radius: 50%;
             opacity: 0;
@@ -1638,25 +1649,25 @@
         }
 
         .product-name {
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 500;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .product-desc {
-            font-size: 12px;
+            font-size: 10px;
             color: var(--text-muted);
         }
 
         .product-price {
             font-family: 'DM Mono', monospace;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--accent);
         }
 
         .product-price-period {
-            font-size: 11px;
+            font-size: 9px;
             color: var(--text-muted);
             font-weight: 400;
         }
@@ -1666,58 +1677,59 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 12px;
+            margin-bottom: 12px;
         }
 
         .preview-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
             border-bottom: 1px solid var(--border-subtle);
         }
 
         .preview-avatar {
-            width: 56px;
-            height: 56px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 13px;
             font-weight: 600;
             color: white;
+            flex-shrink: 0;
         }
 
         .preview-name {
-            font-size: 18px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .preview-phone {
             font-family: 'DM Mono', monospace;
-            font-size: 13px;
+            font-size: 11px;
             color: var(--text-muted);
         }
 
         .preview-badge {
             margin-left: auto;
-            padding: 4px 10px;
+            padding: 3px 8px;
             background: var(--info-soft);
             color: var(--info);
-            border-radius: 12px;
-            font-size: 11px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: 500;
         }
 
         .preview-details {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 8px;
         }
 
         /* Checkout Summary */
@@ -1794,10 +1806,10 @@
 
         .btn {
             flex: 1;
-            padding: 12px 20px;
+            padding: 12px 16px;
             border-radius: var(--radius-md);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -1895,7 +1907,7 @@
 
         .loading-text {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 12px;
         }
 
         /* Back to Roles Button */
@@ -2424,8 +2436,8 @@
 
                 <!-- Screen 1: Customer Registration -->
                 <div class="screen active" id="sales-screen-register">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 8px;">New Customer</h2>
-                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 24px;">Enter customer details to get started</p>
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">New Customer</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Enter customer details to get started</p>
 
                     <div class="form-section">
                         <div class="form-section-title">Personal Information</div>
@@ -2475,8 +2487,8 @@
 
                 <!-- Screen 2: Select Subscription -->
                 <div class="screen" id="sales-screen-subscription">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 8px;">Choose Plan</h2>
-                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 24px;">Select a subscription package</p>
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Choose Plan</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Select a subscription package</p>
 
                     <div class="product-grid">
                         <div class="product-card" onclick="selectProduct(this, 'daily')">
@@ -2531,8 +2543,8 @@
 
                 <!-- Screen 3: Assign Battery -->
                 <div class="screen" id="sales-screen-battery">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 8px;">Assign Battery</h2>
-                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 24px;">Scan a battery to assign to customer</p>
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Assign Battery</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 10px;">Scan a battery to assign to customer</p>
 
                     <!-- Customer Preview -->
                     <div class="preview-card">
@@ -2557,15 +2569,15 @@
                     </div>
 
                     <!-- Battery Scanner -->
-                    <div class="scanner-area" onclick="salesSimulateBatteryScan()" style="width: 200px; height: 200px; margin: 20px auto;">
+                    <div class="scanner-area" onclick="salesSimulateBatteryScan()" style="width: 140px; height: 140px; margin: 10px auto;">
                         <div class="scanner-frame">
-                            <div class="scanner-corners" style="inset: 15px;">
+                            <div class="scanner-corners" style="inset: 12px;">
                                 <div class="scanner-corner-bl"></div>
                                 <div class="scanner-corner-br"></div>
                             </div>
                             <div class="scanner-line"></div>
                             <div class="scanner-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 36px; height: 36px;">
                                     <rect x="2" y="6" width="20" height="12" rx="2"/>
                                     <path d="M22 10v4"/>
                                     <path d="M6 10v4"/>
@@ -2661,13 +2673,12 @@
         // =====================
         function initTheme() {
             const savedTheme = localStorage.getItem('swapflow-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else if (!prefersDark) {
+            // Default to dark theme, only use light if explicitly saved
+            if (savedTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');
             }
+            // Dark is default (no data-theme attribute needed)
         }
 
         function toggleTheme() {
@@ -3107,11 +3118,11 @@
         });
 
         // System theme listener
+        // System preference listener - only applies if user hasn't set a preference
+        // App defaults to dark regardless of system preference
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('swapflow-theme')) {
-                if (e.matches) document.documentElement.removeAttribute('data-theme');
-                else document.documentElement.setAttribute('data-theme', 'light');
-            }
+            // Only respond to system changes if no saved preference
+            // Since we default to dark, we don't auto-switch based on system
         });
     </script>
 </body>
