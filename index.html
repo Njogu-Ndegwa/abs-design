@@ -439,13 +439,14 @@
         /* Applet Grid */
         .role-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
-            padding: 0 0 8px;
+            grid-template-columns: repeat(2, minmax(0, 130px));
+            justify-content: center;
+            gap: 8px;
+            padding: 0 0 6px;
         }
 
         .role-applet {
-            aspect-ratio: 1.05;
+            aspect-ratio: 1;
             background: var(--bg-secondary);
             border: 2px solid var(--border);
             border-radius: var(--radius-md);
