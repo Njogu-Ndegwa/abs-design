@@ -1226,6 +1226,157 @@
             letter-spacing: 0.05em;
         }
 
+        /* ===================== */
+        /* LOGIN MODULE          */
+        /* ===================== */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 20px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .login-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .login-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .login-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .input-with-icon .form-input {
+            padding-left: 42px;
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px 20px;
+        }
+
+        .login-help {
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        /* Logged In User Card */
+        .logged-in-info {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .logged-in-info.hidden {
+            display: none;
+        }
+
+        .logged-user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .logged-user-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .logged-user-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .logged-user-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .logged-user-role {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .logged-user-badge {
+            padding: 4px 10px;
+            background: var(--success-soft);
+            color: var(--success);
+            font-size: 10px;
+            font-weight: 500;
+            border-radius: 12px;
+        }
+
+        .switch-user-btn {
+            width: 100%;
+            margin-top: 8px;
+        }
+
         /* Stats Row */
         .stats-row {
             display: grid;
@@ -2449,6 +2600,91 @@
         </div>
 
         <!-- ==================== -->
+        <!-- LOGIN MODULE         -->
+        <!-- ==================== -->
+        <div class="module" id="module-login">
+            <main class="main no-padding-bottom">
+                <!-- Back to Roles -->
+                <div class="back-to-roles" onclick="backToRoles()" style="position: absolute; top: 10px; left: 16px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </div>
+                
+                <div class="login-container">
+                    <!-- Login Header -->
+                    <div class="login-header">
+                        <div class="login-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h1 class="login-title" id="login-title">Staff Login</h1>
+                        <p class="login-subtitle" id="login-subtitle">Sign in to access your workspace</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div class="login-form">
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <div class="input-with-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                <input type="tel" class="form-input" id="login-phone" placeholder="+254 7XX XXX XXX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">PIN</label>
+                            <div class="input-with-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                <input type="password" class="form-input" id="login-pin" placeholder="••••" maxlength="4" inputmode="numeric">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary login-btn" onclick="handleLogin()">
+                            <span>Sign In</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+
+                        <p class="login-help">
+                            Forgot PIN? Contact your supervisor
+                        </p>
+                    </div>
+
+                    <!-- Current User Info (shown when logged in before) -->
+                    <div class="logged-in-info hidden" id="logged-in-info">
+                        <div class="logged-user-card">
+                            <div class="logged-user-avatar" id="logged-user-avatar">JM</div>
+                            <div class="logged-user-details">
+                                <div class="logged-user-name" id="logged-user-name">James Mwangi</div>
+                                <div class="logged-user-role" id="logged-user-role">Swap Attendant</div>
+                            </div>
+                            <span class="logged-user-badge">Active</span>
+                        </div>
+                        <button class="btn btn-primary login-btn" onclick="continueAsUser()">
+                            <span>Continue</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary switch-user-btn" onclick="switchUser()">
+                            Switch Account
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ==================== -->
         <!-- ATTENDANT MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-attendant">
@@ -3225,10 +3461,117 @@
             
             currentRole = selectedRole;
             
-            // Hide all modules
+            // Roles that require login
+            const requiresLogin = ['attendant', 'sales'];
+            
+            if (requiresLogin.includes(currentRole)) {
+                // Check if user is already logged in for this role
+                const loginKey = `oves-${currentRole}-login`;
+                const savedLogin = localStorage.getItem(loginKey);
+                
+                if (savedLogin) {
+                    // User has logged in before - show continue option
+                    showLoginScreen(true, JSON.parse(savedLogin));
+                } else {
+                    // First time - show full login form
+                    showLoginScreen(false);
+                }
+            } else {
+                // Other roles don't need login - go directly
+                goToRoleModule();
+            }
+        }
+
+        function showLoginScreen(hasExistingLogin, userData = null) {
+            document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+            document.getElementById('module-login').classList.add('active');
+            
+            const loginForm = document.querySelector('.login-form');
+            const loggedInInfo = document.getElementById('logged-in-info');
+            const loginTitle = document.getElementById('login-title');
+            const loginSubtitle = document.getElementById('login-subtitle');
+            
+            // Set title based on role
+            const roleNames = {
+                'attendant': 'Attendant',
+                'sales': 'Sales Rep'
+            };
+            loginTitle.textContent = `${roleNames[currentRole]} Login`;
+            
+            if (hasExistingLogin && userData) {
+                // Show continue as existing user
+                loginForm.style.display = 'none';
+                loggedInInfo.classList.remove('hidden');
+                loginSubtitle.textContent = 'Welcome back!';
+                
+                document.getElementById('logged-user-avatar').textContent = userData.initials;
+                document.getElementById('logged-user-name').textContent = userData.name;
+                document.getElementById('logged-user-role').textContent = roleNames[currentRole];
+            } else {
+                // Show login form
+                loginForm.style.display = 'block';
+                loggedInInfo.classList.add('hidden');
+                loginSubtitle.textContent = 'Sign in to access your workspace';
+                
+                // Clear form
+                document.getElementById('login-phone').value = '';
+                document.getElementById('login-pin').value = '';
+            }
+        }
+
+        function handleLogin() {
+            const phone = document.getElementById('login-phone').value.trim();
+            const pin = document.getElementById('login-pin').value.trim();
+            
+            if (!phone) {
+                document.getElementById('login-phone').focus();
+                return;
+            }
+            if (!pin || pin.length < 4) {
+                document.getElementById('login-pin').focus();
+                return;
+            }
+            
+            showLoading('Signing in...');
+            
+            // Simulate authentication
+            setTimeout(() => {
+                hideLoading();
+                
+                // Save login state
+                const userData = {
+                    name: 'James Mwangi',
+                    initials: 'JM',
+                    phone: phone,
+                    loginTime: Date.now()
+                };
+                
+                const loginKey = `oves-${currentRole}-login`;
+                localStorage.setItem(loginKey, JSON.stringify(userData));
+                
+                // Go to role module
+                goToRoleModule();
+            }, 1500);
+        }
+
+        function continueAsUser() {
+            showLoading('Loading workspace...');
+            setTimeout(() => {
+                hideLoading();
+                goToRoleModule();
+            }, 800);
+        }
+
+        function switchUser() {
+            // Clear current login and show form
+            const loginKey = `oves-${currentRole}-login`;
+            localStorage.removeItem(loginKey);
+            showLoginScreen(false);
+        }
+
+        function goToRoleModule() {
             document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
             
-            // Show selected module
             if (currentRole === 'attendant') {
                 document.getElementById('module-attendant').classList.add('active');
                 attGoToScreen(1);
