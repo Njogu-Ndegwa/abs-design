@@ -1159,6 +1159,73 @@
             height: 16px;
         }
 
+        /* Input Toggle (Scan vs Manual) */
+        .input-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            background: var(--bg-tertiary);
+            padding: 4px;
+            border-radius: var(--radius-md);
+        }
+
+        .toggle-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 12px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .toggle-btn:not(.active):hover {
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+        }
+
+        /* Customer Input Modes */
+        .customer-input-mode {
+            transition: opacity 0.2s ease;
+        }
+
+        .customer-input-mode.hidden {
+            display: none;
+        }
+
+        /* Manual Entry Form */
+        .manual-entry-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .manual-id-input {
+            font-family: 'DM Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         /* Stats Row */
         .stats-row {
             display: grid;
@@ -2404,37 +2471,88 @@
                     Change Role
                 </div>
 
-                <!-- Screen 1: Scan Customer QR -->
+                <!-- Screen 1: Identify Customer -->
                 <div class="screen active" id="att-screen-customer">
                     <div class="scan-prompt">
-                        <h1 class="scan-title">Scan Customer</h1>
-                        <p class="scan-subtitle">Scan customer's QR code to identify them</p>
+                        <h1 class="scan-title">Identify Customer</h1>
                         
-                        <div class="scanner-area" onclick="attScanCustomer()">
-                            <div class="scanner-frame">
-                                <div class="scanner-corners">
-                                    <div class="scanner-corner-bl"></div>
-                                    <div class="scanner-corner-br"></div>
-                                </div>
-                                <div class="scanner-line"></div>
-                                <div class="scanner-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="3" y="3" width="7" height="7"/>
-                                        <rect x="14" y="3" width="7" height="7"/>
-                                        <rect x="14" y="14" width="7" height="7"/>
-                                        <rect x="3" y="14" width="7" height="7"/>
-                                    </svg>
-                                </div>
-                            </div>
+                        <!-- Toggle between Scan and Manual -->
+                        <div class="input-toggle">
+                            <button class="toggle-btn active" id="toggle-scan" onclick="toggleCustomerInput('scan')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                                Scan QR
+                            </button>
+                            <button class="toggle-btn" id="toggle-manual" onclick="toggleCustomerInput('manual')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9"/>
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                </svg>
+                                Enter ID
+                            </button>
                         </div>
                         
-                        <p class="scan-hint">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 16v-4M12 8h.01"/>
-                            </svg>
-                            Customer shows their app QR code
-                        </p>
+                        <!-- Scan QR Option -->
+                        <div class="customer-input-mode" id="customer-scan-mode">
+                            <p class="scan-subtitle">Scan customer's QR code</p>
+                            
+                            <div class="scanner-area" onclick="attScanCustomer()">
+                                <div class="scanner-frame">
+                                    <div class="scanner-corners">
+                                        <div class="scanner-corner-bl"></div>
+                                        <div class="scanner-corner-br"></div>
+                                    </div>
+                                    <div class="scanner-line"></div>
+                                    <div class="scanner-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="3" width="7" height="7"/>
+                                            <rect x="14" y="3" width="7" height="7"/>
+                                            <rect x="14" y="14" width="7" height="7"/>
+                                            <rect x="3" y="14" width="7" height="7"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="scan-hint">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                                Customer shows their app QR code
+                            </p>
+                        </div>
+                        
+                        <!-- Manual Entry Option -->
+                        <div class="customer-input-mode hidden" id="customer-manual-mode">
+                            <p class="scan-subtitle">Enter Subscription ID manually</p>
+                            
+                            <div class="manual-entry-form">
+                                <div class="form-group">
+                                    <label class="form-label">Subscription ID</label>
+                                    <input type="text" class="form-input manual-id-input" id="subscriptionId" placeholder="e.g. SUB-8847-KE" autocomplete="off">
+                                </div>
+                                <button class="btn btn-primary" onclick="attLookupCustomer()" style="width: 100%; margin-top: 8px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"/>
+                                        <path d="M21 21l-4.35-4.35"/>
+                                    </svg>
+                                    Look Up Customer
+                                </button>
+                            </div>
+                            
+                            <p class="scan-hint">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                                Find ID on customer's account or receipt
+                            </p>
+                        </div>
                     </div>
 
                     <div class="stats-row">
@@ -3184,10 +3302,43 @@
             }[num];
         }
 
-        // Step 1: Scan customer QR
+        // Toggle between Scan QR and Manual Entry
+        function toggleCustomerInput(mode) {
+            const scanMode = document.getElementById('customer-scan-mode');
+            const manualMode = document.getElementById('customer-manual-mode');
+            const toggleScan = document.getElementById('toggle-scan');
+            const toggleManual = document.getElementById('toggle-manual');
+            
+            if (mode === 'scan') {
+                scanMode.classList.remove('hidden');
+                manualMode.classList.add('hidden');
+                toggleScan.classList.add('active');
+                toggleManual.classList.remove('active');
+            } else {
+                scanMode.classList.add('hidden');
+                manualMode.classList.remove('hidden');
+                toggleScan.classList.remove('active');
+                toggleManual.classList.add('active');
+                // Focus the input field
+                setTimeout(() => document.getElementById('subscriptionId').focus(), 100);
+            }
+        }
+
+        // Step 1a: Scan customer QR
         function attScanCustomer() {
             showLoading('Identifying customer...');
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1200);
+        }
+
+        // Step 1b: Manual lookup by Subscription ID
+        function attLookupCustomer() {
+            const subId = document.getElementById('subscriptionId').value.trim();
+            if (!subId) {
+                document.getElementById('subscriptionId').focus();
+                return;
+            }
+            showLoading('Looking up customer...');
+            setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1500);
         }
 
         // Step 2: Scan old battery (customer brought)
