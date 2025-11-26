@@ -242,6 +242,34 @@ test-designs/
 
 ---
 
+## User Workflows
+
+### Attendant Swap Flow (6 Steps)
+
+| Step | Screen | Action | Purpose |
+|------|--------|--------|---------|
+| 1 | Scan Customer | Scan customer's QR code | Identify the customer |
+| 2 | Scan Old Battery | Scan battery customer brought | Verify battery belongs to customer |
+| 3 | Scan New Battery | Scan fresh battery to give | Select new battery for swap |
+| 4 | Review & Cost | Display swap summary | Show energy differential & cost |
+| 5 | Confirm Payment | Scan customer QR after payment | Confirm payment received |
+| 6 | Success | Transaction complete | Show receipt & hand over battery |
+
+**Energy Calculation:**
+- Cost is based on energy differential between old battery (returned) and new battery (issued)
+- Formula: `(New Battery % - Old Battery %) × Rate + Service Fee - Discounts`
+
+### Sales Rep Flow (4 Steps)
+
+| Step | Screen | Action | Purpose |
+|------|--------|--------|---------|
+| 1 | Customer Registration | Enter customer details | Collect name, phone, ID, vehicle info |
+| 2 | Select Plan | Choose subscription | Weekly, Monthly, or Pay-Per-Swap |
+| 3 | Assign Battery | Scan battery | Link battery to new customer |
+| 4 | Success | Registration complete | Show summary & next steps |
+
+---
+
 ## Key Design Principles
 
 1. **Mobile-first**: Designed for handheld use by station attendants

@@ -290,6 +290,13 @@
         .main.no-padding-bottom {
             padding-bottom: 16px;
         }
+        
+        /* Onboarding specific - no horizontal padding needed */
+        #module-onboarding .main {
+            padding: 0;
+            height: calc(100vh - 56px);
+            overflow: hidden;
+        }
 
         /* Module/View States */
         .module {
@@ -390,10 +397,11 @@
         }
         
         @media (max-height: 700px) {
-            .role-hero-atmosphere,
-            .role-hero-mist,
-            .role-hero-reflect {
-                display: none;
+            .role-hero-atmosphere {
+                height: 40px;
+            }
+            .role-hero-mist {
+                height: 25px;
             }
         }
 
@@ -609,7 +617,10 @@
         .onboarding {
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh - 80px);
+            height: 100%;
+            max-height: 100%;
+            overflow: hidden;
+            padding: 0 16px;
         }
 
         .onboarding-slides {
@@ -619,6 +630,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 0;
         }
 
         .onboarding-slide {
@@ -628,7 +640,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 12px 20px;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.4s ease;
@@ -646,9 +658,9 @@
         }
 
         .onboarding-image {
-            width: 160px;
-            height: 160px;
-            margin-bottom: 24px;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -667,17 +679,17 @@
         }
 
         .onboarding-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             line-height: 1.2;
         }
 
         .onboarding-desc {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* Pagination dots */
@@ -685,7 +697,8 @@
             display: flex;
             justify-content: center;
             gap: 8px;
-            padding: 20px 0;
+            padding: 12px 0;
+            flex-shrink: 0;
         }
 
         .onboarding-dot {
@@ -705,7 +718,8 @@
 
         /* Onboarding actions */
         .onboarding-actions {
-            padding: 0 0 12px;
+            padding: 0 0 8px;
+            flex-shrink: 0;
         }
 
         .onboarding-actions .btn {
@@ -714,7 +728,8 @@
 
         .onboarding-skip {
             text-align: center;
-            padding-bottom: 8px;
+            padding-bottom: 12px;
+            flex-shrink: 0;
         }
 
         .onboarding-skip button {
@@ -730,6 +745,25 @@
 
         .onboarding-skip button:hover {
             color: var(--text-secondary);
+        }
+        
+        /* Larger screens - expand onboarding */
+        @media (min-height: 700px) {
+            .onboarding-image {
+                width: 160px;
+                height: 160px;
+                margin-bottom: 20px;
+            }
+            .onboarding-title {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            .onboarding-desc {
+                font-size: 13px;
+            }
+            .onboarding-dots {
+                padding: 16px 0;
+            }
         }
 
         /* ===================== */
@@ -1213,26 +1247,28 @@
 
         .battery-icon-large {
             width: 50px;
-            height: 75px;
+            height: 70px;
             background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-tertiary) 100%);
             border: 2px solid var(--border);
-            border-radius: var(--radius-sm);
+            border-radius: 6px;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            overflow: hidden;
+            overflow: visible;
             flex-shrink: 0;
+            margin-top: 10px;
         }
 
+        /* Battery terminal cap */
         .battery-icon-large::before {
             content: '';
             position: absolute;
-            top: -6px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 6px;
+            width: 18px;
+            height: 10px;
             background: var(--border);
             border-radius: 3px 3px 0 0;
         }
@@ -1277,6 +1313,164 @@
         .battery-meta-item span {
             color: var(--text-secondary);
             font-weight: 500;
+        }
+
+        /* Visual Battery Swap Comparison */
+        .battery-swap-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 10px;
+        }
+
+        .battery-swap-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-top: 12px;
+        }
+
+        .battery-icon-swap {
+            width: 60px;
+            height: 85px;
+            background: var(--bg-tertiary);
+            border: 3px solid var(--border);
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        /* Battery terminal/cap on top */
+        .battery-icon-swap::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 12px;
+            background: var(--border);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .battery-icon-swap.low {
+            border-color: var(--error);
+        }
+        
+        .battery-icon-swap.low::before {
+            background: var(--error);
+        }
+
+        .battery-icon-swap.medium {
+            border-color: #f59e0b;
+        }
+        
+        .battery-icon-swap.medium::before {
+            background: #f59e0b;
+        }
+
+        .battery-icon-swap.full {
+            border-color: var(--success);
+        }
+        
+        .battery-icon-swap.full::before {
+            background: var(--success);
+        }
+
+        .battery-level-swap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--level, 50%);
+            transition: height 0.5s ease;
+        }
+
+        .battery-icon-swap.low .battery-level-swap {
+            background: linear-gradient(180deg, var(--error) 0%, #cc4444 100%);
+        }
+
+        .battery-icon-swap.medium .battery-level-swap {
+            background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .battery-icon-swap.full .battery-level-swap {
+            background: linear-gradient(180deg, var(--success) 0%, #00a878 100%);
+        }
+
+        .battery-percent {
+            position: relative;
+            z-index: 1;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .battery-swap-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .battery-swap-id {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .swap-arrow-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--accent-soft);
+            border-radius: 50%;
+        }
+
+        .swap-arrow-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        /* Energy Differential Badge */
+        .energy-diff-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            margin: 0 auto 12px;
+            width: fit-content;
+        }
+
+        .energy-diff-badge svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .energy-diff-badge span {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
         }
 
         /* Customer Info */
@@ -2191,12 +2385,14 @@
         <!-- ATTENDANT MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-attendant">
-            <!-- Progress Bar -->
+            <!-- Progress Bar - 6 steps -->
             <div class="progress-bar">
                 <div class="progress-step active" data-step="1"></div>
                 <div class="progress-step" data-step="2"></div>
                 <div class="progress-step" data-step="3"></div>
                 <div class="progress-step" data-step="4"></div>
+                <div class="progress-step" data-step="5"></div>
+                <div class="progress-step" data-step="6"></div>
             </div>
 
             <main class="main">
@@ -2208,13 +2404,73 @@
                     Change Role
                 </div>
 
-                <!-- Screen 1: Scan Battery -->
-                <div class="screen active" id="att-screen-scan">
+                <!-- Screen 1: Scan Customer QR -->
+                <div class="screen active" id="att-screen-customer">
                     <div class="scan-prompt">
-                        <h1 class="scan-title">Scan Battery</h1>
-                        <p class="scan-subtitle">Point camera at the battery barcode</p>
+                        <h1 class="scan-title">Scan Customer</h1>
+                        <p class="scan-subtitle">Scan customer's QR code to identify them</p>
                         
-                        <div class="scanner-area" onclick="attSimulateScan()">
+                        <div class="scanner-area" onclick="attScanCustomer()">
+                            <div class="scanner-frame">
+                                <div class="scanner-corners">
+                                    <div class="scanner-corner-bl"></div>
+                                    <div class="scanner-corner-br"></div>
+                                </div>
+                                <div class="scanner-line"></div>
+                                <div class="scanner-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7"/>
+                                        <rect x="14" y="3" width="7" height="7"/>
+                                        <rect x="14" y="14" width="7" height="7"/>
+                                        <rect x="3" y="14" width="7" height="7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="scan-hint">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            Customer shows their app QR code
+                        </p>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Today</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">156</div>
+                            <div class="stat-label">This Week</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Success</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 2: Scan Old Battery -->
+                <div class="screen" id="att-screen-oldbattery">
+                    <div class="customer-card" style="margin-bottom: 12px;">
+                        <div class="customer-header" style="margin-bottom: 0;">
+                            <div class="customer-avatar">JM</div>
+                            <div>
+                                <div class="customer-name">James Mwangi</div>
+                                <div class="customer-id">CUS-8847-KE • Pay-Per-Swap</div>
+                            </div>
+                            <span class="battery-status verified" style="margin-left: auto;">Verified</span>
+                        </div>
+                    </div>
+
+                    <div class="scan-prompt">
+                        <h1 class="scan-title">Scan Old Battery</h1>
+                        <p class="scan-subtitle">Scan the battery the customer brought in</p>
+                        
+                        <div class="scanner-area" onclick="attScanOldBattery()" style="margin: 12px auto;">
                             <div class="scanner-frame">
                                 <div class="scanner-corners">
                                     <div class="scanner-corner-bl"></div>
@@ -2235,108 +2491,132 @@
                                 <circle cx="12" cy="12" r="10"/>
                                 <path d="M12 16v-4M12 8h.01"/>
                             </svg>
-                            Tap scanner area to simulate
+                            Verify battery belongs to customer
                         </p>
-                    </div>
-
-                    <div class="stats-row">
-                        <div class="stat-card">
-                            <div class="stat-value">24</div>
-                            <div class="stat-label">Today</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">156</div>
-                            <div class="stat-label">This Week</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">98%</div>
-                            <div class="stat-label">Success</div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Screen 2: Verification -->
-                <div class="screen" id="att-screen-verify">
-                    <div class="battery-card">
-                        <div class="battery-header">
+                <!-- Screen 3: Scan New Battery -->
+                <div class="screen" id="att-screen-newbattery">
+                    <div class="battery-card" style="margin-bottom: 12px;">
+                        <div class="battery-header" style="margin-bottom: 8px;">
                             <div>
-                                <div class="battery-id">BAT-2024-7829</div>
-                                <div class="battery-name">PowerCell X60</div>
+                                <div class="battery-id">OLD BATTERY</div>
+                                <div class="battery-name">BAT-2024-7829</div>
                             </div>
-                            <span class="battery-status verified">Verified</span>
+                            <span class="battery-status verified">Matched</span>
                         </div>
-                        
-                        <div class="battery-visual">
-                            <div class="battery-icon-large">
+                        <div class="battery-visual" style="padding: 8px; margin-bottom: 0;">
+                            <div class="battery-icon-large" style="width: 40px; height: 60px;">
                                 <div class="battery-level" style="--level: 35%;"></div>
                             </div>
                             <div class="battery-info">
-                                <div class="battery-charge">35%</div>
-                                <div class="battery-charge-label">Remaining Charge</div>
-                                <div class="battery-meta">
-                                    <div class="battery-meta-item">Cycles: <span>142</span></div>
-                                    <div class="battery-meta-item">Health: <span>94%</span></div>
+                                <div class="battery-charge" style="font-size: 20px;">35%</div>
+                                <div class="battery-charge-label">Charge Remaining</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scan-prompt">
+                        <h1 class="scan-title">Scan New Battery</h1>
+                        <p class="scan-subtitle">Scan the fresh battery to give customer</p>
+                        
+                        <div class="scanner-area" onclick="attScanNewBattery()" style="margin: 12px auto;">
+                            <div class="scanner-frame">
+                                <div class="scanner-corners">
+                                    <div class="scanner-corner-bl"></div>
+                                    <div class="scanner-corner-br"></div>
+                                </div>
+                                <div class="scanner-line"></div>
+                                <div class="scanner-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <path d="M7 7h.01M7 12h.01M7 17h.01M12 7h.01M12 12h.01M12 17h.01M17 7h.01M17 12h.01M17 17h.01"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="customer-card">
-                        <div class="customer-header">
+                <!-- Screen 4: Review & Cost -->
+                <div class="screen" id="att-screen-review">
+                    <!-- Visual Battery Comparison -->
+                    <div class="battery-swap-visual">
+                        <div class="battery-swap-item">
+                            <div class="battery-icon-swap low">
+                                <div class="battery-level-swap" style="--level: 35%;"></div>
+                                <span class="battery-percent">35%</span>
+                            </div>
+                            <div class="battery-swap-label">RETURNING</div>
+                            <div class="battery-swap-id">BAT-7829</div>
+                        </div>
+                        
+                        <div class="swap-arrow-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="battery-swap-item">
+                            <div class="battery-icon-swap full">
+                                <div class="battery-level-swap" style="--level: 100%;"></div>
+                                <span class="battery-percent">100%</span>
+                            </div>
+                            <div class="battery-swap-label">RECEIVING</div>
+                            <div class="battery-swap-id">BAT-3156</div>
+                        </div>
+                    </div>
+
+                    <!-- Energy Differential Badge -->
+                    <div class="energy-diff-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        <span>+1.63 kWh</span>
+                    </div>
+
+                    <div class="cost-card">
+                        <div class="cost-title">Cost Breakdown</div>
+                        <div class="cost-row">
+                            <span class="cost-label">Energy Received</span>
+                            <span class="cost-value">1.63 kWh</span>
+                        </div>
+                        <div class="cost-row">
+                            <span class="cost-label">Rate</span>
+                            <span class="cost-value">KES 120/kWh</span>
+                        </div>
+                        <div class="cost-total">
+                            <span class="cost-total-label">Total Due</span>
+                            <span class="cost-total-value">KES 196</span>
+                        </div>
+                    </div>
+
+                    <div class="customer-card" style="padding: 10px;">
+                        <div class="customer-header" style="margin-bottom: 0;">
                             <div class="customer-avatar">JM</div>
                             <div>
                                 <div class="customer-name">James Mwangi</div>
-                                <div class="customer-id">CUS-8847-KE</div>
-                            </div>
-                        </div>
-                        <div class="customer-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Phone</div>
-                                <div class="detail-value">+254 712 ***456</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Plan</div>
-                                <div class="detail-value">Pay-Per-Swap</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Last Swap</div>
-                                <div class="detail-value">2 days ago</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Total Swaps</div>
-                                <div class="detail-value">34</div>
+                                <div class="customer-id">34 swaps • Last: 2 days ago</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Screen 3: Payment -->
+                <!-- Screen 5: Confirm Payment -->
                 <div class="screen" id="att-screen-payment">
-                    <div class="cost-card">
-                        <div class="cost-title">Swap Cost Breakdown</div>
-                        <div class="cost-row">
-                            <span class="cost-label">Energy Used (65%)</span>
-                            <span class="cost-value">KES 195.00</span>
-                        </div>
-                        <div class="cost-row">
-                            <span class="cost-label">Service Fee</span>
-                            <span class="cost-value">KES 20.00</span>
-                        </div>
-                        <div class="cost-row">
-                            <span class="cost-label">Loyalty Discount</span>
-                            <span class="cost-value" style="color: var(--success);">-KES 15.00</span>
-                        </div>
-                        <div class="cost-total">
-                            <span class="cost-total-label">Total Amount</span>
-                            <span class="cost-total-value">KES 200</span>
+                    <div class="cost-card" style="margin-bottom: 12px;">
+                        <div class="cost-total" style="margin-top: 0;">
+                            <span class="cost-total-label">Amount to Collect</span>
+                            <span class="cost-total-value">KES 196</span>
                         </div>
                     </div>
 
                     <div class="payment-scan">
                         <h2 class="payment-title">Confirm Payment</h2>
-                        <p class="payment-subtitle">Scan customer's payment QR code</p>
+                        <p class="payment-subtitle">After customer pays, scan their QR to confirm</p>
                         
-                        <div class="qr-scanner-area" onclick="attSimulatePayment()">
+                        <div class="qr-scanner-area" onclick="attConfirmPayment()">
                             <div class="qr-scanner-frame">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="3" width="7" height="7"/>
@@ -2347,12 +2627,12 @@
                             </div>
                         </div>
                         
-                        <div class="payment-amount">KES 200.00</div>
-                        <div class="payment-status">Awaiting payment confirmation</div>
+                        <div class="payment-amount">KES 196.00</div>
+                        <div class="payment-status">Scan customer QR after payment</div>
                     </div>
                 </div>
 
-                <!-- Screen 4: Success -->
+                <!-- Screen 6: Success -->
                 <div class="screen" id="att-screen-success">
                     <div class="success-screen">
                         <div class="success-icon">
@@ -2361,7 +2641,7 @@
                             </svg>
                         </div>
                         <h2 class="success-title">Swap Complete!</h2>
-                        <p class="success-message">Hand over the fully charged battery to customer</p>
+                        <p class="success-message">Hand over BAT-2024-3156 to customer</p>
                         
                         <div class="receipt-card">
                             <div class="receipt-header">
@@ -2373,16 +2653,20 @@
                                 <span class="receipt-value">James Mwangi</span>
                             </div>
                             <div class="receipt-row">
-                                <span class="receipt-label">Battery Out</span>
+                                <span class="receipt-label">Returned</span>
                                 <span class="receipt-value">BAT-2024-7829 (35%)</span>
                             </div>
                             <div class="receipt-row">
-                                <span class="receipt-label">Battery In</span>
+                                <span class="receipt-label">Issued</span>
                                 <span class="receipt-value">BAT-2024-3156 (100%)</span>
                             </div>
                             <div class="receipt-row">
+                                <span class="receipt-label">Energy</span>
+                                <span class="receipt-value">1.63 kWh</span>
+                            </div>
+                            <div class="receipt-row">
                                 <span class="receipt-label">Amount Paid</span>
-                                <span class="receipt-value" style="color: var(--success);">KES 200.00</span>
+                                <span class="receipt-value" style="color: var(--success);">KES 196.00</span>
                             </div>
                             <div class="receipt-row">
                                 <span class="receipt-label">Time</span>
@@ -2404,10 +2688,9 @@
                     </button>
                     <button class="btn btn-primary" id="att-btn-main" onclick="attHandleMainAction()">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="att-btn-icon">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                            <path d="M7 7h.01M7 12h.01M7 17h.01M12 7h.01M12 12h.01M12 17h.01M17 7h.01M17 12h.01M17 17h.01"/>
+                            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
                         </svg>
-                        <span id="att-btn-text">Scan Battery</span>
+                        <span id="att-btn-text">Scan Customer</span>
                     </button>
                 </div>
             </div>
@@ -2845,15 +3128,17 @@
         }
 
         // =====================
-        // Attendant Module
+        // Attendant Module (6-Step Flow)
         // =====================
         let attCurrentScreen = 1;
 
         const attScreenConfig = {
-            1: { btnText: 'Scan Battery', btnIcon: 'scan', showBack: false },
-            2: { btnText: 'Proceed to Payment', btnIcon: 'arrow', showBack: true },
-            3: { btnText: 'Scan Payment QR', btnIcon: 'qr', showBack: true },
-            4: { btnText: 'New Swap', btnIcon: 'plus', showBack: false, btnClass: 'btn-success' }
+            1: { btnText: 'Scan Customer', btnIcon: 'qr', showBack: false },
+            2: { btnText: 'Scan Old Battery', btnIcon: 'scan', showBack: true },
+            3: { btnText: 'Scan New Battery', btnIcon: 'scan', showBack: true },
+            4: { btnText: 'Collect Payment', btnIcon: 'arrow', showBack: true },
+            5: { btnText: 'Confirm Payment', btnIcon: 'qr', showBack: true },
+            6: { btnText: 'New Swap', btnIcon: 'plus', showBack: false, btnClass: 'btn-success' }
         };
 
         const attIcons = {
@@ -2889,25 +3174,56 @@
         }
 
         function attGetScreenName(num) {
-            return { 1: 'scan', 2: 'verify', 3: 'payment', 4: 'success' }[num];
+            return { 
+                1: 'customer',    // Scan Customer QR
+                2: 'oldbattery',  // Scan Old Battery
+                3: 'newbattery',  // Scan New Battery
+                4: 'review',      // Review & Cost
+                5: 'payment',     // Confirm Payment
+                6: 'success'      // Complete
+            }[num];
         }
 
-        function attSimulateScan() {
+        // Step 1: Scan customer QR
+        function attScanCustomer() {
+            showLoading('Identifying customer...');
+            setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1200);
+        }
+
+        // Step 2: Scan old battery (customer brought)
+        function attScanOldBattery() {
             showLoading('Scanning battery...');
-            setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1500);
+            setTimeout(() => { 
+                hideLoading(); 
+                showLoading('Verifying ownership...');
+                setTimeout(() => { hideLoading(); attGoToScreen(3); }, 800);
+            }, 1000);
         }
 
-        function attSimulatePayment() {
-            showLoading('Verifying payment...');
-            setTimeout(() => { hideLoading(); attGoToScreen(4); }, 2000);
+        // Step 3: Scan new battery (to give customer)
+        function attScanNewBattery() {
+            showLoading('Scanning new battery...');
+            setTimeout(() => { 
+                hideLoading(); 
+                showLoading('Calculating cost...');
+                setTimeout(() => { hideLoading(); attGoToScreen(4); }, 600);
+            }, 1000);
+        }
+
+        // Step 5: Confirm payment by scanning customer QR
+        function attConfirmPayment() {
+            showLoading('Confirming payment...');
+            setTimeout(() => { hideLoading(); attGoToScreen(6); }, 1500);
         }
 
         function attHandleMainAction() {
             switch(attCurrentScreen) {
-                case 1: attSimulateScan(); break;
-                case 2: attGoToScreen(3); break;
-                case 3: attSimulatePayment(); break;
-                case 4: attGoToScreen(1); break;
+                case 1: attScanCustomer(); break;
+                case 2: attScanOldBattery(); break;
+                case 3: attScanNewBattery(); break;
+                case 4: attGoToScreen(5); break;  // Go to payment confirmation
+                case 5: attConfirmPayment(); break;
+                case 6: attGoToScreen(1); break;  // Start new swap
             }
         }
 
