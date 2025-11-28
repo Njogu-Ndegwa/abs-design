@@ -1952,6 +1952,259 @@
             font-weight: 500;
         }
 
+        /* Service Plan Summary - Compact quota display */
+        .service-plan-summary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .plan-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .plan-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-soft);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .plan-icon svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .plan-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .plan-period {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .plan-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .plan-badge.current {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+        .plan-badge.due {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+
+        .plan-badge.pending {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        /* Quota meters - compact inline */
+        .quota-meters {
+            display: flex;
+            gap: 8px;
+        }
+
+        .quota-meter {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            padding: 8px 10px;
+            min-width: 0;
+        }
+
+        .quota-label-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .quota-icon-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .quota-icon-label svg {
+            width: 12px;
+            height: 12px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .quota-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .quota-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .quota-bar {
+            height: 4px;
+            background: var(--bg-elevated);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .quota-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .quota-fill.low {
+            background: linear-gradient(90deg, var(--success) 0%, #00e5a0 100%);
+        }
+
+        .quota-fill.medium {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .quota-fill.high {
+            background: linear-gradient(90deg, var(--error) 0%, #ff7a7a 100%);
+        }
+
+        .quota-remaining {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .quota-unit {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Current battery display in plan summary */
+        .plan-current-battery {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .plan-current-battery svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-muted);
+        }
+
+        .plan-current-battery span {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .plan-current-battery .battery-id-tag {
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Collapsible plan details */
+        .plan-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px;
+            margin-top: 8px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: color 0.2s ease;
+        }
+
+        .plan-toggle:hover {
+            color: var(--text-secondary);
+        }
+
+        .plan-toggle svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .plan-toggle.expanded svg {
+            transform: rotate(180deg);
+        }
+
+        .plan-details {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .plan-details.show {
+            display: block;
+        }
+
+        .plan-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .plan-detail-label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .plan-detail-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
         /* Cost Breakdown */
         .cost-title {
             font-size: 12px;
@@ -3082,14 +3335,85 @@
 
                 <!-- Screen 2: Scan Old Battery -->
                 <div class="screen" id="att-screen-oldbattery">
-                    <div class="customer-card" style="margin-bottom: 12px;">
+                    <div class="customer-card" style="margin-bottom: 8px;">
                         <div class="customer-header" style="margin-bottom: 0;">
-                            <div class="customer-avatar">JM</div>
+                            <div class="customer-avatar" id="att-customer-avatar">JM</div>
                             <div>
-                                <div class="customer-name">James Mwangi</div>
-                                <div class="customer-id">CUS-8847-KE • Pay-Per-Swap</div>
+                                <div class="customer-name" id="att-customer-name">James Mwangi</div>
+                                <div class="customer-id" id="att-customer-id">CUS-8847-KE • Pay-Per-Swap</div>
                             </div>
                             <span class="battery-status verified" style="margin-left: auto;">Verified</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Plan Summary -->
+                    <div class="service-plan-summary" id="att-plan-summary">
+                        <div class="plan-header">
+                            <div class="plan-title-row">
+                                <div class="plan-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="plan-name" id="att-plan-name">7-Day Lux Bundle</div>
+                                    <div class="plan-period" id="att-plan-period">Weekly Plan</div>
+                                </div>
+                            </div>
+                            <span class="plan-badge current" id="att-payment-badge">Current</span>
+                        </div>
+                        
+                        <!-- Quota Meters - Only meaningful services -->
+                        <div class="quota-meters">
+                            <!-- Electricity Usage -->
+                            <div class="quota-meter">
+                                <div class="quota-label-row">
+                                    <div class="quota-icon-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                        </svg>
+                                        <span class="quota-label">Energy</span>
+                                    </div>
+                                    <span class="quota-value" id="att-energy-ratio">8/70</span>
+                                </div>
+                                <div class="quota-bar">
+                                    <div class="quota-fill low" id="att-energy-fill" style="width: 11%;"></div>
+                                </div>
+                                <div>
+                                    <span class="quota-remaining" id="att-energy-remaining">62</span>
+                                    <span class="quota-unit">kWh left</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Swap Count -->
+                            <div class="quota-meter">
+                                <div class="quota-label-row">
+                                    <div class="quota-icon-label">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                        </svg>
+                                        <span class="quota-label">Swaps</span>
+                                    </div>
+                                    <span class="quota-value" id="att-swaps-ratio">3/21</span>
+                                </div>
+                                <div class="quota-bar">
+                                    <div class="quota-fill low" id="att-swaps-fill" style="width: 14%;"></div>
+                                </div>
+                                <div>
+                                    <span class="quota-remaining" id="att-swaps-remaining">18</span>
+                                    <span class="quota-unit">swaps left</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Battery -->
+                        <div class="plan-current-battery">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="6" width="18" height="12" rx="2"/>
+                                <path d="M23 10v4"/>
+                            </svg>
+                            <span>Assigned:</span>
+                            <span class="battery-id-tag" id="att-assigned-battery">BAT_NEW_004</span>
                         </div>
                     </div>
 
