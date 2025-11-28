@@ -1198,6 +1198,298 @@
             }
         }
         
+        /* ===================== */
+        /* CUSTOMER STATE PANEL */
+        /* ===================== */
+        
+        /* Fixed customer state summary - visible after customer ID */
+        .customer-state-panel {
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: none;
+            flex-shrink: 0;
+        }
+        
+        .customer-state-panel.visible {
+            display: block;
+        }
+        
+        .customer-state-inner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Customer Identity */
+        .state-customer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .state-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .state-customer-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .state-customer-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .state-plan-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .state-plan-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Status badges */
+        .state-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .state-badge.active {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .state-badge.current {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        
+        .state-badge.overdue {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        /* Battery indicator */
+        .state-battery {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        
+        .state-battery-icon {
+            width: 16px;
+            height: 10px;
+            border: 1.5px solid var(--success);
+            border-radius: 2px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1px;
+        }
+        
+        .state-battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 5px;
+            background: var(--success);
+            border-radius: 0 1px 1px 0;
+        }
+        
+        .state-battery-fill {
+            height: 100%;
+            width: var(--level, 100%);
+            background: var(--success);
+            border-radius: 1px;
+        }
+        
+        .state-battery-id {
+            font-size: 9px;
+            font-weight: 500;
+            font-family: 'DM Mono', monospace;
+            color: var(--text-secondary);
+        }
+        
+        /* Quota summary - compact horizontal layout */
+        .state-quotas {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .state-quota-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            padding: 6px 8px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+        
+        .state-quota-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .state-quota-icon.energy {
+            background: rgba(255, 200, 50, 0.15);
+            color: #ffc832;
+        }
+        
+        .state-quota-icon.swaps {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        
+        .state-quota-icon svg {
+            width: 11px;
+            height: 11px;
+        }
+        
+        .state-quota-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .state-quota-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+        }
+        
+        .state-quota-value .remaining {
+            font-family: 'DM Mono', monospace;
+        }
+        
+        .state-quota-value .unit {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .state-quota-bar {
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 3px;
+            overflow: hidden;
+        }
+        
+        .state-quota-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .state-quota-fill.good {
+            background: var(--success);
+        }
+        
+        .state-quota-fill.warning {
+            background: #f0a500;
+        }
+        
+        .state-quota-fill.critical {
+            background: var(--error);
+        }
+        
+        /* Compact mode for small screens */
+        @media (max-height: 700px) {
+            .customer-state-panel {
+                padding: 8px 12px;
+            }
+            
+            .state-avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+            
+            .state-customer-name {
+                font-size: 11px;
+            }
+            
+            .state-plan-row {
+                font-size: 9px;
+            }
+            
+            .state-quotas {
+                margin-top: 6px;
+                padding-top: 6px;
+            }
+            
+            .state-quota-item {
+                padding: 4px 6px;
+            }
+            
+            .state-quota-icon {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .state-quota-icon svg {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .state-quota-value {
+                font-size: 11px;
+            }
+        }
+        
         /* Simple dot progress for sales module (keep existing) */
         .progress-bar {
             display: flex;
@@ -3115,6 +3407,68 @@
                 </div>
             </div>
 
+            <!-- Customer State Panel - Fixed/Sticky after identification -->
+            <div class="customer-state-panel" id="att-customer-state">
+                <div class="customer-state-inner">
+                    <!-- Customer Identity -->
+                    <div class="state-customer">
+                        <div class="state-avatar" id="state-avatar">JM</div>
+                        <div class="state-customer-info">
+                            <div class="state-customer-name" id="state-customer-name">James Mwangi</div>
+                            <div class="state-plan-row">
+                                <span class="state-plan-name" id="state-plan-name">7-Day Lux</span>
+                                <span class="state-badge active" id="state-status-badge">Active</span>
+                                <span class="state-badge current" id="state-payment-badge">Current</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Current Battery -->
+                    <div class="state-battery" id="state-current-battery">
+                        <div class="state-battery-icon">
+                            <div class="state-battery-fill" style="--level: 100%;"></div>
+                        </div>
+                        <span class="state-battery-id" id="state-battery-id">BAT_004</span>
+                    </div>
+                </div>
+                <!-- Quota Summary -->
+                <div class="state-quotas" id="state-quotas">
+                    <!-- Energy Quota -->
+                    <div class="state-quota-item" id="state-quota-energy">
+                        <div class="state-quota-icon energy">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="state-quota-info">
+                            <div class="state-quota-value">
+                                <span class="remaining" id="state-energy-remaining">62</span>
+                                <span class="unit">kWh left</span>
+                            </div>
+                            <div class="state-quota-bar">
+                                <div class="state-quota-fill good" id="state-energy-fill" style="width: 11.4%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Swaps Quota -->
+                    <div class="state-quota-item" id="state-quota-swaps">
+                        <div class="state-quota-icon swaps">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                            </svg>
+                        </div>
+                        <div class="state-quota-info">
+                            <div class="state-quota-value">
+                                <span class="remaining" id="state-swaps-remaining">18</span>
+                                <span class="unit">swaps left</span>
+                            </div>
+                            <div class="state-quota-bar">
+                                <div class="state-quota-fill good" id="state-swaps-fill" style="width: 14.3%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <main class="main">
                 <!-- Back to Roles -->
                 <div class="back-to-roles" onclick="backToRoles()">
@@ -4234,6 +4588,9 @@
             // Update the interactive timeline
             attUpdateTimeline(screenNum);
             
+            // Toggle customer state panel visibility (visible on screens 2-5)
+            toggleCustomerStatePanel(screenNum);
+            
             const config = attScreenConfig[screenNum];
             document.getElementById('att-btn-text').textContent = config.btnText;
             document.getElementById('att-btn-icon').innerHTML = attIcons[config.btnIcon];
@@ -4295,6 +4652,8 @@
             toggleCustomerInput('scan');
             // Reset service plan data
             currentServicePlan = null;
+            // Hide customer state panel when starting fresh
+            hideCustomerStatePanel();
         }
 
         // Toggle between Scan QR and Manual Entry
@@ -4475,6 +4834,149 @@
             });
         }
         
+        // ===========================================
+        // Customer State Panel - Sticky Summary
+        // ===========================================
+        
+        // Show/hide the customer state panel based on current screen
+        function toggleCustomerStatePanel(screenNum) {
+            const panel = document.getElementById('att-customer-state');
+            if (!panel) return;
+            
+            // Show panel on screens 2-5 (after customer ID, before success)
+            // Hide on screen 1 (identification) and screen 6 (success/complete)
+            if (screenNum >= 2 && screenNum <= 5) {
+                panel.classList.add('visible');
+            } else {
+                panel.classList.remove('visible');
+            }
+        }
+        
+        // Populate the customer state panel with service plan data
+        function updateCustomerStatePanel(servicePlanData, customerData) {
+            if (!servicePlanData) return;
+            
+            // Customer identity
+            const avatar = document.getElementById('state-avatar');
+            const customerName = document.getElementById('state-customer-name');
+            const planName = document.getElementById('state-plan-name');
+            const statusBadge = document.getElementById('state-status-badge');
+            const paymentBadge = document.getElementById('state-payment-badge');
+            
+            // Set customer name and avatar
+            if (customerData) {
+                if (avatar) avatar.textContent = customerData.initials || 'CU';
+                if (customerName) customerName.textContent = customerData.name || 'Customer';
+            }
+            
+            // Extract plan name from template ID
+            const templateId = servicePlanData.templateId || servicePlanData.servicePlanId || '';
+            let displayPlanName = '7-Day Plan';
+            if (templateId.includes('7day')) displayPlanName = '7-Day Lux';
+            else if (templateId.includes('30day') || templateId.includes('month')) displayPlanName = '30-Day Plan';
+            else if (templateId.includes('pay-per') || templateId.includes('payper')) displayPlanName = 'Pay-Per-Swap';
+            if (planName) planName.textContent = displayPlanName;
+            
+            // Status badge
+            if (statusBadge) {
+                const status = servicePlanData.status || 'ACTIVE';
+                statusBadge.textContent = status.charAt(0) + status.slice(1).toLowerCase();
+                statusBadge.className = 'state-badge ' + status.toLowerCase();
+            }
+            
+            // Payment state badge
+            if (paymentBadge) {
+                const paymentState = servicePlanData.paymentState || 'CURRENT';
+                paymentBadge.textContent = paymentState.charAt(0) + paymentState.slice(1).toLowerCase();
+                paymentBadge.className = 'state-badge ' + paymentState.toLowerCase();
+            }
+            
+            // Current battery from service states
+            const batteryContainer = document.getElementById('state-current-battery');
+            const batteryId = document.getElementById('state-battery-id');
+            const serviceStates = servicePlanData.serviceStates || [];
+            
+            // Find battery fleet service to get current asset
+            const batteryService = serviceStates.find(s => 
+                s.service_id?.toLowerCase().includes('battery-fleet') && s.current_asset
+            );
+            
+            if (batteryService && batteryService.current_asset && batteryContainer) {
+                const assetId = batteryService.current_asset;
+                // Format battery ID for display (show last part)
+                const shortId = assetId.includes('_') ? assetId.split('_').pop() : assetId.slice(-6);
+                if (batteryId) batteryId.textContent = `BAT_${shortId}`;
+                batteryContainer.style.display = 'flex';
+            } else if (batteryContainer) {
+                batteryContainer.style.display = 'none';
+            }
+            
+            // Update quota displays
+            const displayableServices = getDisplayableServices(serviceStates);
+            let energyService = null;
+            let swapService = null;
+            
+            displayableServices.forEach(service => {
+                const id = service.service_id?.toLowerCase() || '';
+                if (id.includes('electricity')) energyService = service;
+                else if (id.includes('swap-count')) swapService = service;
+            });
+            
+            // Energy quota
+            const energyQuotaItem = document.getElementById('state-quota-energy');
+            const energyRemaining = document.getElementById('state-energy-remaining');
+            const energyFill = document.getElementById('state-energy-fill');
+            
+            if (energyService && energyQuotaItem) {
+                const remaining = energyService.quota - energyService.used;
+                const usedPercent = (energyService.used / energyService.quota) * 100;
+                const status = getQuotaStatus(energyService.used, energyService.quota);
+                
+                if (energyRemaining) energyRemaining.textContent = remaining;
+                if (energyFill) {
+                    energyFill.style.width = usedPercent + '%';
+                    energyFill.className = 'state-quota-fill ' + status;
+                }
+                energyQuotaItem.style.display = 'flex';
+            } else if (energyQuotaItem) {
+                energyQuotaItem.style.display = 'none';
+            }
+            
+            // Swaps quota
+            const swapsQuotaItem = document.getElementById('state-quota-swaps');
+            const swapsRemaining = document.getElementById('state-swaps-remaining');
+            const swapsFill = document.getElementById('state-swaps-fill');
+            
+            if (swapService && swapsQuotaItem) {
+                const remaining = swapService.quota - swapService.used;
+                const usedPercent = (swapService.used / swapService.quota) * 100;
+                const status = getQuotaStatus(swapService.used, swapService.quota);
+                
+                if (swapsRemaining) swapsRemaining.textContent = remaining;
+                if (swapsFill) {
+                    swapsFill.style.width = usedPercent + '%';
+                    swapsFill.className = 'state-quota-fill ' + status;
+                }
+                swapsQuotaItem.style.display = 'flex';
+            } else if (swapsQuotaItem) {
+                swapsQuotaItem.style.display = 'none';
+            }
+            
+            // Hide quota section if no services
+            const quotasContainer = document.getElementById('state-quotas');
+            if (quotasContainer) {
+                const hasEnergy = energyService && energyQuotaItem;
+                const hasSwaps = swapService && swapsQuotaItem;
+                quotasContainer.style.display = (hasEnergy || hasSwaps) ? 'flex' : 'none';
+            }
+        }
+        
+        // Hide customer state panel (for reset)
+        function hideCustomerStatePanel() {
+            const panel = document.getElementById('att-customer-state');
+            if (panel) panel.classList.remove('visible');
+        }
+        
         // Simulated API response data for demo
         const mockServicePlanData = {
             servicePlanId: "bss-plan-togo-7day-lux-plan3",
@@ -4495,15 +4997,19 @@
         function attScanCustomer() {
             showLoading('Identifying customer...');
             // Save customer data
-            attSaveStepData(1, {
+            const customerData = {
                 id: 'CUS-8847-KE',
                 name: 'James Mwangi',
                 initials: 'JM',
                 plan: '7-Day Lux'
-            });
+            };
+            attSaveStepData(1, customerData);
             
             // Update service plan display with mock data (would be from API in production)
             updateServicePlanDisplay(mockServicePlanData);
+            
+            // Update the sticky customer state panel
+            updateCustomerStatePanel(mockServicePlanData, customerData);
             
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1200);
         }
@@ -4517,15 +5023,19 @@
             }
             showLoading('Looking up customer...');
             // Save customer data
-            attSaveStepData(1, {
+            const customerData = {
                 id: subId,
                 name: 'James Mwangi',
                 initials: 'JM',
                 plan: '7-Day Lux'
-            });
+            };
+            attSaveStepData(1, customerData);
             
             // Update service plan display with mock data (would be from API in production)
             updateServicePlanDisplay(mockServicePlanData);
+            
+            // Update the sticky customer state panel
+            updateCustomerStatePanel(mockServicePlanData, customerData);
             
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1500);
         }
