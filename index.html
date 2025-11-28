@@ -993,7 +993,212 @@
         /* ATTENDANT MODULE      */
         /* ===================== */
 
-        /* Progress Steps */
+        /* Interactive Timeline */
+        .flow-timeline {
+            padding: 12px 16px 8px;
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .flow-timeline::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .timeline-track {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            min-width: max-content;
+            padding: 0 4px;
+        }
+        
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            padding: 4px 0;
+            min-width: 52px;
+            flex-shrink: 0;
+        }
+        
+        .timeline-step.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        .timeline-step:not(.disabled):hover .timeline-dot {
+            transform: scale(1.15);
+        }
+        
+        .timeline-step:not(.disabled):active .timeline-dot {
+            transform: scale(0.95);
+        }
+        
+        .timeline-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-dot svg {
+            width: 12px;
+            height: 12px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-step-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        
+        .timeline-label {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 5px;
+            max-width: 54px;
+            line-height: 1.2;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        /* Timeline connector line */
+        .timeline-connector {
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+            margin: 0 -2px;
+            margin-top: 14px;
+            min-width: 12px;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+        
+        /* Active state */
+        .timeline-step.active .timeline-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-soft), 0 0 20px -4px var(--accent-glow);
+        }
+        
+        .timeline-step.active .timeline-dot svg,
+        .timeline-step.active .timeline-step-num {
+            color: var(--bg-primary);
+        }
+        
+        .timeline-step.active .timeline-label {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Completed state */
+        .timeline-step.completed .timeline-dot {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        
+        .timeline-step.completed .timeline-dot svg {
+            color: white;
+        }
+        
+        .timeline-step.completed .timeline-label {
+            color: var(--success);
+        }
+        
+        .timeline-connector.completed {
+            background: var(--success);
+        }
+        
+        /* Success state for final step */
+        .timeline-step.success .timeline-dot {
+            background: var(--success);
+            border-color: var(--success);
+            box-shadow: 0 0 0 4px var(--success-soft), 0 0 20px -4px var(--success-glow);
+        }
+        
+        .timeline-step.success .timeline-dot svg {
+            color: white;
+        }
+        
+        .timeline-step.success .timeline-label {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        /* Hover effect for clickable steps */
+        .timeline-step.completed:not(.active):hover .timeline-dot {
+            box-shadow: 0 0 0 3px var(--success-soft);
+        }
+        
+        /* Mobile scroll hint gradient */
+        .flow-timeline::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, var(--bg-primary));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .flow-timeline.can-scroll::after {
+            opacity: 1;
+        }
+        
+        /* Compact mode for very small screens */
+        @media (max-height: 650px) {
+            .flow-timeline {
+                padding: 8px 12px 4px;
+            }
+            .timeline-dot {
+                width: 24px;
+                height: 24px;
+            }
+            .timeline-dot svg {
+                width: 10px;
+                height: 10px;
+            }
+            .timeline-step-num {
+                font-size: 9px;
+            }
+            .timeline-label {
+                font-size: 8px;
+                margin-top: 4px;
+            }
+            .timeline-connector {
+                margin-top: 12px;
+            }
+            .timeline-step {
+                min-width: 46px;
+            }
+        }
+        
+        /* Simple dot progress for sales module (keep existing) */
         .progress-bar {
             display: flex;
             align-items: center;
@@ -2688,14 +2893,82 @@
         <!-- ATTENDANT MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-attendant">
-            <!-- Progress Bar - 6 steps -->
-            <div class="progress-bar">
-                <div class="progress-step active" data-step="1"></div>
-                <div class="progress-step" data-step="2"></div>
-                <div class="progress-step" data-step="3"></div>
-                <div class="progress-step" data-step="4"></div>
-                <div class="progress-step" data-step="5"></div>
-                <div class="progress-step" data-step="6"></div>
+            <!-- Interactive Timeline - 6 steps -->
+            <div class="flow-timeline" id="att-timeline">
+                <div class="timeline-track">
+                    <!-- Step 1: Customer -->
+                    <div class="timeline-step active" data-step="1" onclick="attTimelineClick(1)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Customer</span>
+                    </div>
+                    <div class="timeline-connector" data-after="1"></div>
+                    
+                    <!-- Step 2: Old Battery -->
+                    <div class="timeline-step disabled" data-step="2" onclick="attTimelineClick(2)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="16" height="10" rx="2"/>
+                                <path d="M22 11v2"/>
+                                <path d="M6 11v2"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Return</span>
+                    </div>
+                    <div class="timeline-connector" data-after="2"></div>
+                    
+                    <!-- Step 3: New Battery -->
+                    <div class="timeline-step disabled" data-step="3" onclick="attTimelineClick(3)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="16" height="10" rx="2"/>
+                                <path d="M22 11v2"/>
+                                <path d="M7 11h4M9 9v4"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">New</span>
+                    </div>
+                    <div class="timeline-connector" data-after="3"></div>
+                    
+                    <!-- Step 4: Review -->
+                    <div class="timeline-step disabled" data-step="4" onclick="attTimelineClick(4)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6"/>
+                                <path d="M16 13H8M16 17H8"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Review</span>
+                    </div>
+                    <div class="timeline-connector" data-after="4"></div>
+                    
+                    <!-- Step 5: Payment -->
+                    <div class="timeline-step disabled" data-step="5" onclick="attTimelineClick(5)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                <path d="M1 10h22"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Pay</span>
+                    </div>
+                    <div class="timeline-connector" data-after="5"></div>
+                    
+                    <!-- Step 6: Done -->
+                    <div class="timeline-step disabled" data-step="6" onclick="attTimelineClick(6)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Done</span>
+                    </div>
+                </div>
             </div>
 
             <main class="main">
@@ -3574,7 +3847,11 @@
             
             if (currentRole === 'attendant') {
                 document.getElementById('module-attendant').classList.add('active');
+                // Reset flow state when entering module fresh
+                attResetFlow();
                 attGoToScreen(1);
+                // Check timeline scroll after a brief delay for DOM update
+                setTimeout(checkTimelineScroll, 100);
             } else if (currentRole === 'sales') {
                 document.getElementById('module-sales').classList.add('active');
                 salesGoToScreen(1);
@@ -3592,6 +3869,16 @@
         // Attendant Module (6-Step Flow)
         // =====================
         let attCurrentScreen = 1;
+        let attHighestReached = 1; // Tracks furthest step reached for navigation
+        
+        // State storage for each step's data
+        let attFlowData = {
+            customer: null,
+            oldBattery: null,
+            newBattery: null,
+            cost: null,
+            payment: null
+        };
 
         const attScreenConfig = {
             1: { btnText: 'Scan Customer', btnIcon: 'qr', showBack: false },
@@ -3609,16 +3896,91 @@
             plus: `<path d="M12 5v14M5 12h14"/>`
         };
 
-        function attGoToScreen(screenNum) {
+        // Update the interactive timeline visual state
+        function attUpdateTimeline(screenNum) {
+            const timeline = document.getElementById('att-timeline');
+            if (!timeline) return;
+            
+            const steps = timeline.querySelectorAll('.timeline-step');
+            const connectors = timeline.querySelectorAll('.timeline-connector');
+            
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed', 'disabled', 'success');
+                
+                if (stepNum < screenNum) {
+                    // Completed steps
+                    step.classList.add('completed');
+                } else if (stepNum === screenNum) {
+                    // Current step
+                    if (screenNum === 6) {
+                        step.classList.add('success');
+                    } else {
+                        step.classList.add('active');
+                    }
+                } else if (stepNum <= attHighestReached) {
+                    // Can navigate to (previously visited)
+                    step.classList.add('completed');
+                } else {
+                    // Not yet reachable
+                    step.classList.add('disabled');
+                }
+            });
+            
+            // Update connectors
+            connectors.forEach((connector, index) => {
+                const afterStep = index + 1;
+                connector.classList.remove('completed');
+                if (afterStep < screenNum || afterStep < attHighestReached) {
+                    connector.classList.add('completed');
+                }
+            });
+            
+            // Scroll active step into view on mobile
+            const activeStep = timeline.querySelector('.timeline-step.active, .timeline-step.success');
+            if (activeStep) {
+                setTimeout(() => {
+                    activeStep.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }, 100);
+            }
+            
+            // Check if timeline can scroll (for scroll hint)
+            checkTimelineScroll();
+        }
+        
+        function checkTimelineScroll() {
+            const timeline = document.getElementById('att-timeline');
+            if (!timeline) return;
+            const track = timeline.querySelector('.timeline-track');
+            if (track && track.scrollWidth > timeline.clientWidth) {
+                timeline.classList.add('can-scroll');
+            } else {
+                timeline.classList.remove('can-scroll');
+            }
+        }
+        
+        // Handle timeline step clicks for navigation
+        function attTimelineClick(stepNum) {
+            // Can only navigate to completed steps or current step
+            if (stepNum > attHighestReached) return;
+            if (stepNum === attCurrentScreen) return;
+            
+            // Navigate to the step
+            attGoToScreen(stepNum, true);
+        }
+
+        function attGoToScreen(screenNum, isNavigation = false) {
             const module = document.getElementById('module-attendant');
             module.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(`att-screen-${attGetScreenName(screenNum)}`).classList.add('active');
             
-            module.querySelectorAll('.progress-step').forEach((step, index) => {
-                step.classList.remove('active', 'completed');
-                if (index + 1 < screenNum) step.classList.add('completed');
-                else if (index + 1 === screenNum) step.classList.add('active');
-            });
+            // Update highest reached (only when progressing forward, not navigating back)
+            if (screenNum > attHighestReached && !isNavigation) {
+                attHighestReached = screenNum;
+            }
+            
+            // Update the interactive timeline
+            attUpdateTimeline(screenNum);
             
             const config = attScreenConfig[screenNum];
             document.getElementById('att-btn-text').textContent = config.btnText;
@@ -3632,6 +3994,11 @@
             
             btnMain.className = 'btn ' + (config.btnClass || 'btn-primary');
             attCurrentScreen = screenNum;
+            
+            // Restore data for the screen if navigating back
+            if (isNavigation) {
+                attRestoreScreenData(screenNum);
+            }
         }
 
         function attGetScreenName(num) {
@@ -3643,6 +4010,37 @@
                 5: 'payment',     // Confirm Payment
                 6: 'success'      // Complete
             }[num];
+        }
+        
+        // Save data for current step
+        function attSaveStepData(step, data) {
+            const dataKeys = ['', 'customer', 'oldBattery', 'newBattery', 'cost', 'payment'];
+            if (dataKeys[step]) {
+                attFlowData[dataKeys[step]] = data;
+            }
+        }
+        
+        // Restore data when navigating back to a step
+        function attRestoreScreenData(screenNum) {
+            // Data is preserved in the DOM already for this demo
+            // In a real app, you would repopulate form fields here
+            // For now, the simulated data stays intact
+        }
+        
+        // Reset flow when starting a new swap
+        function attResetFlow() {
+            attHighestReached = 1;
+            attFlowData = {
+                customer: null,
+                oldBattery: null,
+                newBattery: null,
+                cost: null,
+                payment: null
+            };
+            // Reset manual entry field
+            document.getElementById('subscriptionId').value = '';
+            // Reset to scan mode
+            toggleCustomerInput('scan');
         }
 
         // Toggle between Scan QR and Manual Entry
@@ -3670,6 +4068,13 @@
         // Step 1a: Scan customer QR
         function attScanCustomer() {
             showLoading('Identifying customer...');
+            // Save customer data
+            attSaveStepData(1, {
+                id: 'CUS-8847-KE',
+                name: 'James Mwangi',
+                initials: 'JM',
+                plan: 'Pay-Per-Swap'
+            });
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1200);
         }
 
@@ -3681,12 +4086,25 @@
                 return;
             }
             showLoading('Looking up customer...');
+            // Save customer data
+            attSaveStepData(1, {
+                id: subId,
+                name: 'James Mwangi',
+                initials: 'JM',
+                plan: 'Pay-Per-Swap'
+            });
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1500);
         }
 
         // Step 2: Scan old battery (customer brought)
         function attScanOldBattery() {
             showLoading('Scanning battery...');
+            // Save old battery data
+            attSaveStepData(2, {
+                id: 'BAT-2024-7829',
+                charge: 35,
+                verified: true
+            });
             setTimeout(() => { 
                 hideLoading(); 
                 showLoading('Verifying ownership...');
@@ -3697,9 +4115,20 @@
         // Step 3: Scan new battery (to give customer)
         function attScanNewBattery() {
             showLoading('Scanning new battery...');
+            // Save new battery data
+            attSaveStepData(3, {
+                id: 'BAT-2024-3156',
+                charge: 100
+            });
             setTimeout(() => { 
                 hideLoading(); 
                 showLoading('Calculating cost...');
+                // Save cost data
+                attSaveStepData(4, {
+                    energyDiff: 1.63,
+                    rate: 120,
+                    total: 196
+                });
                 setTimeout(() => { hideLoading(); attGoToScreen(4); }, 600);
             }, 1000);
         }
@@ -3707,6 +4136,12 @@
         // Step 5: Confirm payment by scanning customer QR
         function attConfirmPayment() {
             showLoading('Confirming payment...');
+            // Save payment data
+            attSaveStepData(5, {
+                confirmed: true,
+                txnId: 'TXN-892741',
+                time: new Date().toLocaleTimeString('en-US', { hour12: false })
+            });
             setTimeout(() => { hideLoading(); attGoToScreen(6); }, 1500);
         }
 
@@ -3717,12 +4152,16 @@
                 case 3: attScanNewBattery(); break;
                 case 4: attGoToScreen(5); break;  // Go to payment confirmation
                 case 5: attConfirmPayment(); break;
-                case 6: attGoToScreen(1); break;  // Start new swap
+                case 6: 
+                    // Reset flow and start new swap
+                    attResetFlow();
+                    attGoToScreen(1);
+                    break;
             }
         }
 
         function attGoBack() {
-            if (attCurrentScreen > 1) attGoToScreen(attCurrentScreen - 1);
+            if (attCurrentScreen > 1) attGoToScreen(attCurrentScreen - 1, true);
         }
 
         // =====================
@@ -3915,9 +4354,14 @@
                     }
                 }
             }
+            
+            // Handle window resize for timeline scroll indicator
+            window.addEventListener('resize', () => {
+                checkTimelineScroll();
+            });
         });
 
-        // Touch feedback
+        // Touch feedback for interactive elements
         document.querySelectorAll('.btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card').forEach(el => {
             el.addEventListener('touchstart', function() { 
                 if (!this.classList.contains('disabled')) {
@@ -3925,6 +4369,18 @@
                 }
             });
             el.addEventListener('touchend', function() { this.style.transform = ''; });
+        });
+        
+        // Touch feedback for timeline steps
+        document.querySelectorAll('.timeline-step').forEach(el => {
+            el.addEventListener('touchstart', function() { 
+                if (!this.classList.contains('disabled')) {
+                    this.querySelector('.timeline-dot').style.transform = 'scale(0.9)';
+                }
+            });
+            el.addEventListener('touchend', function() { 
+                this.querySelector('.timeline-dot').style.transform = '';
+            });
         });
 
         // System theme listener
