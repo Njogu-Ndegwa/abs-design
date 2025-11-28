@@ -1207,9 +1207,7 @@
             position: sticky;
             top: 0;
             z-index: 9;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-            padding: 10px 16px;
+            padding: 8px 16px 0;
             display: none;
             flex-shrink: 0;
         }
@@ -1221,7 +1219,11 @@
         .customer-state-inner {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 10px 12px;
         }
         
         /* Customer Identity */
@@ -1310,7 +1312,7 @@
             gap: 6px;
             padding: 4px 8px;
             background: var(--bg-tertiary);
-            border-radius: 8px;
+            border-radius: 6px;
             flex-shrink: 0;
         }
         
@@ -1354,11 +1356,14 @@
         
         /* Quota summary - compact horizontal layout */
         .state-quotas {
+            display: none;
+            gap: 6px;
+            margin: 10px 16px 0;
+            padding-bottom: 12px;
+        }
+        
+        .state-quotas.visible {
             display: flex;
-            gap: 8px;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid var(--border-subtle);
         }
         
         .state-quota-item {
@@ -1366,15 +1371,16 @@
             align-items: center;
             gap: 6px;
             flex: 1;
-            padding: 6px 8px;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
+            padding: 8px 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
         }
         
         .state-quota-icon {
-            width: 18px;
-            height: 18px;
-            border-radius: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1392,8 +1398,8 @@
         }
         
         .state-quota-icon svg {
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
         }
         
         .state-quota-info {
@@ -1449,7 +1455,11 @@
         /* Compact mode for small screens */
         @media (max-height: 700px) {
             .customer-state-panel {
-                padding: 8px 12px;
+                padding: 6px 12px 0;
+            }
+            
+            .customer-state-inner {
+                padding: 8px 10px;
             }
             
             .state-avatar {
@@ -1467,12 +1477,13 @@
             }
             
             .state-quotas {
-                margin-top: 6px;
-                padding-top: 6px;
+                margin: 8px 12px 0;
+                padding-bottom: 10px;
+                gap: 6px;
             }
             
             .state-quota-item {
-                padding: 4px 6px;
+                padding: 6px 8px;
             }
             
             .state-quota-icon {
@@ -2032,13 +2043,145 @@
             font-weight: 500;
         }
 
+        /* Compact Battery Return Card - matches other card styles */
+        .battery-return-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .battery-return-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .battery-return-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .battery-return-status {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .battery-return-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .battery-return-id {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .battery-return-charge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+        }
+        
+        .battery-return-icon {
+            width: 18px;
+            height: 12px;
+            border: 2px solid var(--border);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .battery-return-icon::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 6px;
+            background: var(--border);
+            border-radius: 0 2px 2px 0;
+        }
+        
+        .battery-return-icon.low {
+            border-color: var(--error);
+        }
+        
+        .battery-return-icon.low::after {
+            background: var(--error);
+        }
+        
+        .battery-return-icon.medium {
+            border-color: #f59e0b;
+        }
+        
+        .battery-return-icon.medium::after {
+            background: #f59e0b;
+        }
+        
+        .battery-return-icon.full {
+            border-color: var(--success);
+        }
+        
+        .battery-return-icon.full::after {
+            background: var(--success);
+        }
+        
+        .battery-return-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--level, 35%);
+        }
+        
+        .battery-return-icon.low .battery-return-fill {
+            background: var(--error);
+        }
+        
+        .battery-return-icon.medium .battery-return-fill {
+            background: #f59e0b;
+        }
+        
+        .battery-return-icon.full .battery-return-fill {
+            background: var(--success);
+        }
+        
+        .battery-return-percent {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .battery-return-unit {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
         /* Visual Battery Swap Comparison - Compact */
         .battery-swap-visual {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 10px;
+            gap: 16px;
+            padding: 14px 12px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
@@ -2445,13 +2588,16 @@
         /* Payment Scan - Compact */
         .payment-scan {
             text-align: center;
-            padding: 6px 0;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
         }
 
         .payment-title {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 2px;
+            margin-bottom: 6px;
         }
 
         .payment-subtitle {
@@ -3440,40 +3586,41 @@
                         <span class="state-battery-id" id="state-battery-id">BAT_004</span>
                     </div>
                 </div>
-                <!-- Quota Summary -->
-                <div class="state-quotas" id="state-quotas">
-                    <!-- Energy Quota -->
-                    <div class="state-quota-item" id="state-quota-energy">
-                        <div class="state-quota-icon energy">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                            </svg>
+            </div>
+            
+            <!-- Quota Summary - Separate cards below customer panel -->
+            <div class="state-quotas" id="state-quotas">
+                <!-- Energy Quota -->
+                <div class="state-quota-item" id="state-quota-energy">
+                    <div class="state-quota-icon energy">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <div class="state-quota-info">
+                        <div class="state-quota-value">
+                            <span class="remaining" id="state-energy-remaining">62</span>
+                            <span class="unit">kWh left</span>
                         </div>
-                        <div class="state-quota-info">
-                            <div class="state-quota-value">
-                                <span class="remaining" id="state-energy-remaining">62</span>
-                                <span class="unit">kWh left</span>
-                            </div>
-                            <div class="state-quota-bar">
-                                <div class="state-quota-fill good" id="state-energy-fill" style="width: 11.4%;"></div>
-                            </div>
+                        <div class="state-quota-bar">
+                            <div class="state-quota-fill good" id="state-energy-fill" style="width: 11.4%;"></div>
                         </div>
                     </div>
-                    <!-- Swaps Quota -->
-                    <div class="state-quota-item" id="state-quota-swaps">
-                        <div class="state-quota-icon swaps">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
-                            </svg>
+                </div>
+                <!-- Swaps Quota -->
+                <div class="state-quota-item" id="state-quota-swaps">
+                    <div class="state-quota-icon swaps">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                        </svg>
+                    </div>
+                    <div class="state-quota-info">
+                        <div class="state-quota-value">
+                            <span class="remaining" id="state-swaps-remaining">18</span>
+                            <span class="unit">swaps left</span>
                         </div>
-                        <div class="state-quota-info">
-                            <div class="state-quota-value">
-                                <span class="remaining" id="state-swaps-remaining">18</span>
-                                <span class="unit">swaps left</span>
-                            </div>
-                            <div class="state-quota-bar">
-                                <div class="state-quota-fill good" id="state-swaps-fill" style="width: 14.3%;"></div>
-                            </div>
+                        <div class="state-quota-bar">
+                            <div class="state-quota-fill good" id="state-swaps-fill" style="width: 14.3%;"></div>
                         </div>
                     </div>
                 </div>
@@ -3614,21 +3761,20 @@
 
                 <!-- Screen 3: Scan New Battery -->
                 <div class="screen" id="att-screen-newbattery">
-                    <div class="battery-card">
-                        <div class="battery-header">
-                            <div>
-                                <div class="battery-id">OLD BATTERY</div>
-                                <div class="battery-name">BAT-2024-7829</div>
-                            </div>
-                            <span class="battery-status verified">Matched</span>
+                    <!-- Compact Old Battery Card -->
+                    <div class="battery-return-card">
+                        <div class="battery-return-header">
+                            <span class="battery-return-label">OLD BATTERY</span>
+                            <span class="battery-return-status">Matched</span>
                         </div>
-                        <div class="battery-visual">
-                            <div class="battery-icon-large">
-                                <div class="battery-level" style="--level: 35%;"></div>
-                            </div>
-                            <div class="battery-info">
-                                <div class="battery-charge" style="font-size: 16px;">35%</div>
-                                <div class="battery-charge-label">Charge</div>
+                        <div class="battery-return-content">
+                            <div class="battery-return-id">BAT-2024-7829</div>
+                            <div class="battery-return-charge">
+                                <div class="battery-return-icon low">
+                                    <div class="battery-return-fill" style="--level: 35%;"></div>
+                                </div>
+                                <span class="battery-return-percent">35%</span>
+                                <span class="battery-return-unit">Charge</span>
                             </div>
                         </div>
                     </div>
@@ -4737,14 +4883,17 @@
         // Show/hide the customer state panel based on current screen
         function toggleCustomerStatePanel(screenNum) {
             const panel = document.getElementById('att-customer-state');
+            const quotas = document.getElementById('state-quotas');
             if (!panel) return;
             
             // Show panel on screens 2-5 (after customer ID, before success)
             // Hide on screen 1 (identification) and screen 6 (success/complete)
             if (screenNum >= 2 && screenNum <= 5) {
                 panel.classList.add('visible');
+                if (quotas) quotas.classList.add('visible');
             } else {
                 panel.classList.remove('visible');
+                if (quotas) quotas.classList.remove('visible');
             }
         }
         
@@ -4858,19 +5007,16 @@
                 swapsQuotaItem.style.display = 'none';
             }
             
-            // Hide quota section if no services
-            const quotasContainer = document.getElementById('state-quotas');
-            if (quotasContainer) {
-                const hasEnergy = energyService && energyQuotaItem;
-                const hasSwaps = swapService && swapsQuotaItem;
-                quotasContainer.style.display = (hasEnergy || hasSwaps) ? 'flex' : 'none';
-            }
+            // Note: quotas container visibility is handled by toggleCustomerStatePanel()
+            // Individual quota items are hidden/shown based on service availability above
         }
         
         // Hide customer state panel (for reset)
         function hideCustomerStatePanel() {
             const panel = document.getElementById('att-customer-state');
+            const quotas = document.getElementById('state-quotas');
             if (panel) panel.classList.remove('visible');
+            if (quotas) quotas.classList.remove('visible');
         }
         
         // Simulated API response data for demo
