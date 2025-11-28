@@ -1952,257 +1952,148 @@
             font-weight: 500;
         }
 
-        /* Service Plan Summary - Compact quota display */
-        .service-plan-summary {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        .plan-header {
+        /* Service Plan Summary - Ultra compact quota display */
+        .plan-quotas {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            gap: 6px;
             margin-bottom: 10px;
         }
 
-        .plan-title-row {
+        .plan-quotas.single {
+            max-width: 50%;
+        }
+
+        .quota-chip {
+            flex: 1;
             display: flex;
             align-items: center;
             gap: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 8px 10px;
+            min-width: 0;
         }
 
-        .plan-icon {
-            width: 28px;
-            height: 28px;
-            background: var(--accent-soft);
-            border-radius: 8px;
+        .quota-chip-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .plan-icon svg {
-            width: 16px;
-            height: 16px;
-            color: var(--accent);
-        }
-
-        .plan-name {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.2;
-        }
-
-        .plan-period {
-            font-size: 10px;
+        .quota-chip-icon svg {
+            width: 14px;
+            height: 14px;
             color: var(--text-muted);
-            font-weight: 400;
         }
 
-        .plan-badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
+        .quota-chip-icon.energy svg {
+            color: #fbbf24;
         }
 
-        .plan-badge.current {
-            background: var(--success-soft);
-            color: var(--success);
-        }
-
-        .plan-badge.due {
-            background: var(--error-soft);
-            color: var(--error);
-        }
-
-        .plan-badge.pending {
-            background: var(--accent-soft);
+        .quota-chip-icon.swaps svg {
             color: var(--accent);
         }
 
-        /* Quota meters - compact inline */
-        .quota-meters {
-            display: flex;
-            gap: 8px;
-        }
-
-        .quota-meter {
+        .quota-chip-content {
             flex: 1;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-sm);
-            padding: 8px 10px;
             min-width: 0;
         }
 
-        .quota-label-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-
-        .quota-icon-label {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .quota-icon-label svg {
-            width: 12px;
-            height: 12px;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        .quota-label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .quota-value {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .quota-bar {
-            height: 4px;
+        .quota-chip-bar {
+            height: 3px;
             background: var(--bg-elevated);
             border-radius: 2px;
             overflow: hidden;
             margin-bottom: 4px;
         }
 
-        .quota-fill {
+        .quota-chip-fill {
             height: 100%;
             border-radius: 2px;
             transition: width 0.4s ease;
         }
 
-        .quota-fill.low {
-            background: linear-gradient(90deg, var(--success) 0%, #00e5a0 100%);
+        .quota-chip-fill.good {
+            background: var(--success);
         }
 
-        .quota-fill.medium {
-            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        .quota-chip-fill.warning {
+            background: #f59e0b;
         }
 
-        .quota-fill.high {
-            background: linear-gradient(90deg, var(--error) 0%, #ff7a7a 100%);
+        .quota-chip-fill.critical {
+            background: var(--error);
         }
 
-        .quota-remaining {
+        .quota-chip-text {
+            display: flex;
+            align-items: baseline;
+            gap: 3px;
+        }
+
+        .quota-chip-remaining {
+            font-family: 'DM Mono', monospace;
             font-size: 11px;
             font-weight: 600;
             color: var(--text-primary);
-            line-height: 1;
         }
 
-        .quota-unit {
+        .quota-chip-unit {
             font-size: 9px;
             color: var(--text-muted);
-            font-weight: 400;
         }
 
-        /* Current battery display in plan summary */
-        .plan-current-battery {
+        .quota-chip-label {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Even more compact: inline quota badges */
+        .quota-inline {
             display: flex;
-            align-items: center;
             gap: 6px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
         }
 
-        .plan-current-battery svg {
-            width: 14px;
-            height: 14px;
-            color: var(--text-muted);
+        .quota-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 10px 4px 6px;
         }
 
-        .plan-current-battery span {
+        .quota-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .quota-badge-dot.good { background: var(--success); }
+        .quota-badge-dot.warning { background: #f59e0b; }
+        .quota-badge-dot.critical { background: var(--error); }
+
+        .quota-badge-text {
             font-family: 'DM Mono', monospace;
             font-size: 10px;
             color: var(--text-secondary);
         }
 
-        .plan-current-battery .battery-id-tag {
-            background: var(--bg-tertiary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        /* Collapsible plan details */
-        .plan-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 6px;
-            margin-top: 8px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 10px;
-            cursor: pointer;
-            width: 100%;
-            transition: color 0.2s ease;
-        }
-
-        .plan-toggle:hover {
-            color: var(--text-secondary);
-        }
-
-        .plan-toggle svg {
-            width: 12px;
-            height: 12px;
-            transition: transform 0.2s ease;
-        }
-
-        .plan-toggle.expanded svg {
-            transform: rotate(180deg);
-        }
-
-        .plan-details {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .plan-details.show {
-            display: block;
-        }
-
-        .plan-detail-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-        }
-
-        .plan-detail-label {
-            font-size: 10px;
-            color: var(--text-muted);
-        }
-
-        .plan-detail-value {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--text-secondary);
+        .quota-badge-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         /* Cost Breakdown */
@@ -3335,85 +3226,52 @@
 
                 <!-- Screen 2: Scan Old Battery -->
                 <div class="screen" id="att-screen-oldbattery">
-                    <div class="customer-card" style="margin-bottom: 8px;">
+                    <div class="customer-card" style="margin-bottom: 10px;">
                         <div class="customer-header" style="margin-bottom: 0;">
                             <div class="customer-avatar" id="att-customer-avatar">JM</div>
                             <div>
                                 <div class="customer-name" id="att-customer-name">James Mwangi</div>
-                                <div class="customer-id" id="att-customer-id">CUS-8847-KE • Pay-Per-Swap</div>
+                                <div class="customer-id" id="att-customer-plan">7-Day Lux • <span id="att-payment-state">Current</span></div>
                             </div>
                             <span class="battery-status verified" style="margin-left: auto;">Verified</span>
                         </div>
                     </div>
 
-                    <!-- Service Plan Summary -->
-                    <div class="service-plan-summary" id="att-plan-summary">
-                        <div class="plan-header">
-                            <div class="plan-title-row">
-                                <div class="plan-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="plan-name" id="att-plan-name">7-Day Lux Bundle</div>
-                                    <div class="plan-period" id="att-plan-period">Weekly Plan</div>
-                                </div>
+                    <!-- Ultra-compact quota chips - Only relevant consumption services -->
+                    <div class="plan-quotas" id="att-plan-quotas">
+                        <!-- Energy quota chip - hidden if no quota service -->
+                        <div class="quota-chip" id="quota-energy-chip">
+                            <div class="quota-chip-icon energy">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
                             </div>
-                            <span class="plan-badge current" id="att-payment-badge">Current</span>
-                        </div>
-                        
-                        <!-- Quota Meters - Only meaningful services -->
-                        <div class="quota-meters">
-                            <!-- Electricity Usage -->
-                            <div class="quota-meter">
-                                <div class="quota-label-row">
-                                    <div class="quota-icon-label">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                                        </svg>
-                                        <span class="quota-label">Energy</span>
-                                    </div>
-                                    <span class="quota-value" id="att-energy-ratio">8/70</span>
+                            <div class="quota-chip-content">
+                                <div class="quota-chip-bar">
+                                    <div class="quota-chip-fill good" id="quota-energy-fill" style="width: 11.4%;"></div>
                                 </div>
-                                <div class="quota-bar">
-                                    <div class="quota-fill low" id="att-energy-fill" style="width: 11%;"></div>
-                                </div>
-                                <div>
-                                    <span class="quota-remaining" id="att-energy-remaining">62</span>
-                                    <span class="quota-unit">kWh left</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Swap Count -->
-                            <div class="quota-meter">
-                                <div class="quota-label-row">
-                                    <div class="quota-icon-label">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
-                                        </svg>
-                                        <span class="quota-label">Swaps</span>
-                                    </div>
-                                    <span class="quota-value" id="att-swaps-ratio">3/21</span>
-                                </div>
-                                <div class="quota-bar">
-                                    <div class="quota-fill low" id="att-swaps-fill" style="width: 14%;"></div>
-                                </div>
-                                <div>
-                                    <span class="quota-remaining" id="att-swaps-remaining">18</span>
-                                    <span class="quota-unit">swaps left</span>
+                                <div class="quota-chip-text">
+                                    <span class="quota-chip-remaining" id="quota-energy-remaining">62</span>
+                                    <span class="quota-chip-unit">kWh left</span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Current Battery -->
-                        <div class="plan-current-battery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="1" y="6" width="18" height="12" rx="2"/>
-                                <path d="M23 10v4"/>
-                            </svg>
-                            <span>Assigned:</span>
-                            <span class="battery-id-tag" id="att-assigned-battery">BAT_NEW_004</span>
+                        <!-- Swap quota chip - hidden if no swap service -->
+                        <div class="quota-chip" id="quota-swaps-chip">
+                            <div class="quota-chip-icon swaps">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </div>
+                            <div class="quota-chip-content">
+                                <div class="quota-chip-bar">
+                                    <div class="quota-chip-fill good" id="quota-swaps-fill" style="width: 14.3%;"></div>
+                                </div>
+                                <div class="quota-chip-text">
+                                    <span class="quota-chip-remaining" id="quota-swaps-remaining">18</span>
+                                    <span class="quota-chip-unit">swaps left</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -3449,7 +3307,7 @@
 
                 <!-- Screen 3: Scan New Battery -->
                 <div class="screen" id="att-screen-newbattery">
-                    <div class="battery-card" style="margin-bottom: 12px;">
+                    <div class="battery-card" style="margin-bottom: 10px;">
                         <div class="battery-header" style="margin-bottom: 8px;">
                             <div>
                                 <div class="battery-id">OLD BATTERY</div>
@@ -3465,6 +3323,18 @@
                                 <div class="battery-charge" style="font-size: 20px;">35%</div>
                                 <div class="battery-charge-label">Charge Remaining</div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Compact quota badges -->
+                    <div class="quota-inline" id="att-quota-inline-3" style="margin-bottom: 10px;">
+                        <div class="quota-badge" id="quota-badge-energy-3">
+                            <span class="quota-badge-dot good" id="quota-dot-energy-3"></span>
+                            <span class="quota-badge-text"><strong id="quota-val-energy-3">62</strong> kWh</span>
+                        </div>
+                        <div class="quota-badge" id="quota-badge-swaps-3">
+                            <span class="quota-badge-dot good" id="quota-dot-swaps-3"></span>
+                            <span class="quota-badge-text"><strong id="quota-val-swaps-3">18</strong> swaps</span>
                         </div>
                     </div>
 
@@ -3544,11 +3414,22 @@
                     </div>
 
                     <div class="customer-card" style="padding: 10px;">
-                        <div class="customer-header" style="margin-bottom: 0;">
+                        <div class="customer-header" style="margin-bottom: 8px;">
                             <div class="customer-avatar">JM</div>
                             <div>
                                 <div class="customer-name">James Mwangi</div>
-                                <div class="customer-id">34 swaps • Last: 2 days ago</div>
+                                <div class="customer-id" id="att-review-plan">7-Day Lux • Current</div>
+                            </div>
+                        </div>
+                        <!-- Inline quota in review -->
+                        <div class="quota-inline" id="att-quota-inline-4">
+                            <div class="quota-badge" id="quota-badge-energy-4">
+                                <span class="quota-badge-dot good" id="quota-dot-energy-4"></span>
+                                <span class="quota-badge-text"><strong id="quota-val-energy-4">62</strong> kWh</span>
+                            </div>
+                            <div class="quota-badge" id="quota-badge-swaps-4">
+                                <span class="quota-badge-dot good" id="quota-dot-swaps-4"></span>
+                                <span class="quota-badge-text"><strong id="quota-val-swaps-4">18</strong> swaps</span>
                             </div>
                         </div>
                     </div>
@@ -4412,6 +4293,8 @@
             document.getElementById('subscriptionId').value = '';
             // Reset to scan mode
             toggleCustomerInput('scan');
+            // Reset service plan data
+            currentServicePlan = null;
         }
 
         // Toggle between Scan QR and Manual Entry
@@ -4436,6 +4319,178 @@
             }
         }
 
+        // ===========================================
+        // Service Plan Display - Smart Quota Filtering
+        // ===========================================
+        
+        // Simulated service plan data (would come from API in production)
+        let currentServicePlan = null;
+        
+        // Filter services to only show meaningful consumption-based quotas
+        function getDisplayableServices(serviceStates) {
+            if (!serviceStates || !Array.isArray(serviceStates)) return [];
+            
+            return serviceStates.filter(service => {
+                // Skip access-based services with huge/unlimited quotas
+                if (service.quota >= 1000000) return false;
+                
+                // Skip services with no quota tracking
+                if (service.quota <= 0) return false;
+                
+                // Only keep consumption-based services (electricity, swap-count)
+                const id = service.service_id?.toLowerCase() || '';
+                return id.includes('electricity') || id.includes('swap-count');
+            });
+        }
+        
+        // Determine status color based on usage percentage
+        function getQuotaStatus(used, quota) {
+            const usedPercent = (used / quota) * 100;
+            if (usedPercent >= 90) return 'critical';
+            if (usedPercent >= 70) return 'warning';
+            return 'good';
+        }
+        
+        // Update the quota chips UI based on service plan data
+        function updateServicePlanDisplay(servicePlanData) {
+            if (!servicePlanData) return;
+            
+            currentServicePlan = servicePlanData;
+            const serviceStates = servicePlanData.serviceStates || [];
+            const displayableServices = getDisplayableServices(serviceStates);
+            
+            // Update customer info
+            if (servicePlanData.customerId) {
+                const customerName = document.getElementById('att-customer-name');
+                // In real app, would fetch customer name from metadata
+            }
+            
+            // Extract plan name for display
+            const planId = servicePlanData.templateId || servicePlanData.servicePlanId || '';
+            let planName = '7-Day Plan';
+            if (planId.includes('7day')) planName = '7-Day Plan';
+            else if (planId.includes('30day') || planId.includes('month')) planName = '30-Day Plan';
+            else if (planId.includes('pay-per') || planId.includes('payper')) planName = 'Pay-Per-Swap';
+            
+            const planDisplay = document.getElementById('att-customer-plan');
+            if (planDisplay) {
+                planDisplay.innerHTML = `${planName} • <span id="att-payment-state">${servicePlanData.paymentState || 'Current'}</span>`;
+            }
+            
+            // Find energy and swap services
+            let energyService = null;
+            let swapService = null;
+            
+            displayableServices.forEach(service => {
+                const id = service.service_id?.toLowerCase() || '';
+                if (id.includes('electricity')) energyService = service;
+                else if (id.includes('swap-count')) swapService = service;
+            });
+            
+            const quotasContainer = document.getElementById('att-plan-quotas');
+            const energyChip = document.getElementById('quota-energy-chip');
+            const swapChip = document.getElementById('quota-swaps-chip');
+            
+            // Update energy chip (or hide if no energy service)
+            if (energyService && energyChip) {
+                const remaining = energyService.quota - energyService.used;
+                const usedPercent = (energyService.used / energyService.quota) * 100;
+                const status = getQuotaStatus(energyService.used, energyService.quota);
+                
+                document.getElementById('quota-energy-remaining').textContent = remaining;
+                document.getElementById('quota-energy-fill').style.width = usedPercent + '%';
+                document.getElementById('quota-energy-fill').className = 'quota-chip-fill ' + status;
+                energyChip.style.display = 'flex';
+            } else if (energyChip) {
+                energyChip.style.display = 'none';
+            }
+            
+            // Update swap chip (or hide if no swap service)
+            if (swapService && swapChip) {
+                const remaining = swapService.quota - swapService.used;
+                const usedPercent = (swapService.used / swapService.quota) * 100;
+                const status = getQuotaStatus(swapService.used, swapService.quota);
+                
+                document.getElementById('quota-swaps-remaining').textContent = remaining;
+                document.getElementById('quota-swaps-fill').style.width = usedPercent + '%';
+                document.getElementById('quota-swaps-fill').className = 'quota-chip-fill ' + status;
+                swapChip.style.display = 'flex';
+            } else if (swapChip) {
+                swapChip.style.display = 'none';
+            }
+            
+            // If only one service, adjust container
+            if (quotasContainer) {
+                const visibleCount = (energyService ? 1 : 0) + (swapService ? 1 : 0);
+                quotasContainer.classList.toggle('single', visibleCount === 1);
+                quotasContainer.style.display = visibleCount === 0 ? 'none' : 'flex';
+            }
+            
+            // Also update inline quota badges on other screens (3, 4)
+            updateInlineQuotaBadges(energyService, swapService);
+        }
+        
+        // Update the compact inline quota badges on screens 3 and 4
+        function updateInlineQuotaBadges(energyService, swapService) {
+            const screens = ['3', '4'];
+            
+            screens.forEach(screenNum => {
+                // Energy badge
+                const energyBadge = document.getElementById(`quota-badge-energy-${screenNum}`);
+                const energyVal = document.getElementById(`quota-val-energy-${screenNum}`);
+                const energyDot = document.getElementById(`quota-dot-energy-${screenNum}`);
+                
+                if (energyService && energyBadge) {
+                    const remaining = energyService.quota - energyService.used;
+                    const status = getQuotaStatus(energyService.used, energyService.quota);
+                    if (energyVal) energyVal.textContent = remaining;
+                    if (energyDot) energyDot.className = 'quota-badge-dot ' + status;
+                    energyBadge.style.display = 'inline-flex';
+                } else if (energyBadge) {
+                    energyBadge.style.display = 'none';
+                }
+                
+                // Swap badge
+                const swapBadge = document.getElementById(`quota-badge-swaps-${screenNum}`);
+                const swapVal = document.getElementById(`quota-val-swaps-${screenNum}`);
+                const swapDot = document.getElementById(`quota-dot-swaps-${screenNum}`);
+                
+                if (swapService && swapBadge) {
+                    const remaining = swapService.quota - swapService.used;
+                    const status = getQuotaStatus(swapService.used, swapService.quota);
+                    if (swapVal) swapVal.textContent = remaining;
+                    if (swapDot) swapDot.className = 'quota-badge-dot ' + status;
+                    swapBadge.style.display = 'inline-flex';
+                } else if (swapBadge) {
+                    swapBadge.style.display = 'none';
+                }
+                
+                // Hide container if no services
+                const container = document.getElementById(`att-quota-inline-${screenNum}`);
+                if (container) {
+                    const hasEnergy = energyService && energyBadge;
+                    const hasSwap = swapService && swapBadge;
+                    container.style.display = (hasEnergy || hasSwap) ? 'flex' : 'none';
+                }
+            });
+        }
+        
+        // Simulated API response data for demo
+        const mockServicePlanData = {
+            servicePlanId: "bss-plan-togo-7day-lux-plan3",
+            customerId: "customer-togo-002",
+            status: "ACTIVE",
+            serviceState: "BATTERY_ISSUED",
+            paymentState: "CURRENT",
+            templateId: "template-togo-lome-7day-lux-v2",
+            serviceStates: [
+                { service_id: "service-swap-station-network-togo-lux", used: 0, quota: 10000000, current_asset: null },
+                { service_id: "service-battery-fleet-togo-lux", used: 0, quota: 10000000, current_asset: "BAT_NEW_004" },
+                { service_id: "service-electricity-togo-lux", used: 8, quota: 70, current_asset: null },
+                { service_id: "service-swap-count-togo-lux", used: 3, quota: 21, current_asset: null }
+            ]
+        };
+
         // Step 1a: Scan customer QR
         function attScanCustomer() {
             showLoading('Identifying customer...');
@@ -4444,8 +4499,12 @@
                 id: 'CUS-8847-KE',
                 name: 'James Mwangi',
                 initials: 'JM',
-                plan: 'Pay-Per-Swap'
+                plan: '7-Day Lux'
             });
+            
+            // Update service plan display with mock data (would be from API in production)
+            updateServicePlanDisplay(mockServicePlanData);
+            
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1200);
         }
 
@@ -4462,8 +4521,12 @@
                 id: subId,
                 name: 'James Mwangi',
                 initials: 'JM',
-                plan: 'Pay-Per-Swap'
+                plan: '7-Day Lux'
             });
+            
+            // Update service plan display with mock data (would be from API in production)
+            updateServicePlanDisplay(mockServicePlanData);
+            
             setTimeout(() => { hideLoading(); attGoToScreen(2); }, 1500);
         }
 
