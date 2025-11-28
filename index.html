@@ -3329,6 +3329,14 @@
         <!-- ATTENDANT MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-attendant">
+            <!-- Back to Roles - At very top -->
+            <div class="back-to-roles" onclick="backToRoles()" style="margin: 0 16px 8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Change Role
+            </div>
+
             <!-- Interactive Timeline - 6 steps -->
             <div class="flow-timeline" id="att-timeline">
                 <div class="timeline-track">
@@ -3470,14 +3478,6 @@
             </div>
 
             <main class="main">
-                <!-- Back to Roles -->
-                <div class="back-to-roles" onclick="backToRoles()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
-                    </svg>
-                    Change Role
-                </div>
-
                 <!-- Screen 1: Identify Customer -->
                 <div class="screen active" id="att-screen-customer">
                     <div class="scan-prompt">
@@ -3580,55 +3580,6 @@
 
                 <!-- Screen 2: Scan Old Battery -->
                 <div class="screen" id="att-screen-oldbattery">
-                    <div class="customer-card" style="margin-bottom: 10px;">
-                        <div class="customer-header" style="margin-bottom: 0;">
-                            <div class="customer-avatar" id="att-customer-avatar">JM</div>
-                            <div>
-                                <div class="customer-name" id="att-customer-name">James Mwangi</div>
-                                <div class="customer-id" id="att-customer-plan">7-Day Lux • <span id="att-payment-state">Current</span></div>
-                            </div>
-                            <span class="battery-status verified" style="margin-left: auto;">Verified</span>
-                        </div>
-                    </div>
-
-                    <!-- Ultra-compact quota chips - Only relevant consumption services -->
-                    <div class="plan-quotas" id="att-plan-quotas">
-                        <!-- Energy quota chip - hidden if no quota service -->
-                        <div class="quota-chip" id="quota-energy-chip">
-                            <div class="quota-chip-icon energy">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                                </svg>
-                            </div>
-                            <div class="quota-chip-content">
-                                <div class="quota-chip-bar">
-                                    <div class="quota-chip-fill good" id="quota-energy-fill" style="width: 11.4%;"></div>
-                                </div>
-                                <div class="quota-chip-text">
-                                    <span class="quota-chip-remaining" id="quota-energy-remaining">62</span>
-                                    <span class="quota-chip-unit">kWh left</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Swap quota chip - hidden if no swap service -->
-                        <div class="quota-chip" id="quota-swaps-chip">
-                            <div class="quota-chip-icon swaps">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
-                                </svg>
-                            </div>
-                            <div class="quota-chip-content">
-                                <div class="quota-chip-bar">
-                                    <div class="quota-chip-fill good" id="quota-swaps-fill" style="width: 14.3%;"></div>
-                                </div>
-                                <div class="quota-chip-text">
-                                    <span class="quota-chip-remaining" id="quota-swaps-remaining">18</span>
-                                    <span class="quota-chip-unit">swaps left</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="scan-prompt">
                         <h1 class="scan-title">Scan Old Battery</h1>
                         <p class="scan-subtitle">Scan the battery the customer brought in</p>
@@ -3677,18 +3628,6 @@
                                 <div class="battery-charge" style="font-size: 20px;">35%</div>
                                 <div class="battery-charge-label">Charge Remaining</div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Compact quota badges -->
-                    <div class="quota-inline" id="att-quota-inline-3" style="margin-bottom: 10px;">
-                        <div class="quota-badge" id="quota-badge-energy-3">
-                            <span class="quota-badge-dot good" id="quota-dot-energy-3"></span>
-                            <span class="quota-badge-text"><strong id="quota-val-energy-3">62</strong> kWh</span>
-                        </div>
-                        <div class="quota-badge" id="quota-badge-swaps-3">
-                            <span class="quota-badge-dot good" id="quota-dot-swaps-3"></span>
-                            <span class="quota-badge-text"><strong id="quota-val-swaps-3">18</strong> swaps</span>
                         </div>
                     </div>
 
@@ -3764,27 +3703,6 @@
                         <div class="cost-total">
                             <span class="cost-total-label">Total Due</span>
                             <span class="cost-total-value">KES 196</span>
-                        </div>
-                    </div>
-
-                    <div class="customer-card" style="padding: 10px;">
-                        <div class="customer-header" style="margin-bottom: 8px;">
-                            <div class="customer-avatar">JM</div>
-                            <div>
-                                <div class="customer-name">James Mwangi</div>
-                                <div class="customer-id" id="att-review-plan">7-Day Lux • Current</div>
-                            </div>
-                        </div>
-                        <!-- Inline quota in review -->
-                        <div class="quota-inline" id="att-quota-inline-4">
-                            <div class="quota-badge" id="quota-badge-energy-4">
-                                <span class="quota-badge-dot good" id="quota-dot-energy-4"></span>
-                                <span class="quota-badge-text"><strong id="quota-val-energy-4">62</strong> kWh</span>
-                            </div>
-                            <div class="quota-badge" id="quota-badge-swaps-4">
-                                <span class="quota-badge-dot good" id="quota-dot-swaps-4"></span>
-                                <span class="quota-badge-text"><strong id="quota-val-swaps-4">18</strong> swaps</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -3886,6 +3804,14 @@
         <!-- SALES REP MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-sales">
+            <!-- Back to Roles - At very top -->
+            <div class="back-to-roles" onclick="backToRoles()" style="margin: 0 16px 8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Change Role
+            </div>
+
             <!-- Interactive Timeline - 4 steps -->
             <div class="flow-timeline" id="sales-timeline">
                 <div class="timeline-track">
@@ -3940,14 +3866,6 @@
             </div>
 
             <main class="main">
-                <!-- Back to Roles -->
-                <div class="back-to-roles" onclick="backToRoles()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
-                    </svg>
-                    Change Role
-                </div>
-
                 <!-- Screen 1: Customer Registration -->
                 <div class="screen active" id="sales-screen-register">
                     <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">New Customer</h2>
@@ -4710,128 +4628,11 @@
             return 'good';
         }
         
-        // Update the quota chips UI based on service plan data
+        // Update service plan data (now handled by customer state panel)
         function updateServicePlanDisplay(servicePlanData) {
             if (!servicePlanData) return;
-            
             currentServicePlan = servicePlanData;
-            const serviceStates = servicePlanData.serviceStates || [];
-            const displayableServices = getDisplayableServices(serviceStates);
-            
-            // Update customer info
-            if (servicePlanData.customerId) {
-                const customerName = document.getElementById('att-customer-name');
-                // In real app, would fetch customer name from metadata
-            }
-            
-            // Extract plan name for display
-            const planId = servicePlanData.templateId || servicePlanData.servicePlanId || '';
-            let planName = '7-Day Plan';
-            if (planId.includes('7day')) planName = '7-Day Plan';
-            else if (planId.includes('30day') || planId.includes('month')) planName = '30-Day Plan';
-            else if (planId.includes('pay-per') || planId.includes('payper')) planName = 'Pay-Per-Swap';
-            
-            const planDisplay = document.getElementById('att-customer-plan');
-            if (planDisplay) {
-                planDisplay.innerHTML = `${planName} • <span id="att-payment-state">${servicePlanData.paymentState || 'Current'}</span>`;
-            }
-            
-            // Find energy and swap services
-            let energyService = null;
-            let swapService = null;
-            
-            displayableServices.forEach(service => {
-                const id = service.service_id?.toLowerCase() || '';
-                if (id.includes('electricity')) energyService = service;
-                else if (id.includes('swap-count')) swapService = service;
-            });
-            
-            const quotasContainer = document.getElementById('att-plan-quotas');
-            const energyChip = document.getElementById('quota-energy-chip');
-            const swapChip = document.getElementById('quota-swaps-chip');
-            
-            // Update energy chip (or hide if no energy service)
-            if (energyService && energyChip) {
-                const remaining = energyService.quota - energyService.used;
-                const usedPercent = (energyService.used / energyService.quota) * 100;
-                const status = getQuotaStatus(energyService.used, energyService.quota);
-                
-                document.getElementById('quota-energy-remaining').textContent = remaining;
-                document.getElementById('quota-energy-fill').style.width = usedPercent + '%';
-                document.getElementById('quota-energy-fill').className = 'quota-chip-fill ' + status;
-                energyChip.style.display = 'flex';
-            } else if (energyChip) {
-                energyChip.style.display = 'none';
-            }
-            
-            // Update swap chip (or hide if no swap service)
-            if (swapService && swapChip) {
-                const remaining = swapService.quota - swapService.used;
-                const usedPercent = (swapService.used / swapService.quota) * 100;
-                const status = getQuotaStatus(swapService.used, swapService.quota);
-                
-                document.getElementById('quota-swaps-remaining').textContent = remaining;
-                document.getElementById('quota-swaps-fill').style.width = usedPercent + '%';
-                document.getElementById('quota-swaps-fill').className = 'quota-chip-fill ' + status;
-                swapChip.style.display = 'flex';
-            } else if (swapChip) {
-                swapChip.style.display = 'none';
-            }
-            
-            // If only one service, adjust container
-            if (quotasContainer) {
-                const visibleCount = (energyService ? 1 : 0) + (swapService ? 1 : 0);
-                quotasContainer.classList.toggle('single', visibleCount === 1);
-                quotasContainer.style.display = visibleCount === 0 ? 'none' : 'flex';
-            }
-            
-            // Also update inline quota badges on other screens (3, 4)
-            updateInlineQuotaBadges(energyService, swapService);
-        }
-        
-        // Update the compact inline quota badges on screens 3 and 4
-        function updateInlineQuotaBadges(energyService, swapService) {
-            const screens = ['3', '4'];
-            
-            screens.forEach(screenNum => {
-                // Energy badge
-                const energyBadge = document.getElementById(`quota-badge-energy-${screenNum}`);
-                const energyVal = document.getElementById(`quota-val-energy-${screenNum}`);
-                const energyDot = document.getElementById(`quota-dot-energy-${screenNum}`);
-                
-                if (energyService && energyBadge) {
-                    const remaining = energyService.quota - energyService.used;
-                    const status = getQuotaStatus(energyService.used, energyService.quota);
-                    if (energyVal) energyVal.textContent = remaining;
-                    if (energyDot) energyDot.className = 'quota-badge-dot ' + status;
-                    energyBadge.style.display = 'inline-flex';
-                } else if (energyBadge) {
-                    energyBadge.style.display = 'none';
-                }
-                
-                // Swap badge
-                const swapBadge = document.getElementById(`quota-badge-swaps-${screenNum}`);
-                const swapVal = document.getElementById(`quota-val-swaps-${screenNum}`);
-                const swapDot = document.getElementById(`quota-dot-swaps-${screenNum}`);
-                
-                if (swapService && swapBadge) {
-                    const remaining = swapService.quota - swapService.used;
-                    const status = getQuotaStatus(swapService.used, swapService.quota);
-                    if (swapVal) swapVal.textContent = remaining;
-                    if (swapDot) swapDot.className = 'quota-badge-dot ' + status;
-                    swapBadge.style.display = 'inline-flex';
-                } else if (swapBadge) {
-                    swapBadge.style.display = 'none';
-                }
-                
-                // Hide container if no services
-                const container = document.getElementById(`att-quota-inline-${screenNum}`);
-                if (container) {
-                    const hasEnergy = energyService && energyBadge;
-                    const hasSwap = swapService && swapBadge;
-                    container.style.display = (hasEnergy || hasSwap) ? 'flex' : 'none';
-                }
-            });
+            // All display is now handled by the pinned customer state panel
         }
         
         // ===========================================
