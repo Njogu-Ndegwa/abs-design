@@ -1518,29 +1518,29 @@
             background: var(--success);
         }
 
-        /* Scan Screen */
+        /* Scan Screen - Compact for mobile */
         .scan-prompt {
             text-align: center;
-            padding-top: 16px;
+            padding-top: 8px;
         }
 
         .scan-title {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             letter-spacing: -0.02em;
         }
 
         .scan-subtitle {
             color: var(--text-secondary);
-            font-size: 12px;
-            margin-bottom: 16px;
+            font-size: 11px;
+            margin-bottom: 10px;
         }
 
         .scanner-area {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 12px;
             position: relative;
             cursor: pointer;
         }
@@ -1549,7 +1549,7 @@
             width: 100%;
             height: 100%;
             border: 2px solid var(--border);
-            border-radius: var(--radius-xl);
+            border-radius: var(--radius-lg);
             position: relative;
             background: var(--bg-secondary);
             overflow: hidden;
@@ -1563,7 +1563,7 @@
 
         .scanner-corners {
             position: absolute;
-            inset: 20px;
+            inset: 12px;
         }
 
         .scanner-corners::before,
@@ -1572,8 +1572,8 @@
         .scanner-corner-br {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             border-color: var(--accent);
             border-style: solid;
             border-width: 0;
@@ -1582,50 +1582,50 @@
         .scanner-corners::before {
             top: 0;
             left: 0;
-            border-top-width: 3px;
-            border-left-width: 3px;
-            border-top-left-radius: 8px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+            border-top-left-radius: 6px;
         }
 
         .scanner-corners::after {
             top: 0;
             right: 0;
-            border-top-width: 3px;
-            border-right-width: 3px;
-            border-top-right-radius: 8px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+            border-top-right-radius: 6px;
         }
 
         .scanner-corner-bl {
             bottom: 0;
             left: 0;
-            border-bottom-width: 3px;
-            border-left-width: 3px;
-            border-bottom-left-radius: 8px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+            border-bottom-left-radius: 6px;
         }
 
         .scanner-corner-br {
             bottom: 0;
             right: 0;
-            border-bottom-width: 3px;
-            border-right-width: 3px;
-            border-bottom-right-radius: 8px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+            border-bottom-right-radius: 6px;
         }
 
         .scanner-line {
             position: absolute;
-            left: 30px;
-            right: 30px;
+            left: 18px;
+            right: 18px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
             animation: scanLine 2s ease-in-out infinite;
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         @keyframes scanLine {
-            0%, 100% { top: 30px; opacity: 0; }
+            0%, 100% { top: 18px; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { top: calc(100% - 30px); opacity: 0; }
+            100% { top: calc(100% - 18px); opacity: 0; }
         }
 
         .scanner-icon {
@@ -1637,8 +1637,8 @@
         }
 
         .scanner-icon svg {
-            width: 64px;
-            height: 64px;
+            width: 36px;
+            height: 36px;
             stroke-width: 1;
         }
 
@@ -1646,24 +1646,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 11px;
         }
 
         .scan-hint svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
         }
 
-        /* Input Toggle (Scan vs Manual) */
+        /* Input Toggle (Scan vs Manual) - Compact */
         .input-toggle {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 6px;
+            margin-bottom: 10px;
             background: var(--bg-tertiary);
-            padding: 4px;
-            border-radius: var(--radius-md);
+            padding: 3px;
+            border-radius: var(--radius-sm);
         }
 
         .toggle-btn {
@@ -1671,13 +1671,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            padding: 10px 12px;
+            gap: 5px;
+            padding: 8px 10px;
             background: transparent;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-xs);
             font-family: inherit;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             color: var(--text-muted);
             cursor: pointer;
@@ -1685,8 +1685,8 @@
         }
 
         .toggle-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
         }
 
         .toggle-btn.active {
@@ -1699,22 +1699,24 @@
             background: var(--bg-elevated);
         }
 
-        /* Customer Input Modes */
-        .customer-input-mode {
+        /* Input Modes (Customer/Payment) */
+        .customer-input-mode,
+        .payment-input-mode {
             transition: opacity 0.2s ease;
         }
 
-        .customer-input-mode.hidden {
+        .customer-input-mode.hidden,
+        .payment-input-mode.hidden {
             display: none;
         }
 
-        /* Manual Entry Form */
+        /* Manual Entry Form - Compact */
         .manual-entry-form {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: var(--radius-md);
+            padding: 12px;
+            margin-bottom: 10px;
         }
 
         .manual-id-input {
@@ -1874,28 +1876,28 @@
             margin-top: 8px;
         }
 
-        /* Stats Row */
+        /* Stats Row - Compact */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-top: 16px;
+            gap: 6px;
+            margin-top: 10px;
         }
 
         .stat-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 10px 8px;
+            border-radius: var(--radius-sm);
+            padding: 8px 6px;
             text-align: center;
         }
 
         .stat-value {
             font-family: 'DM Mono', monospace;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 500;
             color: var(--text-primary);
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .stat-label {
@@ -1905,20 +1907,20 @@
             color: var(--text-muted);
         }
 
-        /* Battery & Customer Cards */
+        /* Battery & Customer Cards - Compact */
         .battery-card, .customer-card, .cost-card, .receipt-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 14px;
-            margin-bottom: 12px;
+            border-radius: var(--radius-md);
+            padding: 10px;
+            margin-bottom: 8px;
         }
 
         .battery-header, .customer-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .battery-id, .customer-id {
@@ -1953,19 +1955,19 @@
         .battery-visual {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 12px;
+            gap: 10px;
+            padding: 8px;
             background: var(--bg-tertiary);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             margin-bottom: 0;
         }
 
         .battery-icon-large {
-            width: 50px;
-            height: 70px;
+            width: 32px;
+            height: 48px;
             background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-tertiary) 100%);
             border: 2px solid var(--border);
-            border-radius: 6px;
+            border-radius: 4px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -2030,33 +2032,33 @@
             font-weight: 500;
         }
 
-        /* Visual Battery Swap Comparison */
+        /* Visual Battery Swap Comparison - Compact */
         .battery-swap-visual {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            padding: 16px;
+            gap: 12px;
+            padding: 10px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            margin-bottom: 10px;
+            border-radius: var(--radius-md);
+            margin-bottom: 8px;
         }
 
         .battery-swap-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            padding-top: 12px;
+            gap: 4px;
+            padding-top: 8px;
         }
 
         .battery-icon-swap {
-            width: 60px;
-            height: 85px;
+            width: 44px;
+            height: 62px;
             background: var(--bg-tertiary);
-            border: 3px solid var(--border);
-            border-radius: 6px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
             position: relative;
             display: flex;
             align-items: center;
@@ -2068,13 +2070,13 @@
         .battery-icon-swap::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 22px;
-            height: 12px;
+            width: 16px;
+            height: 8px;
             background: var(--border);
-            border-radius: 3px 3px 0 0;
+            border-radius: 2px 2px 0 0;
         }
 
         .battery-icon-swap.low {
@@ -2126,14 +2128,14 @@
             position: relative;
             z-index: 1;
             font-family: 'DM Mono', monospace;
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 600;
             color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .battery-swap-label {
-            font-size: 9px;
+            font-size: 8px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-muted);
@@ -2142,7 +2144,7 @@
 
         .battery-swap-id {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-secondary);
         }
 
@@ -2150,40 +2152,40 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 28px;
+            height: 28px;
             background: var(--accent-soft);
             border-radius: 50%;
         }
 
         .swap-arrow-icon svg {
-            width: 20px;
-            height: 20px;
-            color: var(--accent);
-        }
-
-        /* Energy Differential Badge */
-        .energy-diff-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: var(--accent-soft);
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            margin: 0 auto 12px;
-            width: fit-content;
-        }
-
-        .energy-diff-badge svg {
             width: 16px;
             height: 16px;
             color: var(--accent);
         }
 
+        /* Energy Differential Badge - Compact */
+        .energy-diff-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 5px 12px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
+            margin: 0 auto 8px;
+            width: fit-content;
+        }
+
+        .energy-diff-badge svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent);
+        }
+
         .energy-diff-badge span {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--accent);
         }
@@ -2388,19 +2390,19 @@
             font-weight: 600;
         }
 
-        /* Cost Breakdown */
+        /* Cost Breakdown - Compact */
         .cost-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .cost-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid var(--border-subtle);
         }
 
@@ -2410,58 +2412,58 @@
 
         .cost-label {
             color: var(--text-secondary);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .cost-value {
             font-family: 'DM Mono', monospace;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .cost-total {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 12px;
+            padding: 8px 10px;
             background: var(--accent-soft);
-            border-radius: var(--radius-md);
-            margin-top: 8px;
+            border-radius: var(--radius-sm);
+            margin-top: 6px;
         }
 
         .cost-total-label {
             font-weight: 500;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .cost-total-value {
             font-family: 'DM Mono', monospace;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: var(--accent);
         }
 
-        /* Payment Scan */
+        /* Payment Scan - Compact */
         .payment-scan {
             text-align: center;
-            padding: 10px 0;
+            padding: 6px 0;
         }
 
         .payment-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .payment-subtitle {
             color: var(--text-secondary);
-            font-size: 12px;
-            margin-bottom: 16px;
+            font-size: 10px;
+            margin-bottom: 10px;
         }
 
         .qr-scanner-area {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 12px;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 8px;
             position: relative;
         }
 
@@ -2469,7 +2471,7 @@
             width: 100%;
             height: 100%;
             border: 2px dashed var(--accent);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2484,33 +2486,33 @@
         }
 
         .qr-scanner-frame svg {
-            width: 36px;
-            height: 36px;
+            width: 28px;
+            height: 28px;
             color: var(--accent);
         }
 
         .payment-amount {
             font-family: 'DM Mono', monospace;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .payment-status {
             color: var(--text-muted);
-            font-size: 10px;
+            font-size: 9px;
         }
 
-        /* Success Screen */
+        /* Success Screen - Compact */
         .success-screen {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 12px;
         }
 
         .success-icon {
-            width: 64px;
-            height: 64px;
+            width: 52px;
+            height: 52px;
             background: var(--success-soft);
             border-radius: 50%;
             display: flex;
@@ -2527,48 +2529,48 @@
         }
 
         .success-icon svg {
-            width: 32px;
-            height: 32px;
+            width: 26px;
+            height: 26px;
             color: var(--success);
         }
 
         .success-title {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .success-message {
             color: var(--text-secondary);
-            font-size: 12px;
-            margin-bottom: 14px;
+            font-size: 11px;
+            margin-bottom: 10px;
         }
 
         .receipt-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 10px;
+            padding-bottom: 6px;
             border-bottom: 1px dashed var(--border);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .receipt-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
         }
 
         .receipt-id {
             font-family: 'DM Mono', monospace;
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-muted);
         }
 
         .receipt-row {
             display: flex;
             justify-content: space-between;
-            padding: 5px 0;
-            font-size: 11px;
+            padding: 3px 0;
+            font-size: 10px;
         }
 
         .receipt-label {
@@ -3612,21 +3614,21 @@
 
                 <!-- Screen 3: Scan New Battery -->
                 <div class="screen" id="att-screen-newbattery">
-                    <div class="battery-card" style="margin-bottom: 10px;">
-                        <div class="battery-header" style="margin-bottom: 8px;">
+                    <div class="battery-card">
+                        <div class="battery-header">
                             <div>
                                 <div class="battery-id">OLD BATTERY</div>
                                 <div class="battery-name">BAT-2024-7829</div>
                             </div>
                             <span class="battery-status verified">Matched</span>
                         </div>
-                        <div class="battery-visual" style="padding: 8px; margin-bottom: 0;">
-                            <div class="battery-icon-large" style="width: 40px; height: 60px;">
+                        <div class="battery-visual">
+                            <div class="battery-icon-large">
                                 <div class="battery-level" style="--level: 35%;"></div>
                             </div>
                             <div class="battery-info">
-                                <div class="battery-charge" style="font-size: 20px;">35%</div>
-                                <div class="battery-charge-label">Charge Remaining</div>
+                                <div class="battery-charge" style="font-size: 16px;">35%</div>
+                                <div class="battery-charge-label">Charge</div>
                             </div>
                         </div>
                     </div>
@@ -3709,7 +3711,7 @@
 
                 <!-- Screen 5: Confirm Payment -->
                 <div class="screen" id="att-screen-payment">
-                    <div class="cost-card" style="margin-bottom: 12px;">
+                    <div class="cost-card" style="margin-bottom: 8px;">
                         <div class="cost-total" style="margin-top: 0;">
                             <span class="cost-total-label">Amount to Collect</span>
                             <span class="cost-total-value">KES 196</span>
@@ -3718,21 +3720,72 @@
 
                     <div class="payment-scan">
                         <h2 class="payment-title">Confirm Payment</h2>
-                        <p class="payment-subtitle">After customer pays, scan their QR to confirm</p>
                         
-                        <div class="qr-scanner-area" onclick="attConfirmPayment()">
-                            <div class="qr-scanner-frame">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Toggle between Scan and Manual -->
+                        <div class="input-toggle">
+                            <button class="toggle-btn active" id="toggle-payment-scan" onclick="togglePaymentInput('scan')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="3" width="7" height="7"/>
                                     <rect x="14" y="3" width="7" height="7"/>
                                     <rect x="14" y="14" width="7" height="7"/>
                                     <rect x="3" y="14" width="7" height="7"/>
                                 </svg>
-                            </div>
+                                Scan QR
+                            </button>
+                            <button class="toggle-btn" id="toggle-payment-manual" onclick="togglePaymentInput('manual')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9"/>
+                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                </svg>
+                                Enter ID
+                            </button>
                         </div>
                         
-                        <div class="payment-amount">KES 196.00</div>
-                        <div class="payment-status">Scan customer QR after payment</div>
+                        <!-- Scan QR Option -->
+                        <div class="payment-input-mode" id="payment-scan-mode">
+                            <p class="payment-subtitle">Scan customer's QR after payment</p>
+                            
+                            <div class="qr-scanner-area" onclick="attConfirmPayment()">
+                                <div class="qr-scanner-frame">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7"/>
+                                        <rect x="14" y="3" width="7" height="7"/>
+                                        <rect x="14" y="14" width="7" height="7"/>
+                                        <rect x="3" y="14" width="7" height="7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-amount">KES 196.00</div>
+                            <div class="payment-status">Tap to scan customer QR</div>
+                        </div>
+                        
+                        <!-- Manual Entry Option -->
+                        <div class="payment-input-mode hidden" id="payment-manual-mode">
+                            <p class="payment-subtitle">Enter payment transaction ID</p>
+                            
+                            <div class="manual-entry-form">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label">Payment / Transaction ID</label>
+                                    <input type="text" class="form-input manual-id-input" id="paymentId" placeholder="e.g. TXN-892741 or M-PESA code" autocomplete="off">
+                                </div>
+                                <button class="btn btn-primary" onclick="attLookupPayment()" style="width: 100%; margin-top: 8px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6L9 17l-5-5"/>
+                                    </svg>
+                                    Confirm Payment
+                                </button>
+                            </div>
+                            
+                            <div class="payment-amount" style="margin-top: 8px;">KES 196.00</div>
+                            <p class="scan-hint" style="margin-top: 4px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                                Enter M-PESA code or receipt number
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -4564,17 +4617,19 @@
                 cost: null,
                 payment: null
             };
-            // Reset manual entry field
+            // Reset manual entry fields
             document.getElementById('subscriptionId').value = '';
-            // Reset to scan mode
+            document.getElementById('paymentId').value = '';
+            // Reset to scan mode for both customer and payment
             toggleCustomerInput('scan');
+            togglePaymentInput('scan');
             // Reset service plan data
             currentServicePlan = null;
             // Hide customer state panel when starting fresh
             hideCustomerStatePanel();
         }
 
-        // Toggle between Scan QR and Manual Entry
+        // Toggle between Scan QR and Manual Entry for Customer
         function toggleCustomerInput(mode) {
             const scanMode = document.getElementById('customer-scan-mode');
             const manualMode = document.getElementById('customer-manual-mode');
@@ -4594,6 +4649,46 @@
                 // Focus the input field
                 setTimeout(() => document.getElementById('subscriptionId').focus(), 100);
             }
+        }
+
+        // Toggle between Scan QR and Manual Entry for Payment
+        function togglePaymentInput(mode) {
+            const scanMode = document.getElementById('payment-scan-mode');
+            const manualMode = document.getElementById('payment-manual-mode');
+            const toggleScan = document.getElementById('toggle-payment-scan');
+            const toggleManual = document.getElementById('toggle-payment-manual');
+            
+            if (mode === 'scan') {
+                scanMode.classList.remove('hidden');
+                manualMode.classList.add('hidden');
+                toggleScan.classList.add('active');
+                toggleManual.classList.remove('active');
+            } else {
+                scanMode.classList.add('hidden');
+                manualMode.classList.remove('hidden');
+                toggleScan.classList.remove('active');
+                toggleManual.classList.add('active');
+                // Focus the input field
+                setTimeout(() => document.getElementById('paymentId').focus(), 100);
+            }
+        }
+
+        // Confirm payment by manual ID entry
+        function attLookupPayment() {
+            const paymentId = document.getElementById('paymentId').value.trim();
+            if (!paymentId) {
+                document.getElementById('paymentId').focus();
+                return;
+            }
+            showLoading('Confirming payment...');
+            // Save payment data
+            attSaveStepData(5, {
+                confirmed: true,
+                txnId: paymentId.toUpperCase(),
+                method: 'manual',
+                timestamp: new Date().toISOString()
+            });
+            setTimeout(() => { hideLoading(); attGoToScreen(6); }, 1200);
         }
 
         // ===========================================
@@ -5177,7 +5272,7 @@
         });
 
         // Touch feedback for interactive elements
-        document.querySelectorAll('.btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card').forEach(el => {
+        document.querySelectorAll('.btn, .toggle-btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card').forEach(el => {
             el.addEventListener('touchstart', function() { 
                 if (!this.classList.contains('disabled')) {
                     this.style.transform = 'scale(0.96)'; 
