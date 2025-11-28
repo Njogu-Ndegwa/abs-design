@@ -3327,12 +3327,57 @@
         <!-- SALES REP MODULE     -->
         <!-- ==================== -->
         <div class="module" id="module-sales">
-            <!-- Progress Bar -->
-            <div class="progress-bar">
-                <div class="progress-step active" data-step="1"></div>
-                <div class="progress-step" data-step="2"></div>
-                <div class="progress-step" data-step="3"></div>
-                <div class="progress-step" data-step="4"></div>
+            <!-- Interactive Timeline - 4 steps -->
+            <div class="flow-timeline" id="sales-timeline">
+                <div class="timeline-track">
+                    <!-- Step 1: Customer -->
+                    <div class="timeline-step active" data-step="1" onclick="salesTimelineClick(1)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Customer</span>
+                    </div>
+                    <div class="timeline-connector" data-after="1"></div>
+                    
+                    <!-- Step 2: Plan -->
+                    <div class="timeline-step disabled" data-step="2" onclick="salesTimelineClick(2)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6"/>
+                                <path d="M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Plan</span>
+                    </div>
+                    <div class="timeline-connector" data-after="2"></div>
+                    
+                    <!-- Step 3: Battery -->
+                    <div class="timeline-step disabled" data-step="3" onclick="salesTimelineClick(3)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="16" height="10" rx="2"/>
+                                <path d="M22 11v2"/>
+                                <path d="M7 11h4M9 9v4"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Battery</span>
+                    </div>
+                    <div class="timeline-connector" data-after="3"></div>
+                    
+                    <!-- Step 4: Done -->
+                    <div class="timeline-step disabled" data-step="4" onclick="salesTimelineClick(4)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Done</span>
+                    </div>
+                </div>
             </div>
 
             <main class="main">
@@ -3855,6 +3900,8 @@
             } else if (currentRole === 'sales') {
                 document.getElementById('module-sales').classList.add('active');
                 salesGoToScreen(1);
+                // Check timeline scroll after a brief delay for DOM update
+                setTimeout(checkSalesTimelineScroll, 100);
             }
         }
 
@@ -4188,11 +4235,8 @@
             module.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(`sales-screen-${salesGetScreenName(screenNum)}`).classList.add('active');
             
-            module.querySelectorAll('.progress-step').forEach((step, index) => {
-                step.classList.remove('active', 'completed');
-                if (index + 1 < screenNum) step.classList.add('completed');
-                else if (index + 1 === screenNum) step.classList.add('active');
-            });
+            // Update the interactive timeline
+            salesUpdateTimeline(screenNum);
             
             const config = salesScreenConfig[screenNum];
             document.getElementById('sales-btn-text').textContent = config.btnText;
@@ -4211,6 +4255,78 @@
             if (screenNum === 3) {
                 updateSalesPreview();
             }
+        }
+
+        // Update the interactive timeline visual state for sales
+        function salesUpdateTimeline(screenNum) {
+            const timeline = document.getElementById('sales-timeline');
+            if (!timeline) return;
+
+            const steps = timeline.querySelectorAll('.timeline-step');
+            const connectors = timeline.querySelectorAll('.timeline-connector');
+
+            steps.forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed', 'disabled', 'success');
+                
+                if (stepNum < screenNum) {
+                    // Completed steps
+                    step.classList.add('completed');
+                } else if (stepNum === screenNum) {
+                    // Current step
+                    if (screenNum === 4) {
+                        // Final step shows success state
+                        step.classList.add('success');
+                    } else {
+                        step.classList.add('active');
+                    }
+                } else {
+                    // Future steps
+                    step.classList.add('disabled');
+                }
+            });
+
+            // Update connectors
+            connectors.forEach((conn) => {
+                const afterStep = parseInt(conn.getAttribute('data-after'));
+                conn.classList.remove('completed');
+                if (afterStep < screenNum) {
+                    conn.classList.add('completed');
+                }
+            });
+
+            // Scroll active step into view
+            const activeStep = timeline.querySelector('.timeline-step.active, .timeline-step.success');
+            if (activeStep) {
+                activeStep.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            // Check if timeline can scroll (for scroll hint)
+            checkSalesTimelineScroll();
+        }
+
+        function checkSalesTimelineScroll() {
+            const timeline = document.getElementById('sales-timeline');
+            if (!timeline) return;
+            const track = timeline.querySelector('.timeline-track');
+            if (track && track.scrollWidth > timeline.clientWidth) {
+                timeline.classList.add('can-scroll');
+            } else {
+                timeline.classList.remove('can-scroll');
+            }
+        }
+
+        // Handle timeline step clicks for navigation in sales
+        function salesTimelineClick(stepNum) {
+            // Only allow clicking on completed steps or current step
+            const timeline = document.getElementById('sales-timeline');
+            const step = timeline.querySelector(`.timeline-step[data-step="${stepNum}"]`);
+            
+            if (!step || step.classList.contains('disabled')) {
+                return; // Can't navigate to disabled steps
+            }
+            
+            salesGoToScreen(stepNum);
         }
 
         function salesGetScreenName(num) {
@@ -4358,6 +4474,7 @@
             // Handle window resize for timeline scroll indicator
             window.addEventListener('resize', () => {
                 checkTimelineScroll();
+                checkSalesTimelineScroll();
             });
         });
 
