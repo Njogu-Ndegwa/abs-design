@@ -1199,6 +1199,165 @@
         }
         
         /* ===================== */
+        /* STAGE FRAME - Connects Timeline to Form */
+        /* ===================== */
+        
+        .stage-frame-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin: 0 12px 12px;
+            /* Add padding at top for the connector line */
+            padding-top: 10px;
+        }
+        
+        /* Vertical connector line from timeline to stage frame */
+        .stage-connector-line {
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 10px;
+            background: var(--accent);
+            z-index: 5;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease;
+            left: calc(var(--pointer-position, 50%) - 1px);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+        
+        .stage-frame-wrapper.success .stage-connector-line {
+            background: var(--success);
+            box-shadow: 0 0 8px var(--success-glow);
+        }
+        
+        .stage-frame {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 1px var(--accent-soft),
+                0 0 30px -10px var(--accent-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        /* Pointer/connector that points up to the timeline step */
+        .stage-frame::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 14px;
+            height: 14px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent);
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(45deg);
+            z-index: 10;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
+            /* Default position - will be updated by JS */
+            left: calc(var(--pointer-position, 50%) - 7px);
+        }
+        
+        /* Cover the bottom border of the pointer */
+        .stage-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 18px;
+            height: 3px;
+            background: var(--bg-secondary);
+            z-index: 11;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            left: calc(var(--pointer-position, 50%) - 9px);
+        }
+        
+        /* Success state */
+        .stage-frame.success {
+            border-color: var(--success);
+            box-shadow: 
+                0 0 0 1px var(--success-soft),
+                0 0 30px -10px var(--success-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+        
+        .stage-frame.success::before {
+            border-color: var(--success);
+        }
+        
+        /* Stage frame inner content */
+        .stage-frame-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        /* Adjust main padding when inside stage frame */
+        .stage-frame .main {
+            padding: 16px;
+            flex: 1;
+        }
+        
+        /* Current step indicator label */
+        .stage-step-indicator {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: var(--accent-soft);
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .stage-step-indicator svg {
+            width: 12px;
+            height: 12px;
+        }
+        
+        .stage-frame.success .stage-step-indicator {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        /* Compact mode adjustments */
+        @media (max-height: 650px) {
+            .stage-frame-wrapper {
+                margin: 0 8px 8px;
+                padding-top: 8px;
+            }
+            
+            .stage-connector-line {
+                height: 8px;
+            }
+            
+            .stage-frame .main {
+                padding: 12px;
+            }
+            
+            .stage-step-indicator {
+                padding: 3px 8px;
+                font-size: 9px;
+            }
+        }
+        
+        /* ===================== */
         /* CUSTOMER STATE PANEL */
         /* ===================== */
         
@@ -3626,11 +3785,23 @@
                 </div>
             </div>
 
-            <main class="main">
-                <!-- Screen 1: Identify Customer -->
-                <div class="screen active" id="att-screen-customer">
-                    <div class="scan-prompt">
-                        <h1 class="scan-title">Identify Customer</h1>
+            <!-- Stage Frame - Visual connection to timeline -->
+            <div class="stage-frame-wrapper" id="att-stage-wrapper">
+                <div class="stage-connector-line" id="att-connector-line"></div>
+                <div class="stage-frame" id="att-stage-frame">
+                    <div class="stage-step-indicator" id="att-step-indicator">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span id="att-step-label">Step 1 · Customer</span>
+                    </div>
+                    <div class="stage-frame-content">
+                        <main class="main">
+                            <!-- Screen 1: Identify Customer -->
+                            <div class="screen active" id="att-screen-customer">
+                                <div class="scan-prompt">
+                                    <h1 class="scan-title">Identify Customer</h1>
                         
                         <!-- Toggle between Scan and Manual -->
                         <div class="input-toggle">
@@ -3978,7 +4149,10 @@
                         </div>
                     </div>
                 </div>
-            </main>
+                        </main>
+                    </div>
+                </div>
+            </div>
 
             <!-- Attendant Action Bar -->
             <div class="action-bar">
@@ -4064,10 +4238,22 @@
                 </div>
             </div>
 
-            <main class="main">
-                <!-- Screen 1: Customer Registration -->
-                <div class="screen active" id="sales-screen-register">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">New Customer</h2>
+            <!-- Stage Frame - Visual connection to timeline -->
+            <div class="stage-frame-wrapper" id="sales-stage-wrapper">
+                <div class="stage-connector-line" id="sales-connector-line"></div>
+                <div class="stage-frame" id="sales-stage-frame">
+                    <div class="stage-step-indicator" id="sales-step-indicator">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <span id="sales-step-label">Step 1 · Customer</span>
+                    </div>
+                    <div class="stage-frame-content">
+                        <main class="main">
+                            <!-- Screen 1: Customer Registration -->
+                            <div class="screen active" id="sales-screen-register">
+                                <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">New Customer</h2>
                     <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Enter customer details to get started</p>
 
                     <div class="form-section">
@@ -4270,7 +4456,10 @@
                         </div>
                     </div>
                 </div>
-            </main>
+                        </main>
+                    </div>
+                </div>
+            </div>
 
             <!-- Sales Rep Action Bar -->
             <div class="action-bar">
@@ -4619,6 +4808,16 @@
             plus: `<path d="M12 5v14M5 12h14"/>`
         };
 
+        // Step labels and icons for attendant
+        const attStepInfo = {
+            1: { label: 'Customer', icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
+            2: { label: 'Return', icon: '<rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 11v2"/>' },
+            3: { label: 'New', icon: '<rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="M7 11h4M9 9v4"/>' },
+            4: { label: 'Review', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8"/>' },
+            5: { label: 'Pay', icon: '<rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>' },
+            6: { label: 'Done', icon: '<path d="M20 6L9 17l-5-5"/>' }
+        };
+
         // Update the interactive timeline visual state
         function attUpdateTimeline(screenNum) {
             const timeline = document.getElementById('att-timeline');
@@ -4669,6 +4868,62 @@
             
             // Check if timeline can scroll (for scroll hint)
             checkTimelineScroll();
+            
+            // Update stage frame pointer position and step indicator
+            updateAttStageFrame(screenNum);
+        }
+        
+        // Update stage frame pointer position and step indicator
+        function updateAttStageFrame(screenNum) {
+            const timeline = document.getElementById('att-timeline');
+            const stageFrame = document.getElementById('att-stage-frame');
+            const stageWrapper = document.getElementById('att-stage-wrapper');
+            const connectorLine = document.getElementById('att-connector-line');
+            const stepIndicator = document.getElementById('att-step-indicator');
+            const stepLabel = document.getElementById('att-step-label');
+            
+            if (!timeline || !stageFrame || !stageWrapper) return;
+            
+            const activeStep = timeline.querySelector('.timeline-step.active, .timeline-step.success');
+            if (activeStep) {
+                // Calculate pointer position relative to stage frame wrapper
+                const stepRect = activeStep.getBoundingClientRect();
+                const wrapperRect = stageWrapper.getBoundingClientRect();
+                
+                // Get center of the active step dot relative to the stage wrapper
+                const stepCenter = stepRect.left + (stepRect.width / 2);
+                const pointerPosition = stepCenter - wrapperRect.left;
+                
+                // Set CSS variable for pointer position on both frame and wrapper
+                stageFrame.style.setProperty('--pointer-position', `${pointerPosition}px`);
+                stageWrapper.style.setProperty('--pointer-position', `${pointerPosition}px`);
+                
+                // Also update connector line position directly
+                if (connectorLine) {
+                    connectorLine.style.left = `${pointerPosition - 1}px`;
+                }
+            }
+            
+            // Update step indicator
+            const info = attStepInfo[screenNum];
+            if (info && stepLabel) {
+                stepLabel.textContent = `Step ${screenNum} · ${info.label}`;
+                
+                // Update the icon
+                const iconSvg = stepIndicator.querySelector('svg');
+                if (iconSvg) {
+                    iconSvg.innerHTML = info.icon;
+                }
+            }
+            
+            // Toggle success state on stage frame and wrapper
+            if (screenNum === 6) {
+                stageFrame.classList.add('success');
+                stageWrapper.classList.add('success');
+            } else {
+                stageFrame.classList.remove('success');
+                stageWrapper.classList.remove('success');
+            }
         }
         
         function checkTimelineScroll() {
@@ -5196,6 +5451,14 @@
             }
         }
 
+        // Step labels and icons for sales
+        const salesStepInfo = {
+            1: { label: 'Customer', icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>' },
+            2: { label: 'Plan', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/>' },
+            3: { label: 'Battery', icon: '<rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="M7 11h4M9 9v4"/>' },
+            4: { label: 'Done', icon: '<path d="M20 6L9 17l-5-5"/>' }
+        };
+
         // Update the interactive timeline visual state for sales
         function salesUpdateTimeline(screenNum) {
             const timeline = document.getElementById('sales-timeline');
@@ -5242,6 +5505,62 @@
 
             // Check if timeline can scroll (for scroll hint)
             checkSalesTimelineScroll();
+            
+            // Update stage frame pointer position and step indicator
+            updateSalesStageFrame(screenNum);
+        }
+        
+        // Update stage frame pointer position and step indicator for sales
+        function updateSalesStageFrame(screenNum) {
+            const timeline = document.getElementById('sales-timeline');
+            const stageFrame = document.getElementById('sales-stage-frame');
+            const stageWrapper = document.getElementById('sales-stage-wrapper');
+            const connectorLine = document.getElementById('sales-connector-line');
+            const stepIndicator = document.getElementById('sales-step-indicator');
+            const stepLabel = document.getElementById('sales-step-label');
+            
+            if (!timeline || !stageFrame || !stageWrapper) return;
+            
+            const activeStep = timeline.querySelector('.timeline-step.active, .timeline-step.success');
+            if (activeStep) {
+                // Calculate pointer position relative to stage frame wrapper
+                const stepRect = activeStep.getBoundingClientRect();
+                const wrapperRect = stageWrapper.getBoundingClientRect();
+                
+                // Get center of the active step dot relative to the stage wrapper
+                const stepCenter = stepRect.left + (stepRect.width / 2);
+                const pointerPosition = stepCenter - wrapperRect.left;
+                
+                // Set CSS variable for pointer position on both frame and wrapper
+                stageFrame.style.setProperty('--pointer-position', `${pointerPosition}px`);
+                stageWrapper.style.setProperty('--pointer-position', `${pointerPosition}px`);
+                
+                // Also update connector line position directly
+                if (connectorLine) {
+                    connectorLine.style.left = `${pointerPosition - 1}px`;
+                }
+            }
+            
+            // Update step indicator
+            const info = salesStepInfo[screenNum];
+            if (info && stepLabel) {
+                stepLabel.textContent = `Step ${screenNum} · ${info.label}`;
+                
+                // Update the icon
+                const iconSvg = stepIndicator.querySelector('svg');
+                if (iconSvg) {
+                    iconSvg.innerHTML = info.icon;
+                }
+            }
+            
+            // Toggle success state on stage frame and wrapper
+            if (screenNum === 4) {
+                stageFrame.classList.add('success');
+                stageWrapper.classList.add('success');
+            } else {
+                stageFrame.classList.remove('success');
+                stageWrapper.classList.remove('success');
+            }
         }
 
         function checkSalesTimelineScroll() {
@@ -5410,11 +5729,36 @@
                 }
             }
             
-            // Handle window resize for timeline scroll indicator
+            // Handle window resize for timeline scroll indicator and stage frame pointer
             window.addEventListener('resize', () => {
                 checkTimelineScroll();
                 checkSalesTimelineScroll();
+                // Recalculate stage frame pointer positions
+                updateAttStageFrame(attCurrentScreen);
+                updateSalesStageFrame(salesCurrentScreen);
             });
+            
+            // Initialize stage frame pointers after a short delay to ensure layout is complete
+            setTimeout(() => {
+                updateAttStageFrame(1);
+                updateSalesStageFrame(1);
+            }, 100);
+            
+            // Add scroll listeners to timelines to recalculate pointer position when scrolled
+            const attTimeline = document.getElementById('att-timeline');
+            const salesTimeline = document.getElementById('sales-timeline');
+            
+            if (attTimeline) {
+                attTimeline.addEventListener('scroll', () => {
+                    updateAttStageFrame(attCurrentScreen);
+                });
+            }
+            
+            if (salesTimeline) {
+                salesTimeline.addEventListener('scroll', () => {
+                    updateSalesStageFrame(salesCurrentScreen);
+                });
+            }
         });
 
         // Touch feedback for interactive elements
