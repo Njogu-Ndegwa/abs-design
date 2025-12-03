@@ -4273,17 +4273,17 @@
                     <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Choose the product to purchase</p>
 
                     <div class="vehicle-grid">
-                        <div class="vehicle-card selected" onclick="selectVehicle(this, 'ebike')">
+                        <div class="vehicle-card selected" onclick="selectVehicle(this, 'tuktuk2')">
                             <div class="vehicle-card-check">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20 6L9 17l-5-5"/>
                                 </svg>
                             </div>
-                            <img src="assets/Bikes Oves.png" alt="E-Bike" class="vehicle-image">
+                            <img src="assets/Tuk-2.png" alt="Tuk-Tuk" class="vehicle-image">
                             <div class="vehicle-info">
-                                <div class="vehicle-name">Oves E-Bike</div>
-                                <div class="vehicle-type">Electric Bicycle</div>
-                                <div class="vehicle-price">KES 85,000</div>
+                                <div class="vehicle-name">Oves Tuk-Tuk</div>
+                                <div class="vehicle-type">Electric Tuk-Tuk</div>
+                                <div class="vehicle-price">KES 250,000</div>
                             </div>
                         </div>
 
@@ -5470,10 +5470,10 @@
         // =====================
         let salesCurrentScreen = 1;
         let selectedPlan = 'weekly';
-        let selectedVehicle = 'ebike';
+        let selectedVehicle = 'tuktuk2';
 
         const vehicleData = {
-            'ebike': { name: 'Oves E-Bike', type: 'Electric Bicycle', price: 85000 },
+            'tuktuk2': { name: 'Oves Tuk-Tuk', type: 'Electric Tuk-Tuk', price: 250000 },
             'etrike': { name: 'E-Trike 3X', type: 'Electric Tricycle', price: 120000 },
             'etrike-cargo': { name: 'E-Trike Cargo', type: 'Cargo Tricycle', price: 145000 },
             'tuktuk': { name: 'Oves Tuk-Tuk', type: 'Passenger Vehicle', price: 280000 }
@@ -5693,11 +5693,11 @@
                     document.getElementById('customerStreet').value = '';
                     document.getElementById('customerCity').value = '';
                     document.getElementById('customerZip').value = '';
-                    selectedVehicle = 'ebike';
+                    selectedVehicle = 'tuktuk2';
                     selectedPlan = 'weekly';
                     // Reset vehicle selection UI
                     document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
-                    document.querySelector('.vehicle-card[onclick*="ebike"]').classList.add('selected');
+                    document.querySelector('.vehicle-card[onclick*="tuktuk2"]').classList.add('selected');
                     // Reset plan selection UI
                     document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
                     document.querySelector('#sales-screen-subscription .product-card[onclick*="weekly"]').classList.add('selected');
