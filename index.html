@@ -2874,6 +2874,136 @@
             font-weight: 400;
         }
 
+        /* Vehicle Product Selection Grid */
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .vehicle-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicle-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .vehicle-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px var(--accent-glow);
+        }
+
+        .vehicle-card:hover::before {
+            opacity: 1;
+        }
+
+        .vehicle-card.selected {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .vehicle-card.selected::before {
+            opacity: 1;
+        }
+
+        .vehicle-card-check {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .vehicle-card.selected .vehicle-card-check {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .vehicle-card-check svg {
+            width: 12px;
+            height: 12px;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+
+        .vehicle-card.selected .vehicle-card-check svg {
+            color: var(--logo-icon-text);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .vehicle-image {
+            width: 100%;
+            height: 90px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 8px;
+        }
+
+        .vehicle-info {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .vehicle-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .vehicle-type {
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .vehicle-price {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--bg-tertiary);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            display: inline-block;
+        }
+
+        .vehicle-card.selected .vehicle-price {
+            background: var(--accent);
+            color: var(--logo-icon-text);
+        }
+
         /* Customer Preview Card */
         .preview-card {
             background: var(--bg-secondary);
@@ -4012,7 +4142,7 @@
                 Change Role
             </div>
 
-            <!-- Interactive Timeline - 5 steps -->
+            <!-- Interactive Timeline - 6 steps -->
             <div class="flow-timeline" id="sales-timeline">
                 <div class="timeline-track">
                     <!-- Step 1: Customer -->
@@ -4027,8 +4157,22 @@
                     </div>
                     <div class="timeline-connector" data-after="1"></div>
                     
-                    <!-- Step 2: Plan -->
+                    <!-- Step 2: Product -->
                     <div class="timeline-step disabled" data-step="2" onclick="salesTimelineClick(2)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="7" cy="17" r="2"/>
+                                <circle cx="17" cy="17" r="2"/>
+                                <path d="M5 17H3v-6l2-4h9l4 4h3v6h-2"/>
+                                <path d="M9 17h6"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Vehicle</span>
+                    </div>
+                    <div class="timeline-connector" data-after="2"></div>
+                    
+                    <!-- Step 3: Plan -->
+                    <div class="timeline-step disabled" data-step="3" onclick="salesTimelineClick(3)">
                         <div class="timeline-dot">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -4038,10 +4182,10 @@
                         </div>
                         <span class="timeline-label">Plan</span>
                     </div>
-                    <div class="timeline-connector" data-after="2"></div>
+                    <div class="timeline-connector" data-after="3"></div>
                     
-                    <!-- Step 3: Payment -->
-                    <div class="timeline-step disabled" data-step="3" onclick="salesTimelineClick(3)">
+                    <!-- Step 4: Payment -->
+                    <div class="timeline-step disabled" data-step="4" onclick="salesTimelineClick(4)">
                         <div class="timeline-dot">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="1" y="4" width="22" height="16" rx="2"/>
@@ -4050,10 +4194,10 @@
                         </div>
                         <span class="timeline-label">Payment</span>
                     </div>
-                    <div class="timeline-connector" data-after="3"></div>
+                    <div class="timeline-connector" data-after="4"></div>
                     
-                    <!-- Step 4: Battery -->
-                    <div class="timeline-step disabled" data-step="4" onclick="salesTimelineClick(4)">
+                    <!-- Step 5: Battery -->
+                    <div class="timeline-step disabled" data-step="5" onclick="salesTimelineClick(5)">
                         <div class="timeline-dot">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="7" width="16" height="10" rx="2"/>
@@ -4063,10 +4207,10 @@
                         </div>
                         <span class="timeline-label">Battery</span>
                     </div>
-                    <div class="timeline-connector" data-after="4"></div>
+                    <div class="timeline-connector" data-after="5"></div>
                     
-                    <!-- Step 5: Done -->
-                    <div class="timeline-step disabled" data-step="5" onclick="salesTimelineClick(5)">
+                    <!-- Step 6: Done -->
+                    <div class="timeline-step disabled" data-step="6" onclick="salesTimelineClick(6)">
                         <div class="timeline-dot">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 6L9 17l-5-5"/>
@@ -4123,13 +4267,77 @@
                     </div>
                 </div>
 
-                <!-- Screen 2: Select Subscription -->
+                <!-- Screen 2: Select Product (Vehicle) -->
+                <div class="screen" id="sales-screen-product">
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Select Vehicle</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Choose the product to purchase</p>
+
+                    <div class="vehicle-grid">
+                        <div class="vehicle-card selected" onclick="selectVehicle(this, 'ebike')">
+                            <div class="vehicle-card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <img src="assets/Bikes Oves.png" alt="E-Bike" class="vehicle-image">
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Oves E-Bike</div>
+                                <div class="vehicle-type">Electric Bicycle</div>
+                                <div class="vehicle-price">KES 85,000</div>
+                            </div>
+                        </div>
+
+                        <div class="vehicle-card" onclick="selectVehicle(this, 'etrike')">
+                            <div class="vehicle-card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <img src="assets/E-3-one.png" alt="E-Trike" class="vehicle-image">
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">E-Trike 3X</div>
+                                <div class="vehicle-type">Electric Tricycle</div>
+                                <div class="vehicle-price">KES 120,000</div>
+                            </div>
+                        </div>
+
+                        <div class="vehicle-card" onclick="selectVehicle(this, 'etrike-cargo')">
+                            <div class="vehicle-card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <img src="assets/F-3-one.png" alt="E-Trike Cargo" class="vehicle-image">
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">E-Trike Cargo</div>
+                                <div class="vehicle-type">Cargo Tricycle</div>
+                                <div class="vehicle-price">KES 145,000</div>
+                            </div>
+                        </div>
+
+                        <div class="vehicle-card" onclick="selectVehicle(this, 'tuktuk')">
+                            <div class="vehicle-card-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <img src="assets/Tuk-One.png" alt="Tuk-Tuk" class="vehicle-image">
+                            <div class="vehicle-info">
+                                <div class="vehicle-name">Oves Tuk-Tuk</div>
+                                <div class="vehicle-type">Passenger Vehicle</div>
+                                <div class="vehicle-price">KES 280,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Select Subscription -->
                 <div class="screen" id="sales-screen-subscription">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Choose Plan</h2>
-                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Select a subscription package</p>
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Battery Plan</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 12px;">Select battery subscription package</p>
 
                     <div class="product-grid">
-                        <div class="product-card" onclick="selectProduct(this, 'daily')">
+                        <div class="product-card" onclick="selectPlan(this, 'daily')">
                             <div class="product-radio"></div>
                             <div class="product-info">
                                 <div class="product-name">Daily Pass</div>
@@ -4141,7 +4349,7 @@
                             </div>
                         </div>
 
-                        <div class="product-card selected" onclick="selectProduct(this, 'weekly')">
+                        <div class="product-card selected" onclick="selectPlan(this, 'weekly')">
                             <div class="product-radio"></div>
                             <div class="product-info">
                                 <div class="product-name">Weekly Plan</div>
@@ -4153,7 +4361,7 @@
                             </div>
                         </div>
 
-                        <div class="product-card" onclick="selectProduct(this, 'monthly')">
+                        <div class="product-card" onclick="selectPlan(this, 'monthly')">
                             <div class="product-radio"></div>
                             <div class="product-info">
                                 <div class="product-name">Monthly Plan</div>
@@ -4165,7 +4373,7 @@
                             </div>
                         </div>
 
-                        <div class="product-card" onclick="selectProduct(this, 'payperswap')">
+                        <div class="product-card" onclick="selectPlan(this, 'payperswap')">
                             <div class="product-radio"></div>
                             <div class="product-info">
                                 <div class="product-name">Pay-Per-Swap</div>
@@ -4179,66 +4387,20 @@
                     </div>
                 </div>
 
-                <!-- Screen 3: Assign Battery -->
-                <div class="screen" id="sales-screen-battery">
-                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Assign Battery</h2>
-                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 10px;">Scan a battery to assign to customer</p>
-
-                    <!-- Customer Preview -->
-                    <div class="preview-card">
-                        <div class="preview-header">
-                            <div class="preview-avatar" id="sales-avatar">AC</div>
-                            <div>
-                                <div class="preview-name" id="sales-customer-name">ABC Customer Ltd</div>
-                                <div class="preview-phone" id="sales-customer-phone">+254712345678</div>
-                            </div>
-                            <span class="preview-badge" id="sales-plan-badge">Weekly Plan</span>
-                        </div>
-                        <div class="preview-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Email</div>
-                                <div class="detail-value" id="sales-email">customer@example.com</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value" id="sales-location">Nairobi, 00100</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Battery Scanner -->
-                    <div class="scanner-area" onclick="salesSimulateBatteryScan()" style="width: 140px; height: 140px; margin: 10px auto;">
-                        <div class="scanner-frame">
-                            <div class="scanner-corners" style="inset: 12px;">
-                                <div class="scanner-corner-bl"></div>
-                                <div class="scanner-corner-br"></div>
-                            </div>
-                            <div class="scanner-line"></div>
-                            <div class="scanner-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 36px; height: 36px;">
-                                    <rect x="2" y="6" width="20" height="12" rx="2"/>
-                                    <path d="M22 10v4"/>
-                                    <path d="M6 10v4"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="scan-hint">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 16v-4M12 8h.01"/>
-                        </svg>
-                        Tap to scan battery barcode
-                    </p>
-                </div>
-
                 <!-- Screen 4: Confirm Payment -->
                 <div class="screen" id="sales-screen-payment">
                     <div class="cost-card" style="margin-bottom: 8px;">
-                        <div class="cost-total" style="margin-top: 0;">
-                            <span class="cost-total-label">Amount to Collect</span>
-                            <span class="cost-total-value" id="sales-payment-amount">KES 800</span>
+                        <div class="cost-item">
+                            <span class="cost-label" id="sales-product-label">Oves E-Bike</span>
+                            <span class="cost-value" id="sales-product-price">KES 85,000</span>
+                        </div>
+                        <div class="cost-item">
+                            <span class="cost-label" id="sales-plan-label">Weekly Plan</span>
+                            <span class="cost-value" id="sales-plan-price">KES 800</span>
+                        </div>
+                        <div class="cost-total" style="margin-top: 8px;">
+                            <span class="cost-total-label">Total Amount</span>
+                            <span class="cost-total-value" id="sales-payment-amount">KES 85,800</span>
                         </div>
                     </div>
 
@@ -4313,7 +4475,61 @@
                     </div>
                 </div>
 
-                <!-- Screen 5: Checkout/Success -->
+                <!-- Screen 5: Assign Battery -->
+                <div class="screen" id="sales-screen-battery">
+                    <h2 class="scan-title" style="text-align: center; margin-bottom: 4px;">Assign Battery</h2>
+                    <p class="scan-subtitle" style="text-align: center; margin-bottom: 10px;">Scan a battery to assign to customer</p>
+
+                    <!-- Customer Preview -->
+                    <div class="preview-card">
+                        <div class="preview-header">
+                            <div class="preview-avatar" id="sales-avatar">AC</div>
+                            <div>
+                                <div class="preview-name" id="sales-customer-name">ABC Customer Ltd</div>
+                                <div class="preview-phone" id="sales-customer-phone">+254712345678</div>
+                            </div>
+                            <span class="preview-badge" id="sales-plan-badge">Weekly Plan</span>
+                        </div>
+                        <div class="preview-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Email</div>
+                                <div class="detail-value" id="sales-email">customer@example.com</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Location</div>
+                                <div class="detail-value" id="sales-location">Nairobi, 00100</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Battery Scanner -->
+                    <div class="scanner-area" onclick="salesSimulateBatteryScan()" style="width: 140px; height: 140px; margin: 10px auto;">
+                        <div class="scanner-frame">
+                            <div class="scanner-corners" style="inset: 12px;">
+                                <div class="scanner-corner-bl"></div>
+                                <div class="scanner-corner-br"></div>
+                            </div>
+                            <div class="scanner-line"></div>
+                            <div class="scanner-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 36px; height: 36px;">
+                                    <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                    <path d="M22 10v4"/>
+                                    <path d="M6 10v4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="scan-hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                        Tap to scan battery barcode
+                    </p>
+                </div>
+
+                <!-- Screen 6: Checkout/Success -->
                 <div class="screen" id="sales-screen-checkout">
                     <div class="success-screen" style="padding-top: 30px;">
                         <div class="success-icon">
@@ -4347,7 +4563,11 @@
                                 <span class="checkout-item-value" id="checkout-address">Nairobi, 00100</span>
                             </div>
                             <div class="checkout-item">
-                                <span class="checkout-item-label">Plan</span>
+                                <span class="checkout-item-label">Vehicle</span>
+                                <span class="checkout-item-value" id="checkout-product">Oves E-Bike</span>
+                            </div>
+                            <div class="checkout-item">
+                                <span class="checkout-item-label">Battery Plan</span>
                                 <span class="checkout-item-value" id="checkout-plan">Weekly Plan</span>
                             </div>
                             <div class="checkout-item">
@@ -4360,7 +4580,7 @@
                             </div>
                             <div class="checkout-total">
                                 <span class="checkout-total-label">Amount Paid</span>
-                                <span class="checkout-total-value" id="checkout-amount">KES 800</span>
+                                <span class="checkout-total-value" id="checkout-amount">KES 85,800</span>
                             </div>
                         </div>
                     </div>
@@ -5250,13 +5470,29 @@
         // =====================
         let salesCurrentScreen = 1;
         let selectedPlan = 'weekly';
+        let selectedVehicle = 'ebike';
+
+        const vehicleData = {
+            'ebike': { name: 'Oves E-Bike', type: 'Electric Bicycle', price: 85000 },
+            'etrike': { name: 'E-Trike 3X', type: 'Electric Tricycle', price: 120000 },
+            'etrike-cargo': { name: 'E-Trike Cargo', type: 'Cargo Tricycle', price: 145000 },
+            'tuktuk': { name: 'Oves Tuk-Tuk', type: 'Passenger Vehicle', price: 280000 }
+        };
+
+        const planData = {
+            'daily': { name: 'Daily Pass', price: 150 },
+            'weekly': { name: 'Weekly Plan', price: 800 },
+            'monthly': { name: 'Monthly Plan', price: 2500 },
+            'payperswap': { name: 'Pay-Per-Swap', price: 0 }
+        };
 
         const salesScreenConfig = {
             1: { btnText: 'Continue', btnIcon: 'arrow', showBack: false },
             2: { btnText: 'Continue', btnIcon: 'arrow', showBack: true },
-            3: { btnText: 'Confirm Payment', btnIcon: 'qr', showBack: true },
-            4: { btnText: 'Scan Battery', btnIcon: 'scan', showBack: true },
-            5: { btnText: 'New Registration', btnIcon: 'plus', showBack: false, btnClass: 'btn-success' }
+            3: { btnText: 'Continue', btnIcon: 'arrow', showBack: true },
+            4: { btnText: 'Confirm Payment', btnIcon: 'qr', showBack: true },
+            5: { btnText: 'Scan Battery', btnIcon: 'scan', showBack: true },
+            6: { btnText: 'New Registration', btnIcon: 'plus', showBack: false, btnClass: 'btn-success' }
         };
 
         const salesIcons = {
@@ -5287,13 +5523,13 @@
             btnMain.className = 'btn ' + (config.btnClass || 'btn-primary');
             salesCurrentScreen = screenNum;
 
-            // Update payment amounts on screen 3
-            if (screenNum === 3) {
+            // Update payment amounts on screen 4
+            if (screenNum === 4) {
                 updateSalesPaymentAmount();
             }
 
-            // Update preview on screen 4
-            if (screenNum === 4) {
+            // Update preview on screen 5
+            if (screenNum === 5) {
                 updateSalesPreview();
             }
         }
@@ -5315,7 +5551,7 @@
                     step.classList.add('completed');
                 } else if (stepNum === screenNum) {
                     // Current step
-                    if (screenNum === 5) {
+                    if (screenNum === 6) {
                         // Final step shows success state
                         step.classList.add('success');
                     } else {
@@ -5371,11 +5607,17 @@
         }
 
         function salesGetScreenName(num) {
-            return { 1: 'register', 2: 'subscription', 3: 'payment', 4: 'battery', 5: 'checkout' }[num];
+            return { 1: 'register', 2: 'product', 3: 'subscription', 4: 'payment', 5: 'battery', 6: 'checkout' }[num];
         }
 
-        function selectProduct(element, plan) {
-            document.querySelectorAll('.product-card').forEach(card => card.classList.remove('selected'));
+        function selectVehicle(element, vehicle) {
+            document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedVehicle = vehicle;
+        }
+
+        function selectPlan(element, plan) {
+            document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
             element.classList.add('selected');
             selectedPlan = plan;
         }
@@ -5399,13 +5641,10 @@
             document.getElementById('sales-email').textContent = email;
             document.getElementById('sales-location').textContent = city + ', ' + zip;
             
-            const planNames = {
-                'daily': 'Daily Pass',
-                'weekly': 'Weekly Plan',
-                'monthly': 'Monthly Plan',
-                'payperswap': 'Pay-Per-Swap'
-            };
-            document.getElementById('sales-plan-badge').textContent = planNames[selectedPlan];
+            // Show vehicle + plan info
+            const vehicle = vehicleData[selectedVehicle];
+            const plan = planData[selectedPlan];
+            document.getElementById('sales-plan-badge').textContent = vehicle.name + ' • ' + plan.name;
         }
 
         function salesSimulateBatteryScan() {
@@ -5413,7 +5652,7 @@
             setTimeout(() => {
                 hideLoading();
                 updateCheckoutSummary();
-                salesGoToScreen(5); // Go to checkout screen
+                salesGoToScreen(6); // Go to checkout screen
             }, 1500);
         }
 
@@ -5424,26 +5663,17 @@
             const city = document.getElementById('customerCity').value || 'Nairobi';
             const zip = document.getElementById('customerZip').value || '00100';
             
-            const planNames = {
-                'daily': 'Daily Pass',
-                'weekly': 'Weekly Plan',
-                'monthly': 'Monthly Plan',
-                'payperswap': 'Pay-Per-Swap'
-            };
-            
-            const planPrices = {
-                'daily': 'KES 150',
-                'weekly': 'KES 800',
-                'monthly': 'KES 2,500',
-                'payperswap': 'KES 0'
-            };
+            const vehicle = vehicleData[selectedVehicle];
+            const plan = planData[selectedPlan];
+            const total = vehicle.price + plan.price;
             
             document.getElementById('checkout-name').textContent = name;
             document.getElementById('checkout-email').textContent = email;
             document.getElementById('checkout-phone').textContent = phone;
             document.getElementById('checkout-address').textContent = city + ', ' + zip;
-            document.getElementById('checkout-plan').textContent = planNames[selectedPlan];
-            document.getElementById('checkout-amount').textContent = planPrices[selectedPlan];
+            document.getElementById('checkout-product').textContent = vehicle.name;
+            document.getElementById('checkout-plan').textContent = plan.name;
+            document.getElementById('checkout-amount').textContent = 'KES ' + total.toLocaleString();
             document.getElementById('sales-reg-id').textContent = '#REG-' + Math.floor(100000 + Math.random() * 900000);
             document.getElementById('checkout-battery').textContent = 'BAT-2024-' + Math.floor(1000 + Math.random() * 9000);
         }
@@ -5452,16 +5682,25 @@
             switch(salesCurrentScreen) {
                 case 1: salesGoToScreen(2); break;
                 case 2: salesGoToScreen(3); break;
-                case 3: salesConfirmPayment(); break;
-                case 4: salesSimulateBatteryScan(); break;
-                case 5: 
-                    // Reset form
+                case 3: salesGoToScreen(4); break;
+                case 4: salesConfirmPayment(); break;
+                case 5: salesSimulateBatteryScan(); break;
+                case 6: 
+                    // Reset form and selections
                     document.getElementById('customerName').value = '';
                     document.getElementById('customerEmail').value = '';
                     document.getElementById('customerPhone').value = '';
                     document.getElementById('customerStreet').value = '';
                     document.getElementById('customerCity').value = '';
                     document.getElementById('customerZip').value = '';
+                    selectedVehicle = 'ebike';
+                    selectedPlan = 'weekly';
+                    // Reset vehicle selection UI
+                    document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
+                    document.querySelector('.vehicle-card[onclick*="ebike"]').classList.add('selected');
+                    // Reset plan selection UI
+                    document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
+                    document.querySelector('#sales-screen-subscription .product-card[onclick*="weekly"]').classList.add('selected');
                     salesGoToScreen(1);
                     break;
             }
@@ -5473,21 +5712,20 @@
 
         // Sales Payment Functions
         function updateSalesPaymentAmount() {
-            const planPrices = {
-                'daily': 'KES 150',
-                'weekly': 'KES 800',
-                'monthly': 'KES 2,500',
-                'payperswap': 'KES 0'
-            };
-            const planPricesFormatted = {
-                'daily': 'KES 150.00',
-                'weekly': 'KES 800.00',
-                'monthly': 'KES 2,500.00',
-                'payperswap': 'KES 0.00'
-            };
-            document.getElementById('sales-payment-amount').textContent = planPrices[selectedPlan];
-            document.getElementById('sales-payment-display').textContent = planPricesFormatted[selectedPlan];
-            document.getElementById('sales-payment-display-manual').textContent = planPricesFormatted[selectedPlan];
+            const vehicle = vehicleData[selectedVehicle];
+            const plan = planData[selectedPlan];
+            const total = vehicle.price + plan.price;
+            
+            // Update breakdown
+            document.getElementById('sales-product-label').textContent = vehicle.name;
+            document.getElementById('sales-product-price').textContent = 'KES ' + vehicle.price.toLocaleString();
+            document.getElementById('sales-plan-label').textContent = plan.name;
+            document.getElementById('sales-plan-price').textContent = 'KES ' + plan.price.toLocaleString();
+            
+            // Update totals
+            document.getElementById('sales-payment-amount').textContent = 'KES ' + total.toLocaleString();
+            document.getElementById('sales-payment-display').textContent = 'KES ' + total.toLocaleString() + '.00';
+            document.getElementById('sales-payment-display-manual').textContent = 'KES ' + total.toLocaleString() + '.00';
         }
 
         function toggleSalesPaymentInput(mode) {
@@ -5513,7 +5751,7 @@
             showLoading('Confirming payment...');
             setTimeout(() => {
                 hideLoading();
-                salesGoToScreen(4); // Go to battery screen
+                salesGoToScreen(5); // Go to battery screen
             }, 1500);
         }
 
@@ -5582,7 +5820,7 @@
         });
 
         // Touch feedback for interactive elements
-        document.querySelectorAll('.btn, .toggle-btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card').forEach(el => {
+        document.querySelectorAll('.btn, .toggle-btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card, .vehicle-card').forEach(el => {
             el.addEventListener('touchstart', function() { 
                 if (!this.classList.contains('disabled')) {
                     this.style.transform = 'scale(0.96)'; 
