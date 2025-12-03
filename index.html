@@ -4040,8 +4040,20 @@
                     </div>
                     <div class="timeline-connector" data-after="2"></div>
                     
-                    <!-- Step 3: Battery -->
+                    <!-- Step 3: Payment -->
                     <div class="timeline-step disabled" data-step="3" onclick="salesTimelineClick(3)">
+                        <div class="timeline-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                <path d="M1 10h22"/>
+                            </svg>
+                        </div>
+                        <span class="timeline-label">Payment</span>
+                    </div>
+                    <div class="timeline-connector" data-after="3"></div>
+                    
+                    <!-- Step 4: Battery -->
+                    <div class="timeline-step disabled" data-step="4" onclick="salesTimelineClick(4)">
                         <div class="timeline-dot">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="7" width="16" height="10" rx="2"/>
@@ -4050,18 +4062,6 @@
                             </svg>
                         </div>
                         <span class="timeline-label">Battery</span>
-                    </div>
-                    <div class="timeline-connector" data-after="3"></div>
-                    
-                    <!-- Step 4: Payment -->
-                    <div class="timeline-step disabled" data-step="4" onclick="salesTimelineClick(4)">
-                        <div class="timeline-dot">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="1" y="4" width="22" height="16" rx="2"/>
-                                <path d="M1 10h22"/>
-                            </svg>
-                        </div>
-                        <span class="timeline-label">Payment</span>
                     </div>
                     <div class="timeline-connector" data-after="4"></div>
                     
@@ -5254,8 +5254,8 @@
         const salesScreenConfig = {
             1: { btnText: 'Continue', btnIcon: 'arrow', showBack: false },
             2: { btnText: 'Continue', btnIcon: 'arrow', showBack: true },
-            3: { btnText: 'Scan Battery', btnIcon: 'scan', showBack: true },
-            4: { btnText: 'Confirm Payment', btnIcon: 'qr', showBack: true },
+            3: { btnText: 'Confirm Payment', btnIcon: 'qr', showBack: true },
+            4: { btnText: 'Scan Battery', btnIcon: 'scan', showBack: true },
             5: { btnText: 'New Registration', btnIcon: 'plus', showBack: false, btnClass: 'btn-success' }
         };
 
@@ -5287,14 +5287,14 @@
             btnMain.className = 'btn ' + (config.btnClass || 'btn-primary');
             salesCurrentScreen = screenNum;
 
-            // Update preview on screen 3
+            // Update payment amounts on screen 3
             if (screenNum === 3) {
-                updateSalesPreview();
+                updateSalesPaymentAmount();
             }
 
-            // Update payment amounts on screen 4
+            // Update preview on screen 4
             if (screenNum === 4) {
-                updateSalesPaymentAmount();
+                updateSalesPreview();
             }
         }
 
@@ -5371,7 +5371,7 @@
         }
 
         function salesGetScreenName(num) {
-            return { 1: 'register', 2: 'subscription', 3: 'battery', 4: 'payment', 5: 'checkout' }[num];
+            return { 1: 'register', 2: 'subscription', 3: 'payment', 4: 'battery', 5: 'checkout' }[num];
         }
 
         function selectProduct(element, plan) {
@@ -5412,7 +5412,8 @@
             showLoading('Scanning battery...');
             setTimeout(() => {
                 hideLoading();
-                salesGoToScreen(4); // Go to payment screen
+                updateCheckoutSummary();
+                salesGoToScreen(5); // Go to checkout screen
             }, 1500);
         }
 
@@ -5451,8 +5452,8 @@
             switch(salesCurrentScreen) {
                 case 1: salesGoToScreen(2); break;
                 case 2: salesGoToScreen(3); break;
-                case 3: salesSimulateBatteryScan(); break;
-                case 4: salesConfirmPayment(); break;
+                case 3: salesConfirmPayment(); break;
+                case 4: salesSimulateBatteryScan(); break;
                 case 5: 
                     // Reset form
                     document.getElementById('customerName').value = '';
@@ -5512,8 +5513,7 @@
             showLoading('Confirming payment...');
             setTimeout(() => {
                 hideLoading();
-                updateCheckoutSummary();
-                salesGoToScreen(5); // Go to success screen
+                salesGoToScreen(4); // Go to battery screen
             }, 1500);
         }
 
