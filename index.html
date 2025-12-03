@@ -3548,12 +3548,13 @@
                     <!-- Login Form -->
                     <div class="login-form">
                         <div class="form-group">
-                            <label class="form-label">Phone Number</label>
+                            <label class="form-label">Email Address</label>
                             <div class="input-with-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="M22 6l-10 7L2 6"/>
                                 </svg>
-                                <input type="tel" class="form-input" id="login-phone" placeholder="+254 7XX XXX XXX">
+                                <input type="email" class="form-input" id="login-email" placeholder="yourname@oves.com">
                             </div>
                         </div>
 
@@ -4774,8 +4775,8 @@
             const requiresLogin = ['attendant', 'sales'];
             
             if (requiresLogin.includes(currentRole)) {
-                // Check if user is already logged in for this role
-                const loginKey = `oves-${currentRole}-login`;
+                // Check if user is already logged in (shared login for attendant and sales)
+                const loginKey = 'oves-staff-login';
                 const savedLogin = localStorage.getItem(loginKey);
                 
                 if (savedLogin) {
@@ -4823,17 +4824,17 @@
                 loginSubtitle.textContent = 'Sign in to access your workspace';
                 
                 // Clear form
-                document.getElementById('login-phone').value = '';
+                document.getElementById('login-email').value = '';
                 document.getElementById('login-pin').value = '';
             }
         }
 
         function handleLogin() {
-            const phone = document.getElementById('login-phone').value.trim();
+            const email = document.getElementById('login-email').value.trim();
             const pin = document.getElementById('login-pin').value.trim();
             
-            if (!phone) {
-                document.getElementById('login-phone').focus();
+            if (!email) {
+                document.getElementById('login-email').focus();
                 return;
             }
             if (!pin || pin.length < 4) {
@@ -4847,15 +4848,15 @@
             setTimeout(() => {
                 hideLoading();
                 
-                // Save login state
+                // Save login state (shared for attendant and sales)
                 const userData = {
                     name: 'James Mwangi',
                     initials: 'JM',
-                    phone: phone,
+                    email: email,
                     loginTime: Date.now()
                 };
                 
-                const loginKey = `oves-${currentRole}-login`;
+                const loginKey = 'oves-staff-login';
                 localStorage.setItem(loginKey, JSON.stringify(userData));
                 
                 // Go to role module
@@ -4873,7 +4874,7 @@
 
         function switchUser() {
             // Clear current login and show form
-            const loginKey = `oves-${currentRole}-login`;
+            const loginKey = 'oves-staff-login';
             localStorage.removeItem(loginKey);
             showLoginScreen(false);
         }
