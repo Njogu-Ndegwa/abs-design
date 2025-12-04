@@ -3242,6 +3242,229 @@
             font-size: 12px;
         }
 
+        /* QR Modal Styles */
+        .qr-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--loading-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .qr-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .qr-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 340px;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .qr-modal-overlay.active .qr-modal {
+            transform: scale(1) translateY(0);
+        }
+        
+        .qr-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .qr-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .qr-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .qr-modal-close:hover {
+            background: var(--accent-soft);
+        }
+        
+        .qr-modal-close svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+        
+        .qr-modal-body {
+            padding: 20px;
+        }
+        
+        .qr-modal-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .qr-input-group {
+            margin-bottom: 16px;
+        }
+        
+        .qr-input-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .qr-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-family: 'DM Mono', monospace;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+        
+        .qr-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+        
+        .qr-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .qr-generate-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a0f0f;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .qr-generate-btn:hover {
+            background: #00d4d4;
+            transform: translateY(-1px);
+        }
+        
+        .qr-generate-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .qr-display-section {
+            text-align: center;
+        }
+        
+        .qr-code-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 16px;
+            padding: 12px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-code-container svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .qr-transaction-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+        }
+        
+        .qr-transaction-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .qr-transaction-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .qr-instruction {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .qr-new-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .qr-new-btn:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+        
+        .qr-new-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
         /* Back to Roles Button */
         .back-to-roles {
             display: flex;
@@ -3360,6 +3583,118 @@
         .rider-name {
             font-size: 18px;
             font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Rider Bike Card - Shows rider's vehicle */
+        .rider-bike-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rider-bike-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .rider-bike-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rider-bike-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .rider-bike-model {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .rider-bike-status {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .rider-bike-status.active {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .rider-bike-status.inactive {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        .rider-bike-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rider-bike-image {
+            width: 100px;
+            height: 80px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rider-bike-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+        
+        .rider-bike-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .rider-bike-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .rider-bike-detail-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .rider-bike-detail-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
             color: var(--text-primary);
         }
         
@@ -5758,59 +6093,48 @@
                         <div class="rider-name" id="rider-user-name">James Mwangi</div>
                     </div>
 
-                    <!-- Battery Hero Card - The main widget showing battery status -->
-                    <div class="battery-hero-card">
-                        <div class="battery-hero-header">
+                    <!-- My Bike Card - Shows rider's vehicle -->
+                    <div class="rider-bike-card">
+                        <div class="rider-bike-header">
                             <div>
-                                <div class="battery-hero-label">Current Battery</div>
-                                <div class="battery-hero-id" id="rider-battery-id">BAT-2024-3156</div>
+                                <div class="rider-bike-label">My Bike</div>
+                                <div class="rider-bike-model" id="rider-bike-model">E-Trike 3X</div>
                             </div>
-                            <span class="battery-hero-status charged" id="rider-battery-status">Good</span>
+                            <span class="rider-bike-status active" id="rider-bike-status">Active</span>
                         </div>
-                        <div class="battery-visual">
-                            <!-- Circular Battery Gauge -->
-                            <div class="battery-gauge">
-                                <svg viewBox="0 0 100 100" width="100" height="100">
-                                    <circle class="battery-gauge-bg" cx="50" cy="50" r="42"/>
-                                    <circle class="battery-gauge-fill good" id="rider-battery-gauge" cx="50" cy="50" r="42" 
-                                        stroke-dasharray="198 264"/>
-                                </svg>
-                                <div class="battery-gauge-text">
-                                    <span class="battery-gauge-percent" id="rider-battery-percent">75%</span>
-                                    <span class="battery-gauge-label">Charge</span>
-                                </div>
+                        <div class="rider-bike-content">
+                            <div class="rider-bike-image">
+                                <img src="assets/E-3-one.png" alt="My E-Trike">
                             </div>
-                            <div class="battery-hero-info">
-                                <div class="battery-hero-range">
-                                    <span class="battery-hero-range-value" id="rider-range-value">42</span>
-                                    <span class="battery-hero-range-unit">km</span>
-                                    <div class="battery-hero-range-label">Estimated Range</div>
+                            <div class="rider-bike-info">
+                                <div class="rider-bike-detail">
+                                    <span class="rider-bike-detail-label">Vehicle ID</span>
+                                    <span class="rider-bike-detail-value" id="rider-vehicle-id">VEH-2024-8847</span>
                                 </div>
-                                <div class="battery-hero-stats">
-                                    <div class="battery-hero-stat">
-                                        <span class="battery-hero-stat-value" id="rider-energy-value">1.9</span>
-                                        <span class="battery-hero-stat-label">kWh Used</span>
-                                    </div>
-                                    <div class="battery-hero-stat">
-                                        <span class="battery-hero-stat-value" id="rider-last-swap">2h ago</span>
-                                        <span class="battery-hero-stat-label">Last Swap</span>
-                                    </div>
+                                <div class="rider-bike-detail">
+                                    <span class="rider-bike-detail-label">Last Swap</span>
+                                    <span class="rider-bike-detail-value" id="rider-last-swap">2h ago</span>
+                                </div>
+                                <div class="rider-bike-detail">
+                                    <span class="rider-bike-detail-label">Total Swaps</span>
+                                    <span class="rider-bike-detail-value" id="rider-total-swaps">47</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Account Balance Card (smart display based on billing model) -->
+                    <!-- Account Balance Card (shows money equivalent) -->
                     <div class="account-balance-card" id="rider-balance-card">
                         <div class="account-balance-info">
                             <div class="account-balance-icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v12M8 10h8M8 14h8" stroke="var(--bg-primary)" stroke-width="2" fill="none"/>
                                 </svg>
                             </div>
                             <div>
-                                <div class="account-balance-label">Energy Balance</div>
-                                <div class="account-balance-value" id="rider-balance-value">62 kWh</div>
+                                <div class="account-balance-label">Account Balance</div>
+                                <div class="account-balance-value" id="rider-balance-value">XOF 3,100</div>
                             </div>
                         </div>
                         <button class="account-balance-action" onclick="riderShowTopUp()">Top Up</button>
@@ -6178,8 +6502,8 @@
                         <div class="subscription-validity">Valid until Dec 9, 2025</div>
                         <div class="subscription-stats">
                             <div class="subscription-stat">
-                                <div class="subscription-stat-value" id="rider-sub-energy">62 kWh</div>
-                                <div class="subscription-stat-label">Energy Left</div>
+                                <div class="subscription-stat-value" id="rider-sub-balance">XOF 3,100</div>
+                                <div class="subscription-stat-label">Balance</div>
                             </div>
                             <div class="subscription-stat">
                                 <div class="subscription-stat-value" id="rider-sub-swaps">18</div>
@@ -6339,6 +6663,62 @@
         <div class="loading-overlay" id="loading">
             <div class="loading-spinner"></div>
             <div class="loading-text" id="loading-text">Processing...</div>
+        </div>
+
+        <!-- QR Code Modal for Rider -->
+        <div class="qr-modal-overlay" id="qr-modal" onclick="if(event.target === this) closeQRModal()">
+            <div class="qr-modal">
+                <div class="qr-modal-header">
+                    <h3 class="qr-modal-title">Payment QR Code</h3>
+                    <button class="qr-modal-close" onclick="closeQRModal()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="qr-modal-body">
+                    <!-- Input Section -->
+                    <div class="qr-input-section" id="qr-input-section">
+                        <p class="qr-modal-desc">Enter your payment transaction ID from MTN Mobile Money, Flooz, or bank transfer to generate a QR code for the attendant.</p>
+                        
+                        <div class="qr-input-group">
+                            <label class="qr-input-label">Transaction ID</label>
+                            <input type="text" class="qr-input" id="qr-transaction-id" placeholder="e.g. TXN-892741 or M-PESA code" autocomplete="off">
+                        </div>
+                        
+                        <button class="qr-generate-btn" onclick="generateTransactionQR()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                            Generate QR Code
+                        </button>
+                    </div>
+                    
+                    <!-- QR Display Section (hidden initially) -->
+                    <div class="qr-display-section hidden" id="qr-display-section">
+                        <div class="qr-code-container" id="qr-code-display">
+                            <!-- QR code will be generated here -->
+                        </div>
+                        <div class="qr-transaction-info">
+                            <span class="qr-transaction-label">Transaction ID:</span>
+                            <span class="qr-transaction-value" id="qr-transaction-display">-</span>
+                        </div>
+                        <p class="qr-instruction">Show this QR code to the swap attendant to verify your payment.</p>
+                        
+                        <button class="qr-new-btn" onclick="resetQRModal()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 4v6h6M23 20v-6h-6"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                            Enter New Transaction
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -7595,18 +7975,16 @@
                 initials: 'JM',
                 phone: '+228 91 234 567'
             },
-            battery: {
-                id: 'BAT-2024-3156',
-                charge: 75,
-                range: 42,
-                energyUsed: 1.9,
-                lastSwap: '2h ago'
+            bike: {
+                model: 'E-Trike 3X',
+                vehicleId: 'VEH-2024-8847',
+                lastSwap: '2h ago',
+                totalSwaps: 47,
+                status: 'active'
             },
             balance: {
-                type: 'energy', // 'energy' or 'money'
-                energyRemaining: 62,
-                swapsRemaining: 18,
-                moneyEquivalent: 35050 // XOF
+                moneyBalance: 3100, // XOF
+                swapsRemaining: 18
             },
             subscription: {
                 plan: '7-Day Lux Plan',
@@ -7684,31 +8062,119 @@
             }
         }
         
-        // Update balance display (smart - shows energy or money based on billing model)
+        // Update balance display (always shows money/XOF)
         function riderUpdateBalanceDisplay() {
-            const balanceCard = document.getElementById('rider-balance-card');
             const balanceValue = document.getElementById('rider-balance-value');
-            const balanceLabel = balanceCard?.querySelector('.account-balance-label');
-            
-            if (riderData.balance.type === 'energy') {
-                // Show energy remaining
-                if (balanceValue) balanceValue.textContent = `${riderData.balance.energyRemaining} kWh`;
-                if (balanceLabel) balanceLabel.textContent = 'Energy Balance';
-            } else {
-                // Show money equivalent
-                if (balanceValue) balanceValue.textContent = `XOF ${riderData.balance.moneyEquivalent.toLocaleString()}`;
-                if (balanceLabel) balanceLabel.textContent = 'Credit Balance';
+            if (balanceValue) {
+                balanceValue.textContent = `XOF ${riderData.balance.moneyBalance.toLocaleString()}`;
             }
         }
         
-        // Show QR Code for swap identification
+        // Show QR Code Modal for transaction ID entry
         function riderShowQRCode() {
+            const modal = document.getElementById('qr-modal');
+            modal.classList.add('active');
+            // Reset to input view
+            document.getElementById('qr-input-section').classList.remove('hidden');
+            document.getElementById('qr-display-section').classList.add('hidden');
+            document.getElementById('qr-transaction-id').value = '';
+            document.getElementById('qr-transaction-id').focus();
+        }
+        
+        // Close QR Modal
+        function closeQRModal() {
+            const modal = document.getElementById('qr-modal');
+            modal.classList.remove('active');
+        }
+        
+        // Reset QR Modal to input state
+        function resetQRModal() {
+            document.getElementById('qr-input-section').classList.remove('hidden');
+            document.getElementById('qr-display-section').classList.add('hidden');
+            document.getElementById('qr-transaction-id').value = '';
+            document.getElementById('qr-transaction-id').focus();
+        }
+        
+        // Generate QR code from transaction ID
+        function generateTransactionQR() {
+            const transactionId = document.getElementById('qr-transaction-id').value.trim();
+            
+            if (!transactionId) {
+                alert('Please enter your transaction ID');
+                return;
+            }
+            
+            // Show loading
             showLoading('Generating QR Code...');
+            
             setTimeout(() => {
                 hideLoading();
-                // In production, this would show a QR code modal
-                alert('Your swap QR code is ready!\nShow this to the attendant at any swap station.');
-            }, 800);
+                
+                // Generate a simple QR code pattern (SVG-based visual representation)
+                const qrPattern = generateQRPattern(transactionId);
+                document.getElementById('qr-code-display').innerHTML = qrPattern;
+                document.getElementById('qr-transaction-display').textContent = transactionId;
+                
+                // Switch to display view
+                document.getElementById('qr-input-section').classList.add('hidden');
+                document.getElementById('qr-display-section').classList.remove('hidden');
+            }, 600);
+        }
+        
+        // Generate a visual QR pattern (simplified SVG representation)
+        function generateQRPattern(data) {
+            // Create a deterministic pattern based on the input string
+            const size = 21; // QR code module count
+            const moduleSize = 156 / size;
+            const hash = simpleHash(data);
+            
+            let svg = `<svg viewBox="0 0 156 156" xmlns="http://www.w3.org/2000/svg">`;
+            svg += `<rect width="156" height="156" fill="#ffffff"/>`;
+            
+            // Position detection patterns (corners)
+            svg += drawFinderPattern(0, 0, moduleSize);
+            svg += drawFinderPattern(14 * moduleSize, 0, moduleSize);
+            svg += drawFinderPattern(0, 14 * moduleSize, moduleSize);
+            
+            // Generate data modules based on hash
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    // Skip finder pattern areas
+                    if ((row < 8 && col < 8) || (row < 8 && col > 12) || (row > 12 && col < 8)) continue;
+                    
+                    // Use hash to determine if module is filled
+                    const index = row * size + col;
+                    const shouldFill = ((hash >> (index % 32)) & 1) ^ ((row + col) % 2);
+                    
+                    if (shouldFill) {
+                        svg += `<rect x="${col * moduleSize}" y="${row * moduleSize}" width="${moduleSize}" height="${moduleSize}" fill="#000"/>`;
+                    }
+                }
+            }
+            
+            svg += `</svg>`;
+            return svg;
+        }
+        
+        // Draw QR finder pattern
+        function drawFinderPattern(x, y, moduleSize) {
+            const s = moduleSize;
+            return `
+                <rect x="${x}" y="${y}" width="${7*s}" height="${7*s}" fill="#000"/>
+                <rect x="${x+s}" y="${y+s}" width="${5*s}" height="${5*s}" fill="#fff"/>
+                <rect x="${x+2*s}" y="${y+2*s}" width="${3*s}" height="${3*s}" fill="#000"/>
+            `;
+        }
+        
+        // Simple string hash function
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return Math.abs(hash);
         }
         
         // Show Top-up flow
@@ -7854,24 +8320,30 @@
             const nameEl = document.getElementById('rider-user-name');
             if (nameEl) nameEl.textContent = riderData.user.name;
             
-            // Update battery display
-            riderUpdateBatteryGauge(riderData.battery.charge);
+            // Update bike display
+            const bikeModelEl = document.getElementById('rider-bike-model');
+            if (bikeModelEl) bikeModelEl.textContent = riderData.bike.model;
             
-            document.getElementById('rider-battery-id').textContent = riderData.battery.id;
-            document.getElementById('rider-range-value').textContent = riderData.battery.range;
-            document.getElementById('rider-energy-value').textContent = riderData.battery.energyUsed;
-            document.getElementById('rider-last-swap').textContent = riderData.battery.lastSwap;
+            const vehicleIdEl = document.getElementById('rider-vehicle-id');
+            if (vehicleIdEl) vehicleIdEl.textContent = riderData.bike.vehicleId;
             
-            // Update balance
-            riderUpdateBalanceDisplay();
+            const lastSwapEl = document.getElementById('rider-last-swap');
+            if (lastSwapEl) lastSwapEl.textContent = riderData.bike.lastSwap;
+            
+            const totalSwapsEl = document.getElementById('rider-total-swaps');
+            if (totalSwapsEl) totalSwapsEl.textContent = riderData.bike.totalSwaps;
+            
+            // Update balance (money display)
+            const balanceValueEl = document.getElementById('rider-balance-value');
+            if (balanceValueEl) balanceValueEl.textContent = 'XOF ' + riderData.balance.moneyBalance.toLocaleString();
             
             // Update profile
             document.getElementById('rider-profile-avatar').textContent = riderData.user.initials;
             document.getElementById('rider-profile-name').textContent = riderData.user.name;
             document.getElementById('rider-profile-phone').textContent = riderData.user.phone;
             
-            // Update subscription stats
-            document.getElementById('rider-sub-energy').textContent = riderData.balance.energyRemaining + ' kWh';
+            // Update subscription stats (show money instead of energy)
+            document.getElementById('rider-sub-balance').textContent = 'XOF ' + riderData.balance.moneyBalance.toLocaleString();
             document.getElementById('rider-sub-swaps').textContent = riderData.balance.swapsRemaining;
             
             // Reset to home screen
