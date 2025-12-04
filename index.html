@@ -3465,6 +3465,626 @@
             height: 16px;
         }
 
+        /* Top-Up Modal Styles */
+        .topup-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--loading-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .topup-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .topup-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 360px;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .topup-modal-overlay.active .topup-modal {
+            transform: scale(1) translateY(0);
+        }
+        
+        .topup-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg-secondary);
+            z-index: 10;
+        }
+        
+        .topup-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .topup-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bg-tertiary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .topup-modal-close:hover {
+            background: var(--accent-soft);
+        }
+        
+        .topup-modal-close svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+        
+        .topup-modal-body {
+            padding: 20px;
+        }
+        
+        /* Progress Steps */
+        .topup-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .topup-step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .topup-step-dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        .topup-step-dot.completed {
+            background: var(--accent);
+        }
+        
+        /* Step Content */
+        .topup-step {
+            display: none;
+        }
+        
+        .topup-step.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .topup-step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .topup-step-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Payment Methods */
+        .topup-amount-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .topup-amount-btn {
+            padding: 14px 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .topup-amount-btn:hover {
+            border-color: var(--accent);
+        }
+        
+        .topup-amount-btn.selected {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+        
+        .topup-custom-amount {
+            margin-bottom: 20px;
+        }
+        
+        .topup-custom-amount input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            font-family: 'DM Mono', monospace;
+        }
+        
+        .topup-custom-amount input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+        
+        .topup-custom-amount input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        
+        /* Payment Details Card */
+        .payment-details-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .payment-method-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .payment-method-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-method-icon.mtn {
+            background: #FFCC00;
+        }
+        
+        .payment-method-icon.flooz {
+            background: #FF6600;
+        }
+        
+        .payment-method-icon.bank {
+            background: var(--accent-soft);
+        }
+        
+        .payment-method-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #0a0f0f;
+        }
+        
+        .payment-method-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .payment-method-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .payment-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .payment-detail-row:not(:last-child) {
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .payment-detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .payment-detail-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+        
+        .copy-btn svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .copy-btn.copied {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .copy-btn.copied svg {
+            color: #0a0f0f;
+        }
+        
+        /* Payment Instructions */
+        .payment-instructions {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-instructions h5 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .payment-instructions h5 svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent);
+        }
+        
+        .payment-instructions ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Top-up Input Form */
+        .topup-input-group {
+            margin-bottom: 16px;
+        }
+        
+        .topup-input-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .topup-input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-family: 'DM Mono', monospace;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+        
+        .topup-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+        
+        .topup-input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        /* Summary Card */
+        .topup-summary {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .topup-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        
+        .topup-summary-row:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .topup-summary-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .topup-summary-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .topup-summary-row.total {
+            padding-top: 12px;
+            margin-top: 4px;
+        }
+        
+        .topup-summary-row.total .topup-summary-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .topup-summary-row.total .topup-summary-value {
+            font-size: 18px;
+            color: var(--accent);
+        }
+        
+        /* Confirmation checkbox */
+        .topup-confirm-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .topup-confirm-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid var(--border);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .topup-confirm-check label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+        
+        /* Action Buttons */
+        .topup-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .topup-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .topup-btn-secondary {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        .topup-btn-secondary:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+        
+        .topup-btn-primary {
+            background: var(--accent);
+            border: none;
+            color: #0a0f0f;
+        }
+        
+        .topup-btn-primary:hover {
+            background: #00d4d4;
+            transform: translateY(-1px);
+        }
+        
+        .topup-btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .topup-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Success State */
+        .topup-success {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .topup-success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, #00b8b8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: successPop 0.5s ease;
+        }
+        
+        @keyframes successPop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .topup-success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #0a0f0f;
+        }
+        
+        .topup-success-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .topup-success-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+            margin-bottom: 8px;
+        }
+        
+        .topup-success-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .topup-new-balance {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .topup-new-balance-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .topup-new-balance-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+        }
+        
+        .topup-done-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            color: #0a0f0f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .topup-done-btn:hover {
+            background: #00d4d4;
+            transform: translateY(-1px);
+        }
+
         /* Back to Roles Button */
         .back-to-roles {
             display: flex;
@@ -6925,6 +7545,248 @@
                 </div>
             </div>
         </div>
+
+        <!-- Top-Up Flow Modal -->
+        <div class="topup-modal-overlay" id="topup-modal" onclick="if(event.target === this) closeTopUpModal()">
+            <div class="topup-modal">
+                <div class="topup-modal-header">
+                    <h3 class="topup-modal-title" id="topup-modal-title">Top Up Account</h3>
+                    <button class="topup-modal-close" onclick="closeTopUpModal()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="topup-modal-body">
+                    <!-- Progress Indicator -->
+                    <div class="topup-progress">
+                        <div class="topup-step-dot active" id="topup-dot-1"></div>
+                        <div class="topup-step-dot" id="topup-dot-2"></div>
+                        <div class="topup-step-dot" id="topup-dot-3"></div>
+                    </div>
+                    
+                    <!-- Step 1: Select Amount & View Payment Details -->
+                    <div class="topup-step active" id="topup-step-1">
+                        <h4 class="topup-step-title">Select Amount</h4>
+                        <p class="topup-step-desc">Choose how much you want to top up</p>
+                        
+                        <div class="topup-amount-selector">
+                            <button class="topup-amount-btn" onclick="selectTopUpAmount(1000)">XOF 1,000</button>
+                            <button class="topup-amount-btn selected" onclick="selectTopUpAmount(2000)">XOF 2,000</button>
+                            <button class="topup-amount-btn" onclick="selectTopUpAmount(5000)">XOF 5,000</button>
+                            <button class="topup-amount-btn" onclick="selectTopUpAmount(10000)">XOF 10,000</button>
+                            <button class="topup-amount-btn" onclick="selectTopUpAmount(20000)">XOF 20,000</button>
+                            <button class="topup-amount-btn" onclick="selectTopUpAmount(0)">Custom</button>
+                        </div>
+                        
+                        <div class="topup-custom-amount hidden" id="topup-custom-input">
+                            <input type="number" placeholder="Enter amount in XOF" id="topup-custom-amount" oninput="updateCustomAmount()">
+                        </div>
+                        
+                        <h4 class="topup-step-title" style="margin-top: 24px;">Payment Details</h4>
+                        <p class="topup-step-desc">Send payment to any of these accounts</p>
+                        
+                        <!-- MTN Mobile Money -->
+                        <div class="payment-details-card">
+                            <div class="payment-method-header">
+                                <div class="payment-method-icon mtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                    </svg>
+                                </div>
+                                <div class="payment-method-info">
+                                    <h4>MTN Mobile Money</h4>
+                                    <p>Instant transfer</p>
+                                </div>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Phone Number</span>
+                                <span class="payment-detail-value">
+                                    +228 90 123 456
+                                    <button class="copy-btn" onclick="copyToClipboard('+22890123456', this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Account Name</span>
+                                <span class="payment-detail-value">OVES Energy Ltd</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Flooz -->
+                        <div class="payment-details-card">
+                            <div class="payment-method-header">
+                                <div class="payment-method-icon flooz">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                        <path d="M12 18h.01"/>
+                                    </svg>
+                                </div>
+                                <div class="payment-method-info">
+                                    <h4>Flooz (Moov)</h4>
+                                    <p>Instant transfer</p>
+                                </div>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Phone Number</span>
+                                <span class="payment-detail-value">
+                                    +228 97 654 321
+                                    <button class="copy-btn" onclick="copyToClipboard('+22897654321', this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Account Name</span>
+                                <span class="payment-detail-value">OVES Energy Ltd</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Bank Transfer -->
+                        <div class="payment-details-card">
+                            <div class="payment-method-header">
+                                <div class="payment-method-icon bank">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+                                    </svg>
+                                </div>
+                                <div class="payment-method-info">
+                                    <h4>Bank Transfer</h4>
+                                    <p>1-2 business days</p>
+                                </div>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Bank Name</span>
+                                <span class="payment-detail-value">Ecobank Togo</span>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Account Number</span>
+                                <span class="payment-detail-value">
+                                    0051234567890
+                                    <button class="copy-btn" onclick="copyToClipboard('0051234567890', this)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span class="payment-detail-label">Account Name</span>
+                                <span class="payment-detail-value">OVES Energy Ltd</span>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-instructions">
+                            <h5>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                                How to pay
+                            </h5>
+                            <ol>
+                                <li>Send the exact amount to one of the accounts above</li>
+                                <li>Note down your transaction/reference ID</li>
+                                <li>Click "I've Made Payment" below to confirm</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="topup-actions">
+                            <button class="topup-btn topup-btn-secondary" onclick="closeTopUpModal()">Cancel</button>
+                            <button class="topup-btn topup-btn-primary" onclick="goToTopUpStep(2)">
+                                I've Made Payment
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Enter Transaction ID & Confirm -->
+                    <div class="topup-step" id="topup-step-2">
+                        <h4 class="topup-step-title">Confirm Payment</h4>
+                        <p class="topup-step-desc">Enter your payment details to verify</p>
+                        
+                        <div class="topup-summary">
+                            <div class="topup-summary-row">
+                                <span class="topup-summary-label">Top-up Amount</span>
+                                <span class="topup-summary-value" id="topup-confirm-amount">XOF 2,000</span>
+                            </div>
+                            <div class="topup-summary-row total">
+                                <span class="topup-summary-label">You're adding</span>
+                                <span class="topup-summary-value" id="topup-confirm-total">XOF 2,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="topup-input-group">
+                            <label class="topup-input-label">Transaction ID / Reference</label>
+                            <input type="text" class="topup-input" id="topup-transaction-id" placeholder="e.g. TXN-892741 or M-PESA code">
+                        </div>
+                        
+                        <div class="topup-input-group">
+                            <label class="topup-input-label">Payment Method Used</label>
+                            <select class="topup-input" id="topup-payment-method" style="font-family: 'Outfit', sans-serif;">
+                                <option value="">Select payment method</option>
+                                <option value="mtn">MTN Mobile Money</option>
+                                <option value="flooz">Flooz (Moov)</option>
+                                <option value="bank">Bank Transfer</option>
+                            </select>
+                        </div>
+                        
+                        <div class="topup-confirm-check" onclick="toggleTopUpConfirm()">
+                            <input type="checkbox" id="topup-confirm-checkbox">
+                            <label for="topup-confirm-checkbox">I confirm that I have sent <strong id="topup-confirm-label-amount">XOF 2,000</strong> to the specified account and the transaction ID above is correct.</label>
+                        </div>
+                        
+                        <div class="topup-actions">
+                            <button class="topup-btn topup-btn-secondary" onclick="goToTopUpStep(1)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                Back
+                            </button>
+                            <button class="topup-btn topup-btn-primary" id="topup-confirm-btn" onclick="confirmTopUp()" disabled>
+                                Confirm Top-Up
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Success -->
+                    <div class="topup-step" id="topup-step-3">
+                        <div class="topup-success">
+                            <div class="topup-success-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <h4 class="topup-success-title">Top-Up Successful!</h4>
+                            <div class="topup-success-amount" id="topup-success-amount">+XOF 2,000</div>
+                            <p class="topup-success-desc">Your account has been credited successfully</p>
+                            
+                            <div class="topup-new-balance">
+                                <div class="topup-new-balance-label">New Account Balance</div>
+                                <div class="topup-new-balance-value" id="topup-new-balance">XOF 5,100</div>
+                            </div>
+                            
+                            <button class="topup-done-btn" onclick="finishTopUp()">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -8382,15 +9244,239 @@
             return Math.abs(hash);
         }
         
-        // Show Top-up flow
+        // =====================
+        // Top-Up Flow Modal
+        // =====================
+        let topUpCurrentStep = 1;
+        let topUpSelectedAmount = 2000; // Default selected amount
+        
+        // Show Top-up modal
         function riderShowTopUp() {
-            showLoading('Loading top-up options...');
+            // Reset to step 1
+            topUpCurrentStep = 1;
+            topUpSelectedAmount = 2000;
+            
+            // Reset UI
+            goToTopUpStep(1);
+            
+            // Reset amount selection
+            document.querySelectorAll('.topup-amount-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.querySelectorAll('.topup-amount-btn')[1].classList.add('selected'); // Select 2000
+            document.getElementById('topup-custom-input').classList.add('hidden');
+            
+            // Reset form fields
+            document.getElementById('topup-transaction-id').value = '';
+            document.getElementById('topup-payment-method').value = '';
+            document.getElementById('topup-confirm-checkbox').checked = false;
+            document.getElementById('topup-confirm-btn').disabled = true;
+            
+            // Update amount displays
+            updateTopUpAmountDisplays();
+            
+            // Show modal
+            const modal = document.getElementById('topup-modal');
+            modal.classList.add('active');
+        }
+        
+        // Close top-up modal
+        function closeTopUpModal() {
+            const modal = document.getElementById('topup-modal');
+            modal.classList.remove('active');
+        }
+        
+        // Select top-up amount
+        function selectTopUpAmount(amount) {
+            // Update selection UI
+            document.querySelectorAll('.topup-amount-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Handle custom amount
+            if (amount === 0) {
+                document.getElementById('topup-custom-input').classList.remove('hidden');
+                document.getElementById('topup-custom-amount').focus();
+                topUpSelectedAmount = parseInt(document.getElementById('topup-custom-amount').value) || 0;
+            } else {
+                document.getElementById('topup-custom-input').classList.add('hidden');
+                topUpSelectedAmount = amount;
+            }
+            
+            updateTopUpAmountDisplays();
+        }
+        
+        // Update custom amount
+        function updateCustomAmount() {
+            topUpSelectedAmount = parseInt(document.getElementById('topup-custom-amount').value) || 0;
+            updateTopUpAmountDisplays();
+        }
+        
+        // Update all amount displays in the modal
+        function updateTopUpAmountDisplays() {
+            const formattedAmount = `XOF ${topUpSelectedAmount.toLocaleString()}`;
+            document.getElementById('topup-confirm-amount').textContent = formattedAmount;
+            document.getElementById('topup-confirm-total').textContent = formattedAmount;
+            document.getElementById('topup-confirm-label-amount').textContent = formattedAmount;
+        }
+        
+        // Navigate to a specific step
+        function goToTopUpStep(step) {
+            // Validate before proceeding
+            if (step === 2 && topUpSelectedAmount <= 0) {
+                alert('Please select or enter a valid top-up amount');
+                return;
+            }
+            
+            topUpCurrentStep = step;
+            
+            // Update step visibility
+            document.querySelectorAll('.topup-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`topup-step-${step}`).classList.add('active');
+            
+            // Update progress dots
+            document.querySelectorAll('.topup-step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 === step) {
+                    dot.classList.add('active');
+                } else if (index + 1 < step) {
+                    dot.classList.add('completed');
+                }
+            });
+            
+            // Update modal title
+            const titles = {
+                1: 'Top Up Account',
+                2: 'Confirm Payment',
+                3: 'Success!'
+            };
+            document.getElementById('topup-modal-title').textContent = titles[step];
+            
+            // Update amount displays when entering step 2
+            if (step === 2) {
+                updateTopUpAmountDisplays();
+                document.getElementById('topup-transaction-id').focus();
+            }
+        }
+        
+        // Toggle confirmation checkbox
+        function toggleTopUpConfirm() {
+            const checkbox = document.getElementById('topup-confirm-checkbox');
+            checkbox.checked = !checkbox.checked;
+            validateTopUpForm();
+        }
+        
+        // Validate top-up form
+        function validateTopUpForm() {
+            const transactionId = document.getElementById('topup-transaction-id').value.trim();
+            const paymentMethod = document.getElementById('topup-payment-method').value;
+            const isConfirmed = document.getElementById('topup-confirm-checkbox').checked;
+            
+            const isValid = transactionId.length > 0 && paymentMethod && isConfirmed;
+            document.getElementById('topup-confirm-btn').disabled = !isValid;
+        }
+        
+        // Confirm top-up (submit)
+        function confirmTopUp() {
+            const transactionId = document.getElementById('topup-transaction-id').value.trim();
+            const paymentMethod = document.getElementById('topup-payment-method').value;
+            
+            if (!transactionId || !paymentMethod) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Show loading
+            showLoading('Verifying payment...');
+            
+            // Simulate verification (in production, this would call an API)
             setTimeout(() => {
                 hideLoading();
-                // In production, this would open a top-up modal/screen
-                alert('Top-up options:\n\n• MTN Mobile Money\n• Flooz\n• Bank Card\n\nSelect your preferred method to add energy credits.');
-            }, 600);
+                
+                // Update rider balance
+                riderData.balance.moneyBalance += topUpSelectedAmount;
+                
+                // Update success display
+                document.getElementById('topup-success-amount').textContent = `+XOF ${topUpSelectedAmount.toLocaleString()}`;
+                document.getElementById('topup-new-balance').textContent = `XOF ${riderData.balance.moneyBalance.toLocaleString()}`;
+                
+                // Go to success step
+                goToTopUpStep(3);
+            }, 1500);
         }
+        
+        // Finish top-up flow
+        function finishTopUp() {
+            // Update all balance displays
+            riderUpdateBalanceDisplay();
+            
+            // Update profile balance if visible
+            const subBalance = document.getElementById('rider-sub-balance');
+            if (subBalance) {
+                subBalance.textContent = `XOF ${riderData.balance.moneyBalance.toLocaleString()}`;
+            }
+            
+            // Close modal
+            closeTopUpModal();
+        }
+        
+        // Copy to clipboard helper
+        function copyToClipboard(text, buttonEl) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show copied state
+                buttonEl.classList.add('copied');
+                buttonEl.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                `;
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    buttonEl.classList.remove('copied');
+                    buttonEl.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                    `;
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    buttonEl.classList.add('copied');
+                    setTimeout(() => buttonEl.classList.remove('copied'), 2000);
+                } catch (err) {
+                    alert('Failed to copy. Please copy manually: ' + text);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Add event listeners for form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionInput = document.getElementById('topup-transaction-id');
+            const paymentSelect = document.getElementById('topup-payment-method');
+            const confirmCheckbox = document.getElementById('topup-confirm-checkbox');
+            
+            if (transactionInput) {
+                transactionInput.addEventListener('input', validateTopUpForm);
+            }
+            if (paymentSelect) {
+                paymentSelect.addEventListener('change', validateTopUpForm);
+            }
+            if (confirmCheckbox) {
+                confirmCheckbox.addEventListener('change', validateTopUpForm);
+            }
+        });
         
         // Filter activity list
         function riderFilterActivity(filter) {
