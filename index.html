@@ -3282,6 +3282,1137 @@
             background: var(--border);
             border-radius: 2px;
         }
+
+        /* ===================== */
+        /* RIDER MODULE STYLES   */
+        /* ===================== */
+        
+        /* Bottom Navigation Bar for Rider */
+        .rider-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 8px 16px 24px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+        
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .rider-nav {
+                padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            }
+        }
+        
+        .rider-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+        }
+        
+        .rider-nav-item:hover {
+            color: var(--text-secondary);
+        }
+        
+        .rider-nav-item.active {
+            color: var(--accent);
+        }
+        
+        .rider-nav-item svg {
+            width: 22px;
+            height: 22px;
+            transition: all 0.2s ease;
+        }
+        
+        .rider-nav-item.active svg {
+            color: var(--accent);
+        }
+        
+        .rider-nav-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+        
+        /* Rider Dashboard Header */
+        .rider-dashboard-header {
+            padding: 0 0 12px;
+        }
+        
+        .rider-greeting {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+        
+        .rider-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Battery Hero Card - Main dashboard widget */
+        .battery-hero-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .battery-hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .battery-hero-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .battery-hero-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .battery-hero-id {
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .battery-hero-status {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .battery-hero-status.charged {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .battery-hero-status.low {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        .battery-hero-status.charging {
+            background: var(--info-soft);
+            color: var(--info);
+        }
+        
+        .battery-visual {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Circular battery gauge */
+        .battery-gauge {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+        }
+        
+        .battery-gauge-bg {
+            stroke: var(--border);
+            fill: none;
+            stroke-width: 8;
+        }
+        
+        .battery-gauge-fill {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dasharray 0.5s ease;
+        }
+        
+        .battery-gauge-fill.good {
+            stroke: var(--success);
+        }
+        
+        .battery-gauge-fill.warning {
+            stroke: #f0a500;
+        }
+        
+        .battery-gauge-fill.critical {
+            stroke: var(--error);
+        }
+        
+        .battery-gauge-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .battery-gauge-percent {
+            font-family: 'DM Mono', monospace;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+            line-height: 1;
+        }
+        
+        .battery-gauge-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        .battery-hero-info {
+            flex: 1;
+        }
+        
+        .battery-hero-range {
+            margin-bottom: 10px;
+        }
+        
+        .battery-hero-range-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+        
+        .battery-hero-range-unit {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+        
+        .battery-hero-range-label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+        
+        .battery-hero-stats {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .battery-hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .battery-hero-stat-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .battery-hero-stat-label {
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+        
+        /* Account Balance Card */
+        .account-balance-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .account-balance-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .account-balance-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .account-balance-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+        
+        .account-balance-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        
+        .account-balance-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .account-balance-action {
+            padding: 8px 14px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .account-balance-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px -4px var(--accent-glow);
+        }
+        
+        /* Section Headers */
+        .rider-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .rider-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .rider-section-link {
+            font-size: 11px;
+            color: var(--accent);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        
+        .rider-section-link:hover {
+            opacity: 0.8;
+        }
+        
+        /* Nearby Stations Map */
+        .stations-map-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .stations-map {
+            height: 180px;
+            background: var(--bg-tertiary);
+            position: relative;
+        }
+        
+        .stations-map-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            gap: 8px;
+        }
+        
+        .stations-map-placeholder svg {
+            width: 32px;
+            height: 32px;
+            opacity: 0.5;
+        }
+        
+        .stations-map-placeholder span {
+            font-size: 11px;
+        }
+        
+        /* Simulated Map with Station Pins */
+        .map-visual {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-elevated) 100%);
+            overflow: hidden;
+        }
+        
+        .map-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+        
+        .map-user-marker {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 229, 229, 0.5);
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .map-user-pulse {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: mapPulse 2s ease-out infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes mapPulse {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+        }
+        
+        .map-station-pin {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            z-index: 5;
+        }
+        
+        .map-station-pin:hover {
+            transform: scale(1.1);
+            z-index: 11;
+        }
+        
+        .map-station-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--success);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 217, 160, 0.4);
+        }
+        
+        .map-station-icon svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+            transform: rotate(45deg);
+        }
+        
+        .map-station-label {
+            margin-top: 4px;
+            padding: 2px 6px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Station List */
+        .stations-list {
+            padding: 10px;
+        }
+        
+        .station-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .station-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .station-item:hover {
+            background: var(--bg-elevated);
+        }
+        
+        .station-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            background: var(--success-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .station-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--success);
+        }
+        
+        .station-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .station-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .station-details {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+        
+        .station-distance {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .station-distance svg {
+            width: 10px;
+            height: 10px;
+        }
+        
+        .station-availability {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .station-availability-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+        
+        .station-availability-dot.low {
+            background: #f0a500;
+        }
+        
+        .station-nav-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .station-nav-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+        
+        .station-nav-btn:hover {
+            background: var(--accent);
+        }
+        
+        .station-nav-btn:hover svg {
+            color: white;
+        }
+        
+        /* History/Activity Screen */
+        .activity-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .activity-filters::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .activity-filter {
+            padding: 8px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        
+        .activity-filter:hover {
+            border-color: var(--accent);
+        }
+        
+        .activity-filter.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+        
+        /* Activity/Transaction List */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .activity-date-header {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 0 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .activity-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .activity-item:hover {
+            border-color: var(--accent);
+        }
+        
+        .activity-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .activity-item-icon.swap {
+            background: var(--accent-soft);
+        }
+        
+        .activity-item-icon.swap svg {
+            color: var(--accent);
+        }
+        
+        .activity-item-icon.payment {
+            background: var(--success-soft);
+        }
+        
+        .activity-item-icon.payment svg {
+            color: var(--success);
+        }
+        
+        .activity-item-icon.topup {
+            background: var(--info-soft);
+        }
+        
+        .activity-item-icon.topup svg {
+            color: var(--info);
+        }
+        
+        .activity-item-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .activity-item-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .activity-item-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        
+        .activity-item-subtitle {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+        
+        .activity-item-meta {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .activity-item-amount {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        
+        .activity-item-amount.negative {
+            color: var(--text-primary);
+        }
+        
+        .activity-item-amount.positive {
+            color: var(--success);
+        }
+        
+        .activity-item-time {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+        
+        /* Profile/Account Screen */
+        .profile-header {
+            text-align: center;
+            padding: 16px 0 24px;
+        }
+        
+        .profile-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 600;
+            color: white;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 16px -4px var(--accent-glow);
+        }
+        
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .profile-phone {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* Subscription Card */
+        .subscription-card {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscription-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .subscription-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .subscription-plan {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+        
+        .subscription-validity {
+            font-size: 11px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
+        }
+        
+        .subscription-stats {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .subscription-stat {
+            flex: 1;
+            background: rgba(255,255,255,0.15);
+            border-radius: var(--radius-md);
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .subscription-stat-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .subscription-stat-label {
+            font-size: 9px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+        }
+        
+        /* Menu List */
+        .menu-list {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .menu-item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .menu-item-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+        
+        .menu-item-content {
+            flex: 1;
+        }
+        
+        .menu-item-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .menu-item-subtitle {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+        
+        .menu-item-arrow {
+            color: var(--text-muted);
+        }
+        
+        .menu-item-arrow svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .menu-item.logout {
+            color: var(--error);
+        }
+        
+        .menu-item.logout .menu-item-icon {
+            background: var(--error-soft);
+        }
+        
+        .menu-item.logout .menu-item-icon svg {
+            color: var(--error);
+        }
+        
+        .menu-item.logout .menu-item-title {
+            color: var(--error);
+        }
+        
+        /* Quick Actions Grid */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .quick-action {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quick-action:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px -4px var(--accent-glow);
+        }
+        
+        .quick-action-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quick-action-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+        }
+        
+        .quick-action-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        /* Full Map Screen */
+        .full-map-container {
+            position: relative;
+            height: calc(100vh - 200px);
+            min-height: 400px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        
+        .full-map-container .map-visual {
+            position: absolute;
+            inset: 0;
+        }
+        
+        /* Station Detail Card - Floating */
+        .station-detail-card {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.4);
+            z-index: 20;
+        }
+        
+        .station-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .station-detail-info {
+            flex: 1;
+        }
+        
+        .station-detail-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .station-detail-address {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .station-detail-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .station-detail-stat {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .station-detail-stat-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .station-detail-stat-label {
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+        
+        .station-detail-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .station-detail-actions .btn {
+            font-size: 12px;
+            padding: 10px;
+        }
+        
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+        
+        .empty-state-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .empty-state-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--text-muted);
+        }
+        
+        .empty-state-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        
+        .empty-state-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        /* Rider screen animations */
+        .rider-screen {
+            display: none;
+            animation: fadeSlideIn 0.3s ease-out;
+        }
+        
+        .rider-screen.active {
+            display: block;
+        }
+        
+        /* Rider module main area padding adjustment */
+        #module-rider .main {
+            padding-bottom: 100px;
+        }
     </style>
 </head>
 <body>
@@ -3494,7 +4625,7 @@
                         </div>
 
                         <!-- Rider -->
-                        <div class="role-applet disabled" onclick="toggleRoleSelection(this, 'rider')" data-role="rider">
+                        <div class="role-applet" onclick="toggleRoleSelection(this, 'rider')" data-role="rider">
                             <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 6L9 17l-5-5"/>
                             </svg>
@@ -3502,7 +4633,6 @@
                                 <img src="assets/Rider.png" alt="Rider">
                             </div>
                             <span class="role-applet-label">Rider</span>
-                            <span class="role-applet-badge">Coming Soon</span>
                         </div>
                     </div>
 
@@ -4607,6 +5737,604 @@
             </div>
         </div>
 
+        <!-- ==================== -->
+        <!-- RIDER MODULE         -->
+        <!-- ==================== -->
+        <div class="module" id="module-rider">
+            <!-- Back to Roles - At very top -->
+            <div class="back-to-roles" onclick="backToRoles()" style="margin: 0 16px 8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Change Role
+            </div>
+
+            <main class="main">
+                <!-- Screen 1: Home/Dashboard -->
+                <div class="rider-screen active" id="rider-screen-home">
+                    <!-- Dashboard Header -->
+                    <div class="rider-dashboard-header">
+                        <div class="rider-greeting">Good afternoon,</div>
+                        <div class="rider-name" id="rider-user-name">James Mwangi</div>
+                    </div>
+
+                    <!-- Battery Hero Card - The main widget showing battery status -->
+                    <div class="battery-hero-card">
+                        <div class="battery-hero-header">
+                            <div>
+                                <div class="battery-hero-label">Current Battery</div>
+                                <div class="battery-hero-id" id="rider-battery-id">BAT-2024-3156</div>
+                            </div>
+                            <span class="battery-hero-status charged" id="rider-battery-status">Good</span>
+                        </div>
+                        <div class="battery-visual">
+                            <!-- Circular Battery Gauge -->
+                            <div class="battery-gauge">
+                                <svg viewBox="0 0 100 100" width="100" height="100">
+                                    <circle class="battery-gauge-bg" cx="50" cy="50" r="42"/>
+                                    <circle class="battery-gauge-fill good" id="rider-battery-gauge" cx="50" cy="50" r="42" 
+                                        stroke-dasharray="198 264"/>
+                                </svg>
+                                <div class="battery-gauge-text">
+                                    <span class="battery-gauge-percent" id="rider-battery-percent">75%</span>
+                                    <span class="battery-gauge-label">Charge</span>
+                                </div>
+                            </div>
+                            <div class="battery-hero-info">
+                                <div class="battery-hero-range">
+                                    <span class="battery-hero-range-value" id="rider-range-value">42</span>
+                                    <span class="battery-hero-range-unit">km</span>
+                                    <div class="battery-hero-range-label">Estimated Range</div>
+                                </div>
+                                <div class="battery-hero-stats">
+                                    <div class="battery-hero-stat">
+                                        <span class="battery-hero-stat-value" id="rider-energy-value">1.9</span>
+                                        <span class="battery-hero-stat-label">kWh Used</span>
+                                    </div>
+                                    <div class="battery-hero-stat">
+                                        <span class="battery-hero-stat-value" id="rider-last-swap">2h ago</span>
+                                        <span class="battery-hero-stat-label">Last Swap</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Balance Card (smart display based on billing model) -->
+                    <div class="account-balance-card" id="rider-balance-card">
+                        <div class="account-balance-info">
+                            <div class="account-balance-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="account-balance-label">Energy Balance</div>
+                                <div class="account-balance-value" id="rider-balance-value">62 kWh</div>
+                            </div>
+                        </div>
+                        <button class="account-balance-action" onclick="riderShowTopUp()">Top Up</button>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <div class="quick-action" onclick="riderGoToScreen('map')">
+                            <div class="quick-action-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <span class="quick-action-label">Find Station</span>
+                        </div>
+                        <div class="quick-action" onclick="riderShowQRCode()">
+                            <div class="quick-action-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                            </div>
+                            <span class="quick-action-label">My QR Code</span>
+                        </div>
+                    </div>
+
+                    <!-- Nearby Stations Section -->
+                    <div class="rider-section-header">
+                        <span class="rider-section-title">Nearby Stations</span>
+                        <span class="rider-section-link" onclick="riderGoToScreen('map')">View Map</span>
+                    </div>
+                    
+                    <div class="stations-map-container">
+                        <!-- Simulated Map -->
+                        <div class="stations-map">
+                            <div class="map-visual">
+                                <div class="map-grid"></div>
+                                <!-- User Location -->
+                                <div class="map-user-pulse"></div>
+                                <div class="map-user-marker"></div>
+                                <!-- Station Pins -->
+                                <div class="map-station-pin" style="top: 25%; left: 30%;" onclick="riderSelectStation(0)">
+                                    <div class="map-station-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="map-station-label">Lome Central</span>
+                                </div>
+                                <div class="map-station-pin" style="top: 60%; left: 70%;" onclick="riderSelectStation(1)">
+                                    <div class="map-station-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="map-station-label">Tokoin Market</span>
+                                </div>
+                                <div class="map-station-pin" style="top: 35%; left: 75%;" onclick="riderSelectStation(2)">
+                                    <div class="map-station-icon">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="map-station-label">Agoe Station</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Station List -->
+                        <div class="stations-list">
+                            <div class="station-item" onclick="riderSelectStation(0)">
+                                <div class="station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">Lome Central Station</div>
+                                    <div class="station-details">
+                                        <span class="station-distance">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                                <circle cx="12" cy="10" r="3"/>
+                                            </svg>
+                                            0.8 km
+                                        </span>
+                                        <span class="station-availability">
+                                            <span class="station-availability-dot"></span>
+                                            12 batteries
+                                        </span>
+                                    </div>
+                                </div>
+                                <button class="station-nav-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="station-item" onclick="riderSelectStation(1)">
+                                <div class="station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <div class="station-info">
+                                    <div class="station-name">Tokoin Market Station</div>
+                                    <div class="station-details">
+                                        <span class="station-distance">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                                <circle cx="12" cy="10" r="3"/>
+                                            </svg>
+                                            1.4 km
+                                        </span>
+                                        <span class="station-availability">
+                                            <span class="station-availability-dot low"></span>
+                                            3 batteries
+                                        </span>
+                                    </div>
+                                </div>
+                                <button class="station-nav-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 2: Activity/History -->
+                <div class="rider-screen" id="rider-screen-activity">
+                    <h2 class="scan-title" style="margin-bottom: 4px;">Activity</h2>
+                    <p class="scan-subtitle" style="margin-bottom: 16px;">Your swaps and payments</p>
+
+                    <!-- Activity Filters -->
+                    <div class="activity-filters">
+                        <button class="activity-filter active" onclick="riderFilterActivity('all')">All</button>
+                        <button class="activity-filter" onclick="riderFilterActivity('swaps')">Swaps</button>
+                        <button class="activity-filter" onclick="riderFilterActivity('payments')">Payments</button>
+                        <button class="activity-filter" onclick="riderFilterActivity('topups')">Top-ups</button>
+                    </div>
+
+                    <!-- Activity List -->
+                    <div class="activity-list" id="rider-activity-list">
+                        <div class="activity-date-header">Today</div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon swap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Battery Swap</div>
+                                <div class="activity-item-subtitle">Lome Central Station</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount negative">-1.8 kWh</div>
+                                <div class="activity-item-time">14:32</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon payment">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                    <path d="M1 10h22"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Swap Payment</div>
+                                <div class="activity-item-subtitle">Transaction #TXN-892741</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount negative">XOF 920</div>
+                                <div class="activity-item-time">14:32</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-date-header">Yesterday</div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon topup">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Balance Top-up</div>
+                                <div class="activity-item-subtitle">Mobile Money - MTN</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount positive">+30 kWh</div>
+                                <div class="activity-item-time">09:15</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon swap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Battery Swap</div>
+                                <div class="activity-item-subtitle">Tokoin Market Station</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount negative">-2.1 kWh</div>
+                                <div class="activity-item-time">16:48</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon swap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Battery Swap</div>
+                                <div class="activity-item-subtitle">Agoe Station</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount negative">-1.5 kWh</div>
+                                <div class="activity-item-time">08:22</div>
+                            </div>
+                        </div>
+
+                        <div class="activity-date-header">Dec 2, 2025</div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-item-icon payment">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                    <path d="M1 10h22"/>
+                                </svg>
+                            </div>
+                            <div class="activity-item-content">
+                                <div class="activity-item-title">Weekly Plan Renewal</div>
+                                <div class="activity-item-subtitle">7-Day Lux Plan</div>
+                            </div>
+                            <div class="activity-item-meta">
+                                <div class="activity-item-amount negative">XOF 3,760</div>
+                                <div class="activity-item-time">00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Full Map View -->
+                <div class="rider-screen" id="rider-screen-map">
+                    <h2 class="scan-title" style="margin-bottom: 4px;">Swap Stations</h2>
+                    <p class="scan-subtitle" style="margin-bottom: 16px;">Find a station near you</p>
+
+                    <div class="full-map-container">
+                        <div class="map-visual">
+                            <div class="map-grid"></div>
+                            <!-- User Location -->
+                            <div class="map-user-pulse"></div>
+                            <div class="map-user-marker"></div>
+                            <!-- Station Pins -->
+                            <div class="map-station-pin" style="top: 20%; left: 25%;" onclick="riderSelectStation(0)">
+                                <div class="map-station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <span class="map-station-label">Lome Central</span>
+                            </div>
+                            <div class="map-station-pin" style="top: 65%; left: 60%;" onclick="riderSelectStation(1)">
+                                <div class="map-station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <span class="map-station-label">Tokoin Market</span>
+                            </div>
+                            <div class="map-station-pin" style="top: 30%; left: 70%;" onclick="riderSelectStation(2)">
+                                <div class="map-station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <span class="map-station-label">Agoe Station</span>
+                            </div>
+                            <div class="map-station-pin" style="top: 75%; left: 30%;" onclick="riderSelectStation(3)">
+                                <div class="map-station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <span class="map-station-label">Be Station</span>
+                            </div>
+                            <div class="map-station-pin" style="top: 45%; left: 85%;" onclick="riderSelectStation(4)">
+                                <div class="map-station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <span class="map-station-label">Adidogome</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Selected Station Detail Card -->
+                        <div class="station-detail-card" id="rider-station-detail" style="display: none;">
+                            <div class="station-detail-header">
+                                <div class="station-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <div class="station-detail-info">
+                                    <div class="station-detail-name" id="station-detail-name">Lome Central Station</div>
+                                    <div class="station-detail-address" id="station-detail-address">Rue du Commerce, Lome</div>
+                                </div>
+                            </div>
+                            <div class="station-detail-stats">
+                                <div class="station-detail-stat">
+                                    <div class="station-detail-stat-value" id="station-detail-distance">0.8 km</div>
+                                    <div class="station-detail-stat-label">Distance</div>
+                                </div>
+                                <div class="station-detail-stat">
+                                    <div class="station-detail-stat-value" id="station-detail-batteries">12</div>
+                                    <div class="station-detail-stat-label">Batteries</div>
+                                </div>
+                                <div class="station-detail-stat">
+                                    <div class="station-detail-stat-value" id="station-detail-wait">~3 min</div>
+                                    <div class="station-detail-stat-label">Wait Time</div>
+                                </div>
+                            </div>
+                            <div class="station-detail-actions">
+                                <button class="btn btn-secondary" onclick="riderHideStationDetail()">
+                                    Close
+                                </button>
+                                <button class="btn btn-primary" onclick="riderNavigateToStation()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                                    </svg>
+                                    Navigate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 4: Profile/Account -->
+                <div class="rider-screen" id="rider-screen-profile">
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="rider-profile-avatar">JM</div>
+                        <div class="profile-name" id="rider-profile-name">James Mwangi</div>
+                        <div class="profile-phone" id="rider-profile-phone">+228 91 234 567</div>
+                    </div>
+
+                    <!-- Subscription Card -->
+                    <div class="subscription-card">
+                        <span class="subscription-badge">Active Plan</span>
+                        <div class="subscription-plan">7-Day Lux Plan</div>
+                        <div class="subscription-validity">Valid until Dec 9, 2025</div>
+                        <div class="subscription-stats">
+                            <div class="subscription-stat">
+                                <div class="subscription-stat-value" id="rider-sub-energy">62 kWh</div>
+                                <div class="subscription-stat-label">Energy Left</div>
+                            </div>
+                            <div class="subscription-stat">
+                                <div class="subscription-stat-value" id="rider-sub-swaps">18</div>
+                                <div class="subscription-stat-label">Swaps Left</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu List -->
+                    <div class="menu-list">
+                        <div class="menu-item" onclick="riderShowAccountDetails()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">Account Details</div>
+                                <div class="menu-item-subtitle">Personal information & settings</div>
+                            </div>
+                            <div class="menu-item-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="menu-item" onclick="riderShowVehicle()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="7" cy="17" r="2"/>
+                                    <circle cx="17" cy="17" r="2"/>
+                                    <path d="M5 17H3v-6l2-4h9l4 4h3v6h-2"/>
+                                    <path d="M9 17h6"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">My Vehicle</div>
+                                <div class="menu-item-subtitle">Oves Tuk-Tuk • REG-2024-KE</div>
+                            </div>
+                            <div class="menu-item-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="menu-item" onclick="riderShowPlanDetails()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <path d="M14 2v6h6"/>
+                                    <path d="M16 13H8M16 17H8M10 9H8"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">Subscription Plan</div>
+                                <div class="menu-item-subtitle">Manage your plan & billing</div>
+                            </div>
+                            <div class="menu-item-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="menu-item" onclick="riderShowPaymentMethods()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="4" width="22" height="16" rx="2"/>
+                                    <path d="M1 10h22"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">Payment Methods</div>
+                                <div class="menu-item-subtitle">MTN Mobile Money</div>
+                            </div>
+                            <div class="menu-item-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="menu-item" onclick="riderShowSupport()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                    <path d="M12 17h.01"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">Help & Support</div>
+                                <div class="menu-item-subtitle">FAQs, contact support</div>
+                            </div>
+                            <div class="menu-item-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-list">
+                        <div class="menu-item logout" onclick="riderLogout()">
+                            <div class="menu-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16 17 21 12 16 7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                            </div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">Log Out</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Bottom Navigation Bar -->
+            <nav class="rider-nav">
+                <button class="rider-nav-item active" onclick="riderGoToScreen('home')" id="rider-nav-home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <span class="rider-nav-label">Home</span>
+                </button>
+                <button class="rider-nav-item" onclick="riderGoToScreen('map')" id="rider-nav-map">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span class="rider-nav-label">Stations</span>
+                </button>
+                <button class="rider-nav-item" onclick="riderGoToScreen('activity')" id="rider-nav-activity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span class="rider-nav-label">Activity</span>
+                </button>
+                <button class="rider-nav-item" onclick="riderGoToScreen('profile')" id="rider-nav-profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="rider-nav-label">Profile</span>
+                </button>
+            </nav>
+        </div>
+
         <!-- Loading Overlay -->
         <div class="loading-overlay" id="loading">
             <div class="loading-spinner"></div>
@@ -4772,7 +6500,7 @@
             currentRole = selectedRole;
             
             // Roles that require login
-            const requiresLogin = ['attendant', 'sales'];
+            const requiresLogin = ['attendant', 'sales', 'rider'];
             
             if (requiresLogin.includes(currentRole)) {
                 // Check if user is already logged in (shared login for attendant and sales)
@@ -4804,7 +6532,8 @@
             // Set title based on role
             const roleNames = {
                 'attendant': 'Attendant',
-                'sales': 'Sales Rep'
+                'sales': 'Sales Rep',
+                'rider': 'Rider'
             };
             loginTitle.textContent = `${roleNames[currentRole]} Login`;
             
@@ -4894,6 +6623,10 @@
                 salesGoToScreen(1);
                 // Check timeline scroll after a brief delay for DOM update
                 setTimeout(checkSalesTimelineScroll, 100);
+            } else if (currentRole === 'rider') {
+                document.getElementById('module-rider').classList.add('active');
+                // Initialize rider module with data
+                initRiderModule();
             }
         }
 
@@ -5821,7 +7554,7 @@
         });
 
         // Touch feedback for interactive elements
-        document.querySelectorAll('.btn, .toggle-btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card, .vehicle-card').forEach(el => {
+        document.querySelectorAll('.btn, .toggle-btn, .scanner-area, .qr-scanner-area, .theme-toggle, .role-applet, .product-card, .vehicle-card, .rider-nav-item, .quick-action, .station-item, .activity-item, .menu-item, .activity-filter').forEach(el => {
             el.addEventListener('touchstart', function() { 
                 if (!this.classList.contains('disabled')) {
                     this.style.transform = 'scale(0.96)'; 
@@ -5849,6 +7582,301 @@
             // Only respond to system changes if no saved preference
             // Since we default to dark, we don't auto-switch based on system
         });
+
+        // =====================
+        // Rider Module
+        // =====================
+        let riderCurrentScreen = 'home';
+        
+        // Mock rider data
+        const riderData = {
+            user: {
+                name: 'James Mwangi',
+                initials: 'JM',
+                phone: '+228 91 234 567'
+            },
+            battery: {
+                id: 'BAT-2024-3156',
+                charge: 75,
+                range: 42,
+                energyUsed: 1.9,
+                lastSwap: '2h ago'
+            },
+            balance: {
+                type: 'energy', // 'energy' or 'money'
+                energyRemaining: 62,
+                swapsRemaining: 18,
+                moneyEquivalent: 35050 // XOF
+            },
+            subscription: {
+                plan: '7-Day Lux Plan',
+                validUntil: 'Dec 9, 2025',
+                status: 'active'
+            }
+        };
+        
+        // Mock stations data
+        const stationsData = [
+            { id: 0, name: 'Lome Central Station', address: 'Rue du Commerce, Lome', distance: '0.8 km', batteries: 12, waitTime: '~3 min' },
+            { id: 1, name: 'Tokoin Market Station', address: 'Avenue Tokoin, Lome', distance: '1.4 km', batteries: 3, waitTime: '~8 min' },
+            { id: 2, name: 'Agoe Station', address: 'Route d\'Agoe, Lome', distance: '2.1 km', batteries: 8, waitTime: '~5 min' },
+            { id: 3, name: 'Be Station', address: 'Quartier Be, Lome', distance: '2.8 km', batteries: 15, waitTime: '~2 min' },
+            { id: 4, name: 'Adidogome Station', address: 'Adidogome, Lome', distance: '3.5 km', batteries: 6, waitTime: '~6 min' }
+        ];
+        
+        // Navigate between rider screens
+        function riderGoToScreen(screenName) {
+            const module = document.getElementById('module-rider');
+            module.querySelectorAll('.rider-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`rider-screen-${screenName}`).classList.add('active');
+            
+            // Update navigation
+            module.querySelectorAll('.rider-nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(`rider-nav-${screenName}`).classList.add('active');
+            
+            riderCurrentScreen = screenName;
+            
+            // Hide station detail if switching away from map
+            if (screenName !== 'map') {
+                riderHideStationDetail();
+            }
+        }
+        
+        // Update battery gauge display
+        function riderUpdateBatteryGauge(percent) {
+            const circumference = 2 * Math.PI * 42; // radius is 42
+            const offset = circumference * (percent / 100);
+            const gauge = document.getElementById('rider-battery-gauge');
+            if (gauge) {
+                gauge.style.strokeDasharray = `${offset} ${circumference}`;
+                
+                // Update color based on charge level
+                gauge.classList.remove('good', 'warning', 'critical');
+                if (percent >= 50) {
+                    gauge.classList.add('good');
+                } else if (percent >= 20) {
+                    gauge.classList.add('warning');
+                } else {
+                    gauge.classList.add('critical');
+                }
+            }
+            
+            // Update percent text
+            const percentEl = document.getElementById('rider-battery-percent');
+            if (percentEl) {
+                percentEl.textContent = percent + '%';
+            }
+            
+            // Update status badge
+            const statusEl = document.getElementById('rider-battery-status');
+            if (statusEl) {
+                statusEl.classList.remove('charged', 'low', 'charging');
+                if (percent >= 50) {
+                    statusEl.textContent = 'Good';
+                    statusEl.classList.add('charged');
+                } else if (percent >= 20) {
+                    statusEl.textContent = 'Low';
+                    statusEl.classList.add('low');
+                } else {
+                    statusEl.textContent = 'Critical';
+                    statusEl.classList.add('low');
+                }
+            }
+        }
+        
+        // Update balance display (smart - shows energy or money based on billing model)
+        function riderUpdateBalanceDisplay() {
+            const balanceCard = document.getElementById('rider-balance-card');
+            const balanceValue = document.getElementById('rider-balance-value');
+            const balanceLabel = balanceCard?.querySelector('.account-balance-label');
+            
+            if (riderData.balance.type === 'energy') {
+                // Show energy remaining
+                if (balanceValue) balanceValue.textContent = `${riderData.balance.energyRemaining} kWh`;
+                if (balanceLabel) balanceLabel.textContent = 'Energy Balance';
+            } else {
+                // Show money equivalent
+                if (balanceValue) balanceValue.textContent = `XOF ${riderData.balance.moneyEquivalent.toLocaleString()}`;
+                if (balanceLabel) balanceLabel.textContent = 'Credit Balance';
+            }
+        }
+        
+        // Show QR Code for swap identification
+        function riderShowQRCode() {
+            showLoading('Generating QR Code...');
+            setTimeout(() => {
+                hideLoading();
+                // In production, this would show a QR code modal
+                alert('Your swap QR code is ready!\nShow this to the attendant at any swap station.');
+            }, 800);
+        }
+        
+        // Show Top-up flow
+        function riderShowTopUp() {
+            showLoading('Loading top-up options...');
+            setTimeout(() => {
+                hideLoading();
+                // In production, this would open a top-up modal/screen
+                alert('Top-up options:\n\n• MTN Mobile Money\n• Flooz\n• Bank Card\n\nSelect your preferred method to add energy credits.');
+            }, 600);
+        }
+        
+        // Filter activity list
+        function riderFilterActivity(filter) {
+            // Update filter buttons
+            document.querySelectorAll('.activity-filter').forEach(f => f.classList.remove('active'));
+            document.querySelector(`.activity-filter[onclick*="${filter}"]`).classList.add('active');
+            
+            // In production, this would filter the activity list
+            // For now, just show all items
+            const activityList = document.getElementById('rider-activity-list');
+            const items = activityList.querySelectorAll('.activity-item');
+            
+            items.forEach(item => {
+                const iconEl = item.querySelector('.activity-item-icon');
+                let show = true;
+                
+                if (filter === 'swaps') {
+                    show = iconEl.classList.contains('swap');
+                } else if (filter === 'payments') {
+                    show = iconEl.classList.contains('payment');
+                } else if (filter === 'topups') {
+                    show = iconEl.classList.contains('topup');
+                }
+                
+                item.style.display = show ? 'flex' : 'none';
+            });
+            
+            // Also hide/show date headers appropriately (simplified)
+            const headers = activityList.querySelectorAll('.activity-date-header');
+            headers.forEach(h => {
+                h.style.display = filter === 'all' ? 'block' : 'block';
+            });
+        }
+        
+        // Select station on map
+        function riderSelectStation(stationId) {
+            const station = stationsData[stationId];
+            if (!station) return;
+            
+            // Update detail card
+            document.getElementById('station-detail-name').textContent = station.name;
+            document.getElementById('station-detail-address').textContent = station.address;
+            document.getElementById('station-detail-distance').textContent = station.distance;
+            document.getElementById('station-detail-batteries').textContent = station.batteries;
+            document.getElementById('station-detail-wait').textContent = station.waitTime;
+            
+            // Show detail card
+            document.getElementById('rider-station-detail').style.display = 'block';
+        }
+        
+        // Hide station detail card
+        function riderHideStationDetail() {
+            const detail = document.getElementById('rider-station-detail');
+            if (detail) detail.style.display = 'none';
+        }
+        
+        // Navigate to station (would open maps app)
+        function riderNavigateToStation() {
+            showLoading('Opening navigation...');
+            setTimeout(() => {
+                hideLoading();
+                alert('Opening directions in Maps app...\n\nIn production, this would launch Google Maps or Apple Maps with directions to the selected station.');
+            }, 800);
+        }
+        
+        // Profile menu actions
+        function riderShowAccountDetails() {
+            showLoading('Loading account details...');
+            setTimeout(() => {
+                hideLoading();
+                alert('Account Details\n\nName: James Mwangi\nPhone: +228 91 234 567\nEmail: james.m@email.com\nCustomer ID: CUS-8847-KE\n\nJoined: November 2024');
+            }, 600);
+        }
+        
+        function riderShowVehicle() {
+            showLoading('Loading vehicle info...');
+            setTimeout(() => {
+                hideLoading();
+                alert('Vehicle Information\n\nType: Oves Tuk-Tuk\nRegistration: REG-2024-KE\nBattery Type: 72V 40Ah\nPurchase Date: Nov 15, 2024\n\nTotal Swaps: 47\nTotal Energy: 89 kWh');
+            }, 600);
+        }
+        
+        function riderShowPlanDetails() {
+            showLoading('Loading plan details...');
+            setTimeout(() => {
+                hideLoading();
+                alert('7-Day Lux Plan\n\nEnergy Quota: 70 kWh/week\nSwap Limit: 21 swaps/week\nRate: XOF 565/kWh\n\nValid: Dec 2 - Dec 9, 2025\nStatus: Active\nPayment: Current\n\nRenews automatically via MTN Mobile Money');
+            }, 600);
+        }
+        
+        function riderShowPaymentMethods() {
+            showLoading('Loading payment methods...');
+            setTimeout(() => {
+                hideLoading();
+                alert('Payment Methods\n\n✓ MTN Mobile Money (Primary)\n   +228 91 234 567\n\n+ Add payment method');
+            }, 600);
+        }
+        
+        function riderShowSupport() {
+            showLoading('Loading support options...');
+            setTimeout(() => {
+                hideLoading();
+                alert('Help & Support\n\n📞 Call: +228 22 123 456\n📧 Email: support@oves.com\n💬 WhatsApp: +228 91 000 001\n\nFAQ Topics:\n• How to swap a battery\n• Understanding your plan\n• Troubleshooting\n• Station locations');
+            }, 600);
+        }
+        
+        function riderLogout() {
+            if (confirm('Are you sure you want to log out?')) {
+                showLoading('Logging out...');
+                setTimeout(() => {
+                    hideLoading();
+                    // Reset rider state
+                    riderCurrentScreen = 'home';
+                    // Go back to roles
+                    backToRoles();
+                }, 800);
+            }
+        }
+        
+        // Initialize rider module
+        function initRiderModule() {
+            // Update greeting based on time
+            const hour = new Date().getHours();
+            let greeting = 'Good evening';
+            if (hour < 12) greeting = 'Good morning';
+            else if (hour < 17) greeting = 'Good afternoon';
+            
+            const greetingEl = document.querySelector('.rider-greeting');
+            if (greetingEl) greetingEl.textContent = greeting + ',';
+            
+            // Update user name
+            const nameEl = document.getElementById('rider-user-name');
+            if (nameEl) nameEl.textContent = riderData.user.name;
+            
+            // Update battery display
+            riderUpdateBatteryGauge(riderData.battery.charge);
+            
+            document.getElementById('rider-battery-id').textContent = riderData.battery.id;
+            document.getElementById('rider-range-value').textContent = riderData.battery.range;
+            document.getElementById('rider-energy-value').textContent = riderData.battery.energyUsed;
+            document.getElementById('rider-last-swap').textContent = riderData.battery.lastSwap;
+            
+            // Update balance
+            riderUpdateBalanceDisplay();
+            
+            // Update profile
+            document.getElementById('rider-profile-avatar').textContent = riderData.user.initials;
+            document.getElementById('rider-profile-name').textContent = riderData.user.name;
+            document.getElementById('rider-profile-phone').textContent = riderData.user.phone;
+            
+            // Update subscription stats
+            document.getElementById('rider-sub-energy').textContent = riderData.balance.energyRemaining + ' kWh';
+            document.getElementById('rider-sub-swaps').textContent = riderData.balance.swapsRemaining;
+            
+            // Reset to home screen
+            riderGoToScreen('home');
+        }
     </script>
 </body>
 </html>
