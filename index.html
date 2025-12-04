@@ -4476,6 +4476,190 @@
             text-transform: uppercase;
         }
         
+        /* Energy Service Card - Profile Page */
+        .energy-service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 16px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .energy-service-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .energy-service-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+        
+        .energy-service-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #0a0f0f;
+        }
+        
+        .energy-service-title {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .energy-service-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .energy-service-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        .energy-service-status .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+        
+        .energy-service-visual {
+            position: relative;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        .energy-service-bike {
+            max-height: 90px;
+            max-width: 160px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        }
+        
+        .energy-service-glow {
+            position: absolute;
+            width: 200px;
+            height: 60px;
+            background: radial-gradient(ellipse, var(--accent-soft) 0%, transparent 70%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        
+        .energy-service-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .energy-stat-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+        
+        .energy-stat-card.primary {
+            background: linear-gradient(135deg, var(--accent-soft) 0%, var(--bg-tertiary) 100%);
+            border-color: var(--accent);
+        }
+        
+        .energy-stat-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .energy-stat-card.primary .energy-stat-icon {
+            background: var(--accent);
+        }
+        
+        .energy-stat-icon svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+        }
+        
+        .energy-stat-card.primary .energy-stat-icon svg {
+            color: #0a0f0f;
+        }
+        
+        .energy-stat-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .energy-stat-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .energy-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .energy-service-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .energy-plan-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .energy-plan-validity {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
         /* Menu List */
         .menu-list {
             background: var(--bg-secondary);
@@ -6495,20 +6679,58 @@
                         <div class="profile-phone" id="rider-profile-phone">+228 91 234 567</div>
                     </div>
 
-                    <!-- Subscription Card -->
-                    <div class="subscription-card">
-                        <span class="subscription-badge">Active Plan</span>
-                        <div class="subscription-plan">7-Day Lux Plan</div>
-                        <div class="subscription-validity">Valid until Dec 9, 2025</div>
-                        <div class="subscription-stats">
-                            <div class="subscription-stat">
-                                <div class="subscription-stat-value" id="rider-sub-balance">XOF 3,100</div>
-                                <div class="subscription-stat-label">Balance</div>
+                    <!-- Energy Service Card -->
+                    <div class="energy-service-card">
+                        <div class="energy-service-header">
+                            <div class="energy-service-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
                             </div>
-                            <div class="subscription-stat">
-                                <div class="subscription-stat-value" id="rider-sub-swaps">18</div>
-                                <div class="subscription-stat-label">Swaps Left</div>
+                            <div class="energy-service-title">
+                                <span class="energy-service-name">Energy Service</span>
+                                <span class="energy-service-status">
+                                    <span class="status-dot"></span>
+                                    Active
+                                </span>
                             </div>
+                        </div>
+                        
+                        <div class="energy-service-visual">
+                            <img src="assets/E-3-one.png" alt="E-Trike" class="energy-service-bike">
+                            <div class="energy-service-glow"></div>
+                        </div>
+                        
+                        <div class="energy-service-stats">
+                            <div class="energy-stat-card primary">
+                                <div class="energy-stat-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 6v12M8 10h8M8 14h8"/>
+                                    </svg>
+                                </div>
+                                <div class="energy-stat-info">
+                                    <span class="energy-stat-value" id="rider-sub-balance">XOF 3,100</span>
+                                    <span class="energy-stat-label">Account Balance</span>
+                                </div>
+                            </div>
+                            <div class="energy-stat-card">
+                                <div class="energy-stat-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M23 6l-9.5 9.5-5-5L1 18"/>
+                                        <path d="M17 6h6v6"/>
+                                    </svg>
+                                </div>
+                                <div class="energy-stat-info">
+                                    <span class="energy-stat-value" id="rider-sub-swaps">18</span>
+                                    <span class="energy-stat-label">Swaps This Month</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="energy-service-footer">
+                            <span class="energy-plan-name">7-Day Lux Plan</span>
+                            <span class="energy-plan-validity">Valid until Dec 9, 2025</span>
                         </div>
                     </div>
 
