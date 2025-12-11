@@ -3203,6 +3203,593 @@
             color: var(--accent);
         }
 
+        /* ===================== */
+        /* SESSION MANAGEMENT   */
+        /* ===================== */
+        
+        /* Session Mode Indicator - shows at top of workflow */
+        .session-mode-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            margin: 0 -16px 12px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+        }
+        
+        .session-mode-indicator.visible {
+            display: flex;
+        }
+        
+        .session-mode-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .session-mode-badge.active {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .session-mode-badge.active::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .session-mode-badge.resuming {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+        }
+        
+        .session-mode-badge.resuming::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #ffc107;
+            border-radius: 50%;
+        }
+        
+        .session-mode-badge.review {
+            background: rgba(156, 39, 176, 0.15);
+            color: #ba68c8;
+        }
+        
+        .session-mode-badge.review::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #ba68c8;
+            border-radius: 50%;
+        }
+        
+        .session-mode-info {
+            flex: 1;
+            color: var(--text-secondary);
+        }
+        
+        .session-mode-info strong {
+            color: var(--text-primary);
+            font-family: 'DM Mono', monospace;
+        }
+        
+        .session-mode-close {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .session-mode-close:hover {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        .session-mode-close svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Session Search Button */
+        .session-search-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .session-search-btn:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .session-search-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Session Modal */
+        .session-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .session-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .session-modal-content {
+            width: 100%;
+            max-width: 430px;
+            max-height: 85vh;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .session-modal.active .session-modal-content {
+            transform: translateY(0);
+        }
+        
+        .session-modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .session-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .session-modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .session-modal-close:hover {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        .session-modal-close svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .session-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+        
+        /* Session Search Input */
+        .session-search-input-wrapper {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .session-search-input {
+            flex: 1;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: 'DM Mono', monospace;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .session-search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+        
+        .session-search-input::placeholder {
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .session-search-submit {
+            padding: 12px 16px;
+            background: var(--accent);
+            border: none;
+            border-radius: var(--radius-md);
+            color: var(--bg-primary);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .session-search-submit:hover {
+            background: var(--accent-light);
+        }
+        
+        .session-search-submit svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Session Filters */
+        .session-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .session-filter-btn {
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .session-filter-btn:hover {
+            border-color: var(--accent);
+        }
+        
+        .session-filter-btn.active {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Session List */
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .session-list-empty {
+            text-align: center;
+            padding: 32px 16px;
+            color: var(--text-muted);
+        }
+        
+        .session-list-empty svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+        
+        .session-list-empty p {
+            font-size: 13px;
+        }
+        
+        /* Session Card */
+        .session-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .session-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-elevated);
+        }
+        
+        .session-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .session-card-id {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .session-card-status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .session-card-status.completed {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+        
+        .session-card-status.in-progress {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        
+        .session-card-status.paused {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+        }
+        
+        .session-card-status.abandoned {
+            background: var(--error-soft);
+            color: var(--error);
+        }
+        
+        .session-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .session-card-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+        
+        .session-card-label {
+            color: var(--text-muted);
+        }
+        
+        .session-card-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .session-card-value.mono {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+        }
+        
+        .session-card-date {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .session-card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .session-card-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .session-card-btn.primary {
+            background: var(--accent);
+            border: none;
+            color: var(--bg-primary);
+        }
+        
+        .session-card-btn.primary:hover {
+            background: var(--accent-light);
+        }
+        
+        .session-card-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        .session-card-btn.secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .session-card-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        /* Session Recovery Prompt */
+        .session-recovery-prompt {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120%);
+            width: calc(100% - 32px);
+            max-width: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            z-index: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .session-recovery-prompt.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .session-recovery-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .session-recovery-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 193, 7, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .session-recovery-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #ffc107;
+        }
+        
+        .session-recovery-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .session-recovery-text p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        
+        .session-recovery-text strong {
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+        }
+        
+        .session-recovery-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .session-recovery-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .session-recovery-btn.primary {
+            background: var(--accent);
+            border: none;
+            color: var(--bg-primary);
+        }
+        
+        .session-recovery-btn.primary:hover {
+            background: var(--accent-light);
+        }
+        
+        .session-recovery-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        .session-recovery-btn.secondary:hover {
+            border-color: var(--error);
+            color: var(--error);
+        }
+        
+        /* Review Mode Overlay Effect */
+        .review-mode-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+        
+        .review-mode-overlay.visible {
+            display: block;
+        }
+        
+        .review-mode-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(156, 39, 176, 0.08);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
         /* Loading State */
         .loading-overlay {
             position: fixed;
@@ -5879,11 +6466,35 @@
         <!-- ==================== -->
         <div class="module" id="module-attendant">
             <!-- Back to Roles - At very top -->
-            <div class="back-to-roles" onclick="backToRoles()" style="margin: 0 16px 8px;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Change Role
+            <div style="display: flex; align-items: center; justify-content: space-between; margin: 0 16px 8px;">
+                <div class="back-to-roles" onclick="backToRoles()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Change Role
+                </div>
+                <button class="session-search-btn" onclick="openSessionModal('attendant')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Sessions
+                </button>
+            </div>
+            
+            <!-- Session Mode Indicator -->
+            <div class="session-mode-indicator" id="att-session-indicator">
+                <div class="session-mode-badge active" id="att-session-badge">
+                    <span id="att-session-mode-text">New Session</span>
+                </div>
+                <div class="session-mode-info" id="att-session-info">
+                    Session: <strong id="att-session-id">--</strong>
+                </div>
+                <button class="session-mode-close" onclick="exitSessionMode('attendant')" id="att-session-close" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
             </div>
 
             <!-- Interactive Timeline - 6 steps -->
@@ -6405,11 +7016,35 @@
         <!-- ==================== -->
         <div class="module" id="module-sales">
             <!-- Back to Roles - At very top -->
-            <div class="back-to-roles" onclick="backToRoles()" style="margin: 0 16px 8px;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Change Role
+            <div style="display: flex; align-items: center; justify-content: space-between; margin: 0 16px 8px;">
+                <div class="back-to-roles" onclick="backToRoles()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Change Role
+                </div>
+                <button class="session-search-btn" onclick="openSessionModal('sales')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Sessions
+                </button>
+            </div>
+            
+            <!-- Session Mode Indicator -->
+            <div class="session-mode-indicator" id="sales-session-indicator">
+                <div class="session-mode-badge active" id="sales-session-badge">
+                    <span id="sales-session-mode-text">New Session</span>
+                </div>
+                <div class="session-mode-info" id="sales-session-info">
+                    Session: <strong id="sales-session-id">--</strong>
+                </div>
+                <button class="session-mode-close" onclick="exitSessionMode('sales')" id="sales-session-close" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
             </div>
 
             <!-- Interactive Timeline - 6 steps -->
@@ -7490,6 +8125,73 @@
             <div class="loading-text" id="loading-text">Processing...</div>
         </div>
 
+        <!-- Session Search Modal -->
+        <div class="session-modal" id="session-modal" onclick="if(event.target === this) closeSessionModal()">
+            <div class="session-modal-content">
+                <div class="session-modal-header">
+                    <h3 class="session-modal-title">Session History</h3>
+                    <button class="session-modal-close" onclick="closeSessionModal()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="session-modal-body">
+                    <div class="session-search-input-wrapper">
+                        <input type="text" class="session-search-input" id="session-search-input" placeholder="Enter Subscription ID..." oninput="filterSessions()">
+                        <button class="session-search-submit" onclick="searchSessions()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="session-filters" id="session-filters">
+                        <button class="session-filter-btn active" data-filter="all" onclick="setSessionFilter('all')">All</button>
+                        <button class="session-filter-btn" data-filter="in-progress" onclick="setSessionFilter('in-progress')">In Progress</button>
+                        <button class="session-filter-btn" data-filter="completed" onclick="setSessionFilter('completed')">Completed</button>
+                        <button class="session-filter-btn" data-filter="paused" onclick="setSessionFilter('paused')">Paused</button>
+                    </div>
+                    
+                    <div class="session-list" id="session-list">
+                        <!-- Sessions will be populated here -->
+                        <div class="session-list-empty" id="session-list-empty">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                            <p>No sessions found</p>
+                            <span style="font-size: 11px; margin-top: 4px;">Search by subscription ID to find customer sessions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Session Recovery Prompt -->
+        <div class="session-recovery-prompt" id="session-recovery-prompt">
+            <div class="session-recovery-header">
+                <div class="session-recovery-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                </div>
+                <div class="session-recovery-text">
+                    <h4>Resume Previous Session?</h4>
+                    <p id="session-recovery-info">You have an incomplete session for customer <strong id="recovery-customer-id">CUS-8847-KE</strong> at step <strong id="recovery-step">3</strong> of 6.</p>
+                </div>
+            </div>
+            <div class="session-recovery-actions">
+                <button class="session-recovery-btn secondary" onclick="dismissSessionRecovery(true)">Start Fresh</button>
+                <button class="session-recovery-btn primary" onclick="resumeSession()">Resume Session</button>
+            </div>
+        </div>
+
         <!-- QR Code Modal for Rider -->
         <div class="qr-modal-overlay" id="qr-modal" onclick="if(event.target === this) closeQRModal()">
             <div class="qr-modal">
@@ -8065,11 +8767,26 @@
                 attGoToScreen(1);
                 // Check timeline scroll after a brief delay for DOM update
                 setTimeout(checkTimelineScroll, 100);
+                
+                // Check for recoverable session
+                const hasRecoverable = checkSessionRecovery('attendant');
+                if (!hasRecoverable) {
+                    // Start a new session
+                    startNewSession('attendant');
+                }
             } else if (currentRole === 'sales') {
                 document.getElementById('module-sales').classList.add('active');
+                salesResetFlow();
                 salesGoToScreen(1);
                 // Check timeline scroll after a brief delay for DOM update
                 setTimeout(checkSalesTimelineScroll, 100);
+                
+                // Check for recoverable session
+                const hasRecoverable = checkSessionRecovery('sales');
+                if (!hasRecoverable) {
+                    // Start a new session
+                    startNewSession('sales');
+                }
             } else if (currentRole === 'rider') {
                 document.getElementById('module-rider').classList.add('active');
                 // Initialize rider module with data
@@ -8082,6 +8799,790 @@
             // Keep selectedRole so it stays highlighted when going back
             document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
             document.getElementById('module-roles').classList.add('active');
+            // Hide any session recovery prompts
+            hideSessionRecovery();
+        }
+
+        // =====================================================
+        // SESSION MANAGEMENT SYSTEM
+        // =====================================================
+        // Manages workflow sessions for tracking, recovery, and issue resolution
+        
+        const SessionManager = {
+            // Storage key prefix
+            STORAGE_KEY: 'oves-sessions',
+            CURRENT_SESSION_KEY: 'oves-current-session',
+            
+            // Session statuses
+            STATUS: {
+                IN_PROGRESS: 'in-progress',
+                PAUSED: 'paused',
+                COMPLETED: 'completed',
+                ABANDONED: 'abandoned'
+            },
+            
+            // Session modes (for UI display)
+            MODE: {
+                ACTIVE: 'active',      // New session being created
+                RESUMING: 'resuming',  // Continuing a paused session
+                REVIEW: 'review'       // Viewing historical session (read-only)
+            },
+            
+            // Current active session state
+            currentSession: null,
+            currentMode: null,
+            currentWorkflow: null, // 'attendant' or 'sales'
+            
+            // Generate unique session ID
+            generateId() {
+                const timestamp = Date.now().toString(36);
+                const random = Math.random().toString(36).substring(2, 8);
+                return `SES-${timestamp}-${random}`.toUpperCase();
+            },
+            
+            // Get all sessions from storage
+            getAllSessions() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    return data ? JSON.parse(data) : [];
+                } catch (e) {
+                    console.error('Error reading sessions:', e);
+                    return [];
+                }
+            },
+            
+            // Save all sessions to storage
+            saveSessions(sessions) {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(sessions));
+                } catch (e) {
+                    console.error('Error saving sessions:', e);
+                }
+            },
+            
+            // Create a new session
+            createSession(workflowType, initialData = {}) {
+                const session = {
+                    id: this.generateId(),
+                    type: workflowType, // 'attendant-swap' or 'sales-registration'
+                    status: this.STATUS.IN_PROGRESS,
+                    currentStep: 1,
+                    highestStep: 1,
+                    customerId: initialData.customerId || null,
+                    subscriptionId: initialData.subscriptionId || null,
+                    customerName: initialData.customerName || null,
+                    data: {
+                        step1: null,
+                        step2: null,
+                        step3: null,
+                        step4: null,
+                        step5: null,
+                        step6: null
+                    },
+                    timestamps: {
+                        created: new Date().toISOString(),
+                        lastUpdated: new Date().toISOString(),
+                        completed: null
+                    },
+                    metadata: {
+                        attendantId: 'ATT-001', // Would come from auth in production
+                        stationId: 'STN-LOME-001' // Would come from config in production
+                    }
+                };
+                
+                // Save to sessions list
+                const sessions = this.getAllSessions();
+                sessions.unshift(session); // Add to beginning
+                
+                // Limit stored sessions (keep last 100)
+                if (sessions.length > 100) {
+                    sessions.splice(100);
+                }
+                
+                this.saveSessions(sessions);
+                this.currentSession = session;
+                this.currentMode = this.MODE.ACTIVE;
+                this.currentWorkflow = workflowType.split('-')[0]; // 'attendant' or 'sales'
+                
+                // Save current session reference
+                localStorage.setItem(this.CURRENT_SESSION_KEY, JSON.stringify({
+                    id: session.id,
+                    workflow: this.currentWorkflow
+                }));
+                
+                return session;
+            },
+            
+            // Update session data for a step
+            updateStepData(step, data) {
+                if (!this.currentSession || this.currentMode === this.MODE.REVIEW) return;
+                
+                this.currentSession.data[`step${step}`] = data;
+                this.currentSession.currentStep = step;
+                if (step > this.currentSession.highestStep) {
+                    this.currentSession.highestStep = step;
+                }
+                this.currentSession.timestamps.lastUpdated = new Date().toISOString();
+                
+                // Extract customer info if available
+                if (step === 1 && data) {
+                    if (data.id) this.currentSession.customerId = data.id;
+                    if (data.subscriptionId) this.currentSession.subscriptionId = data.subscriptionId;
+                    if (data.name) this.currentSession.customerName = data.name;
+                }
+                
+                this.persistCurrentSession();
+            },
+            
+            // Update session's current step
+            updateCurrentStep(step) {
+                if (!this.currentSession || this.currentMode === this.MODE.REVIEW) return;
+                
+                this.currentSession.currentStep = step;
+                this.currentSession.timestamps.lastUpdated = new Date().toISOString();
+                this.persistCurrentSession();
+            },
+            
+            // Persist current session to storage
+            persistCurrentSession() {
+                if (!this.currentSession) return;
+                
+                const sessions = this.getAllSessions();
+                const index = sessions.findIndex(s => s.id === this.currentSession.id);
+                
+                if (index >= 0) {
+                    sessions[index] = this.currentSession;
+                } else {
+                    sessions.unshift(this.currentSession);
+                }
+                
+                this.saveSessions(sessions);
+            },
+            
+            // Complete a session
+            completeSession() {
+                if (!this.currentSession || this.currentMode === this.MODE.REVIEW) return;
+                
+                this.currentSession.status = this.STATUS.COMPLETED;
+                this.currentSession.timestamps.completed = new Date().toISOString();
+                this.currentSession.timestamps.lastUpdated = new Date().toISOString();
+                
+                this.persistCurrentSession();
+                
+                // Clear current session reference
+                localStorage.removeItem(this.CURRENT_SESSION_KEY);
+                
+                const completedSession = this.currentSession;
+                this.currentSession = null;
+                this.currentMode = null;
+                
+                return completedSession;
+            },
+            
+            // Pause/abandon current session
+            pauseSession() {
+                if (!this.currentSession || this.currentMode === this.MODE.REVIEW) return;
+                
+                this.currentSession.status = this.STATUS.PAUSED;
+                this.currentSession.timestamps.lastUpdated = new Date().toISOString();
+                
+                this.persistCurrentSession();
+            },
+            
+            // Abandon current session
+            abandonSession() {
+                if (!this.currentSession) return;
+                
+                if (this.currentMode !== this.MODE.REVIEW) {
+                    this.currentSession.status = this.STATUS.ABANDONED;
+                    this.currentSession.timestamps.lastUpdated = new Date().toISOString();
+                    this.persistCurrentSession();
+                }
+                
+                // Clear current session reference
+                localStorage.removeItem(this.CURRENT_SESSION_KEY);
+                
+                this.currentSession = null;
+                this.currentMode = null;
+            },
+            
+            // Get session by ID
+            getSessionById(sessionId) {
+                const sessions = this.getAllSessions();
+                return sessions.find(s => s.id === sessionId);
+            },
+            
+            // Search sessions by subscription ID
+            searchBySubscriptionId(subscriptionId) {
+                const sessions = this.getAllSessions();
+                const searchTerm = subscriptionId.toLowerCase().trim();
+                
+                return sessions.filter(s => {
+                    const subId = (s.subscriptionId || '').toLowerCase();
+                    const custId = (s.customerId || '').toLowerCase();
+                    const custName = (s.customerName || '').toLowerCase();
+                    
+                    return subId.includes(searchTerm) || 
+                           custId.includes(searchTerm) || 
+                           custName.includes(searchTerm);
+                });
+            },
+            
+            // Get sessions by workflow type
+            getSessionsByType(workflowType) {
+                const sessions = this.getAllSessions();
+                return sessions.filter(s => s.type === workflowType);
+            },
+            
+            // Get sessions by status
+            getSessionsByStatus(status) {
+                const sessions = this.getAllSessions();
+                return sessions.filter(s => s.status === status);
+            },
+            
+            // Load session for resuming (modifiable)
+            resumeSession(sessionId) {
+                const session = this.getSessionById(sessionId);
+                if (!session) return null;
+                
+                // Update status to in-progress
+                session.status = this.STATUS.IN_PROGRESS;
+                session.timestamps.lastUpdated = new Date().toISOString();
+                
+                this.currentSession = session;
+                this.currentMode = this.MODE.RESUMING;
+                this.currentWorkflow = session.type.split('-')[0];
+                
+                // Update current session reference
+                localStorage.setItem(this.CURRENT_SESSION_KEY, JSON.stringify({
+                    id: session.id,
+                    workflow: this.currentWorkflow
+                }));
+                
+                this.persistCurrentSession();
+                
+                return session;
+            },
+            
+            // Load session for review (read-only)
+            reviewSession(sessionId) {
+                const session = this.getSessionById(sessionId);
+                if (!session) return null;
+                
+                this.currentSession = session;
+                this.currentMode = this.MODE.REVIEW;
+                this.currentWorkflow = session.type.split('-')[0];
+                
+                // Don't update current session reference for review mode
+                
+                return session;
+            },
+            
+            // Exit current session mode
+            exitSession() {
+                if (this.currentMode === this.MODE.ACTIVE || this.currentMode === this.MODE.RESUMING) {
+                    this.pauseSession();
+                }
+                
+                localStorage.removeItem(this.CURRENT_SESSION_KEY);
+                this.currentSession = null;
+                this.currentMode = null;
+                this.currentWorkflow = null;
+            },
+            
+            // Check for recoverable session on load
+            getRecoverableSession(workflowType) {
+                try {
+                    const currentRef = localStorage.getItem(this.CURRENT_SESSION_KEY);
+                    if (!currentRef) return null;
+                    
+                    const ref = JSON.parse(currentRef);
+                    const expectedWorkflow = workflowType.split('-')[0];
+                    
+                    if (ref.workflow !== expectedWorkflow) return null;
+                    
+                    const session = this.getSessionById(ref.id);
+                    if (!session) return null;
+                    
+                    // Only recover in-progress or paused sessions
+                    if (session.status === this.STATUS.IN_PROGRESS || 
+                        session.status === this.STATUS.PAUSED) {
+                        return session;
+                    }
+                    
+                    return null;
+                } catch (e) {
+                    console.error('Error checking recoverable session:', e);
+                    return null;
+                }
+            },
+            
+            // Format session for display
+            formatSessionForDisplay(session) {
+                const stepNames = session.type === 'attendant-swap' 
+                    ? ['Customer', 'Old Battery', 'New Battery', 'Review', 'Payment', 'Complete']
+                    : ['Registration', 'Product', 'Subscription', 'Payment', 'Battery', 'Complete'];
+                
+                return {
+                    ...session,
+                    stepName: stepNames[session.currentStep - 1] || 'Unknown',
+                    totalSteps: 6,
+                    formattedDate: this.formatDate(session.timestamps.created),
+                    formattedLastUpdate: this.formatDate(session.timestamps.lastUpdated),
+                    displayStatus: this.formatStatus(session.status),
+                    displayType: session.type === 'attendant-swap' ? 'Battery Swap' : 'Registration'
+                };
+            },
+            
+            formatDate(isoString) {
+                if (!isoString) return 'N/A';
+                const date = new Date(isoString);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+                
+                if (diffMins < 1) return 'Just now';
+                if (diffMins < 60) return `${diffMins}m ago`;
+                if (diffHours < 24) return `${diffHours}h ago`;
+                if (diffDays < 7) return `${diffDays}d ago`;
+                
+                return date.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            },
+            
+            formatStatus(status) {
+                const statusMap = {
+                    'in-progress': 'In Progress',
+                    'paused': 'Paused',
+                    'completed': 'Completed',
+                    'abandoned': 'Abandoned'
+                };
+                return statusMap[status] || status;
+            }
+        };
+        
+        // =====================================================
+        // SESSION UI FUNCTIONS
+        // =====================================================
+        
+        let currentSessionFilter = 'all';
+        let currentSessionModalWorkflow = null;
+        
+        // Open session search modal
+        function openSessionModal(workflow) {
+            currentSessionModalWorkflow = workflow;
+            document.getElementById('session-modal').classList.add('active');
+            document.getElementById('session-search-input').value = '';
+            document.getElementById('session-search-input').focus();
+            
+            // Load sessions for current workflow
+            loadSessionList(workflow);
+        }
+        
+        // Close session modal
+        function closeSessionModal() {
+            document.getElementById('session-modal').classList.remove('active');
+            currentSessionModalWorkflow = null;
+        }
+        
+        // Set session filter
+        function setSessionFilter(filter) {
+            currentSessionFilter = filter;
+            
+            // Update filter buttons
+            document.querySelectorAll('.session-filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === filter);
+            });
+            
+            // Reload list
+            if (currentSessionModalWorkflow) {
+                loadSessionList(currentSessionModalWorkflow);
+            }
+        }
+        
+        // Filter sessions based on search input
+        function filterSessions() {
+            if (currentSessionModalWorkflow) {
+                loadSessionList(currentSessionModalWorkflow);
+            }
+        }
+        
+        // Search sessions
+        function searchSessions() {
+            if (currentSessionModalWorkflow) {
+                loadSessionList(currentSessionModalWorkflow);
+            }
+        }
+        
+        // Load and display session list
+        function loadSessionList(workflow) {
+            const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
+            const searchTerm = document.getElementById('session-search-input').value.trim();
+            
+            let sessions;
+            
+            if (searchTerm) {
+                sessions = SessionManager.searchBySubscriptionId(searchTerm);
+                sessions = sessions.filter(s => s.type === workflowType);
+            } else {
+                sessions = SessionManager.getSessionsByType(workflowType);
+            }
+            
+            // Apply status filter
+            if (currentSessionFilter !== 'all') {
+                sessions = sessions.filter(s => s.status === currentSessionFilter);
+            }
+            
+            // Sort by last updated
+            sessions.sort((a, b) => new Date(b.timestamps.lastUpdated) - new Date(a.timestamps.lastUpdated));
+            
+            // Limit to 20 most recent
+            sessions = sessions.slice(0, 20);
+            
+            renderSessionList(sessions, workflow);
+        }
+        
+        // Render session list HTML
+        function renderSessionList(sessions, workflow) {
+            const listEl = document.getElementById('session-list');
+            const emptyEl = document.getElementById('session-list-empty');
+            
+            if (sessions.length === 0) {
+                emptyEl.style.display = 'block';
+                listEl.innerHTML = '';
+                listEl.appendChild(emptyEl);
+                return;
+            }
+            
+            emptyEl.style.display = 'none';
+            
+            const html = sessions.map(session => {
+                const formatted = SessionManager.formatSessionForDisplay(session);
+                const canResume = session.status === SessionManager.STATUS.IN_PROGRESS || 
+                                  session.status === SessionManager.STATUS.PAUSED;
+                
+                return `
+                    <div class="session-card" onclick="selectSession('${session.id}', '${workflow}')">
+                        <div class="session-card-header">
+                            <span class="session-card-id">${session.id}</span>
+                            <span class="session-card-status ${session.status}">${formatted.displayStatus}</span>
+                        </div>
+                        <div class="session-card-body">
+                            <div class="session-card-row">
+                                <span class="session-card-label">Customer</span>
+                                <span class="session-card-value">${session.customerName || session.customerId || 'Unknown'}</span>
+                            </div>
+                            <div class="session-card-row">
+                                <span class="session-card-label">Subscription ID</span>
+                                <span class="session-card-value mono">${session.subscriptionId || 'N/A'}</span>
+                            </div>
+                            <div class="session-card-row">
+                                <span class="session-card-label">Progress</span>
+                                <span class="session-card-value">Step ${session.currentStep} of ${formatted.totalSteps} (${formatted.stepName})</span>
+                            </div>
+                            <div class="session-card-date">${formatted.formattedLastUpdate}</div>
+                        </div>
+                        <div class="session-card-actions" onclick="event.stopPropagation()">
+                            <button class="session-card-btn secondary" onclick="reviewSessionFromList('${session.id}', '${workflow}')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Review
+                            </button>
+                            ${canResume ? `
+                                <button class="session-card-btn primary" onclick="resumeSessionFromList('${session.id}', '${workflow}')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="5 3 19 12 5 21 5 3"/>
+                                    </svg>
+                                    Resume
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            listEl.innerHTML = html;
+        }
+        
+        // Select a session (defaults to review for completed, resume for in-progress)
+        function selectSession(sessionId, workflow) {
+            const session = SessionManager.getSessionById(sessionId);
+            if (!session) return;
+            
+            if (session.status === SessionManager.STATUS.COMPLETED || 
+                session.status === SessionManager.STATUS.ABANDONED) {
+                reviewSessionFromList(sessionId, workflow);
+            } else {
+                resumeSessionFromList(sessionId, workflow);
+            }
+        }
+        
+        // Resume session from list
+        function resumeSessionFromList(sessionId, workflow) {
+            const session = SessionManager.resumeSession(sessionId);
+            if (!session) return;
+            
+            closeSessionModal();
+            
+            // Update UI mode
+            updateSessionModeUI(workflow, SessionManager.MODE.RESUMING, session);
+            
+            // Restore workflow state
+            restoreWorkflowState(workflow, session);
+        }
+        
+        // Review session from list
+        function reviewSessionFromList(sessionId, workflow) {
+            const session = SessionManager.reviewSession(sessionId);
+            if (!session) return;
+            
+            closeSessionModal();
+            
+            // Update UI mode
+            updateSessionModeUI(workflow, SessionManager.MODE.REVIEW, session);
+            
+            // Restore workflow state (read-only)
+            restoreWorkflowState(workflow, session);
+        }
+        
+        // Update session mode UI indicator
+        function updateSessionModeUI(workflow, mode, session) {
+            const prefix = workflow === 'attendant' ? 'att' : 'sales';
+            const indicator = document.getElementById(`${prefix}-session-indicator`);
+            const badge = document.getElementById(`${prefix}-session-badge`);
+            const modeText = document.getElementById(`${prefix}-session-mode-text`);
+            const sessionIdEl = document.getElementById(`${prefix}-session-id`);
+            const closeBtn = document.getElementById(`${prefix}-session-close`);
+            
+            // Show indicator
+            indicator.classList.add('visible');
+            
+            // Update badge
+            badge.className = 'session-mode-badge ' + mode;
+            
+            // Update text
+            const modeLabels = {
+                'active': 'New Session',
+                'resuming': 'Resuming',
+                'review': 'Review Mode'
+            };
+            modeText.textContent = modeLabels[mode] || 'Session';
+            
+            // Update session ID
+            sessionIdEl.textContent = session ? session.id : '--';
+            
+            // Show/hide close button (show for review mode)
+            if (closeBtn) {
+                closeBtn.style.display = (mode === SessionManager.MODE.REVIEW) ? 'flex' : 'none';
+            }
+        }
+        
+        // Hide session mode indicator
+        function hideSessionModeUI(workflow) {
+            const prefix = workflow === 'attendant' ? 'att' : 'sales';
+            const indicator = document.getElementById(`${prefix}-session-indicator`);
+            indicator.classList.remove('visible');
+        }
+        
+        // Exit session mode (for review mode - returns to fresh state)
+        function exitSessionMode(workflow) {
+            SessionManager.exitSession();
+            hideSessionModeUI(workflow);
+            
+            // Reset workflow to fresh state
+            if (workflow === 'attendant') {
+                attResetFlow();
+                attGoToScreen(1);
+                // Start fresh session
+                startNewSession('attendant');
+            } else if (workflow === 'sales') {
+                salesResetFlow();
+                salesGoToScreen(1);
+                // Start fresh session
+                startNewSession('sales');
+            }
+        }
+        
+        // Start a new session for workflow
+        function startNewSession(workflow) {
+            const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
+            const session = SessionManager.createSession(workflowType);
+            updateSessionModeUI(workflow, SessionManager.MODE.ACTIVE, session);
+            return session;
+        }
+        
+        // Restore workflow state from session
+        function restoreWorkflowState(workflow, session) {
+            if (workflow === 'attendant') {
+                restoreAttendantWorkflow(session);
+            } else if (workflow === 'sales') {
+                restoreSalesWorkflow(session);
+            }
+        }
+        
+        // Restore attendant workflow from session
+        function restoreAttendantWorkflow(session) {
+            // Reset first
+            attResetFlow();
+            
+            // Restore flow data
+            if (session.data.step1) {
+                attFlowData.customer = session.data.step1;
+                // Update customer panel if needed
+                if (session.data.step1.name) {
+                    updateCustomerStatePanel(mockServicePlanData, session.data.step1);
+                }
+            }
+            if (session.data.step2) attFlowData.oldBattery = session.data.step2;
+            if (session.data.step3) attFlowData.newBattery = session.data.step3;
+            if (session.data.step4) attFlowData.cost = session.data.step4;
+            if (session.data.step5) attFlowData.payment = session.data.step5;
+            
+            // Set highest reached
+            attHighestReached = session.highestStep;
+            
+            // Navigate to current step
+            attGoToScreen(session.currentStep);
+        }
+        
+        // Restore sales workflow from session
+        function restoreSalesWorkflow(session) {
+            // Reset first
+            salesResetFlow();
+            
+            // Restore form data
+            if (session.data.step1) {
+                const d = session.data.step1;
+                if (d.name) document.getElementById('customerName').value = d.name;
+                if (d.email) document.getElementById('customerEmail').value = d.email;
+                if (d.phone) document.getElementById('customerPhone').value = d.phone;
+                if (d.city) document.getElementById('customerCity').value = d.city;
+                if (d.zip) document.getElementById('customerZip').value = d.zip;
+                if (d.street) document.getElementById('customerStreet').value = d.street;
+            }
+            
+            if (session.data.step2 && session.data.step2.vehicle) {
+                selectedVehicle = session.data.step2.vehicle;
+                // Update vehicle UI
+                document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
+                const vehicleCard = document.querySelector(`.vehicle-card[onclick*="${selectedVehicle}"]`);
+                if (vehicleCard) vehicleCard.classList.add('selected');
+            }
+            
+            if (session.data.step3 && session.data.step3.plan) {
+                selectedPlan = session.data.step3.plan;
+                // Update plan UI
+                document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
+                const planCard = document.querySelector(`#sales-screen-subscription .product-card[onclick*="${selectedPlan}"]`);
+                if (planCard) planCard.classList.add('selected');
+            }
+            
+            // Navigate to current step
+            salesGoToScreen(session.currentStep);
+        }
+        
+        // Sales reset flow (to be called from session management)
+        function salesResetFlow() {
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerEmail').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('customerStreet').value = '';
+            document.getElementById('customerCity').value = '';
+            document.getElementById('customerZip').value = '';
+            selectedVehicle = 'tuktuk2';
+            selectedPlan = 'weekly';
+            // Reset vehicle selection UI
+            document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
+            const defaultVehicle = document.querySelector('.vehicle-card[onclick*="tuktuk2"]');
+            if (defaultVehicle) defaultVehicle.classList.add('selected');
+            // Reset plan selection UI
+            document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
+            const defaultPlan = document.querySelector('#sales-screen-subscription .product-card[onclick*="weekly"]');
+            if (defaultPlan) defaultPlan.classList.add('selected');
+        }
+        
+        // =====================================================
+        // SESSION RECOVERY PROMPT
+        // =====================================================
+        
+        let pendingRecoverySession = null;
+        let pendingRecoveryWorkflow = null;
+        
+        // Check for recoverable session and show prompt
+        function checkSessionRecovery(workflow) {
+            const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
+            const session = SessionManager.getRecoverableSession(workflowType);
+            
+            if (session) {
+                pendingRecoverySession = session;
+                pendingRecoveryWorkflow = workflow;
+                showSessionRecoveryPrompt(session);
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // Show session recovery prompt
+        function showSessionRecoveryPrompt(session) {
+            const formatted = SessionManager.formatSessionForDisplay(session);
+            
+            document.getElementById('recovery-customer-id').textContent = 
+                session.subscriptionId || session.customerId || session.id;
+            document.getElementById('recovery-step').textContent = session.currentStep;
+            
+            document.getElementById('session-recovery-prompt').classList.add('visible');
+        }
+        
+        // Hide session recovery prompt
+        function hideSessionRecovery() {
+            document.getElementById('session-recovery-prompt').classList.remove('visible');
+            pendingRecoverySession = null;
+            pendingRecoveryWorkflow = null;
+        }
+        
+        // Dismiss session recovery (start fresh or just dismiss)
+        function dismissSessionRecovery(startFresh = false) {
+            if (startFresh && pendingRecoverySession) {
+                // Mark the old session as paused/abandoned
+                SessionManager.currentSession = pendingRecoverySession;
+                SessionManager.currentMode = SessionManager.MODE.RESUMING;
+                SessionManager.pauseSession();
+                SessionManager.currentSession = null;
+                SessionManager.currentMode = null;
+                localStorage.removeItem(SessionManager.CURRENT_SESSION_KEY);
+            }
+            
+            hideSessionRecovery();
+            
+            // Start a new session
+            if (pendingRecoveryWorkflow) {
+                startNewSession(pendingRecoveryWorkflow);
+            }
+        }
+        
+        // Resume the pending recovery session
+        function resumeSession() {
+            if (!pendingRecoverySession || !pendingRecoveryWorkflow) return;
+            
+            const session = SessionManager.resumeSession(pendingRecoverySession.id);
+            if (!session) return;
+            
+            hideSessionRecovery();
+            
+            // Update UI mode
+            updateSessionModeUI(pendingRecoveryWorkflow, SessionManager.MODE.RESUMING, session);
+            
+            // Restore workflow state
+            restoreWorkflowState(pendingRecoveryWorkflow, session);
         }
 
         // =====================
@@ -8198,6 +9699,9 @@
                 attHighestReached = screenNum;
             }
             
+            // Update session current step
+            SessionManager.updateCurrentStep(screenNum);
+            
             // Update the interactive timeline
             attUpdateTimeline(screenNum);
             
@@ -8240,6 +9744,8 @@
             if (dataKeys[step]) {
                 attFlowData[dataKeys[step]] = data;
             }
+            // Also save to SessionManager
+            SessionManager.updateStepData(step, data);
         }
         
         // Restore data when navigating back to a step
@@ -8534,9 +10040,12 @@
         // Step 1a: Scan customer QR
         function attScanCustomer() {
             showLoading('Identifying customer...');
+            // Simulated subscription ID from QR code
+            const subscriptionId = 'SUB-' + Math.random().toString(36).substring(2, 8).toUpperCase();
             // Save customer data
             const customerData = {
                 id: 'CUS-8847-KE',
+                subscriptionId: subscriptionId,
                 name: 'James Mwangi',
                 initials: 'JM',
                 plan: '7-Day Lux'
@@ -8560,9 +10069,10 @@
                 return;
             }
             showLoading('Looking up customer...');
-            // Save customer data
+            // Save customer data with subscription ID
             const customerData = {
-                id: subId,
+                id: 'CUS-8847-KE',
+                subscriptionId: subId,
                 name: 'James Mwangi',
                 initials: 'JM',
                 plan: '7-Day Lux'
@@ -8621,8 +10131,13 @@
             // Save payment data
             attSaveStepData(5, {
                 confirmed: true,
-                txnId: 'TXN-892741',
+                txnId: 'TXN-' + Math.floor(100000 + Math.random() * 900000),
                 time: new Date().toLocaleTimeString('en-US', { hour12: false })
+            });
+            // Mark completion step
+            attSaveStepData(6, {
+                completed: true,
+                timestamp: new Date().toISOString()
             });
             setTimeout(() => { hideLoading(); attGoToScreen(6); }, 1500);
         }
@@ -8635,9 +10150,13 @@
                 case 4: attGoToScreen(5); break;  // Go to payment confirmation
                 case 5: attConfirmPayment(); break;
                 case 6: 
-                    // Reset flow and start new swap
+                    // Complete current session and start new swap
+                    SessionManager.completeSession();
+                    hideSessionModeUI('attendant');
                     attResetFlow();
                     attGoToScreen(1);
+                    // Start a fresh session
+                    startNewSession('attendant');
                     break;
             }
         }
@@ -8687,6 +10206,9 @@
             const module = document.getElementById('module-sales');
             module.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(`sales-screen-${salesGetScreenName(screenNum)}`).classList.add('active');
+            
+            // Update session current step
+            SessionManager.updateCurrentStep(screenNum);
             
             // Update the interactive timeline
             salesUpdateTimeline(screenNum);
@@ -8832,6 +10354,16 @@
             showLoading('Scanning battery...');
             setTimeout(() => {
                 hideLoading();
+                // Save battery assignment data
+                salesSaveStepData(5, {
+                    batteryId: 'BAT-2024-' + Math.floor(1000 + Math.random() * 9000),
+                    assignedAt: new Date().toISOString()
+                });
+                // Mark completion
+                salesSaveStepData(6, {
+                    completed: true,
+                    timestamp: new Date().toISOString()
+                });
                 updateCheckoutSummary();
                 salesGoToScreen(6); // Go to checkout screen
             }, 1500);
@@ -8861,30 +10393,45 @@
 
         function salesHandleMainAction() {
             switch(salesCurrentScreen) {
-                case 1: salesGoToScreen(2); break;
-                case 2: salesGoToScreen(3); break;
-                case 3: salesGoToScreen(4); break;
+                case 1: 
+                    // Save registration data
+                    salesSaveStepData(1, {
+                        name: document.getElementById('customerName').value || 'ABC Customer Ltd',
+                        email: document.getElementById('customerEmail').value || 'customer@example.com',
+                        phone: document.getElementById('customerPhone').value || '+254712345678',
+                        street: document.getElementById('customerStreet').value || '',
+                        city: document.getElementById('customerCity').value || 'Nairobi',
+                        zip: document.getElementById('customerZip').value || '00100'
+                    });
+                    salesGoToScreen(2); 
+                    break;
+                case 2: 
+                    // Save vehicle selection
+                    salesSaveStepData(2, { vehicle: selectedVehicle });
+                    salesGoToScreen(3); 
+                    break;
+                case 3: 
+                    // Save plan selection
+                    salesSaveStepData(3, { plan: selectedPlan });
+                    salesGoToScreen(4); 
+                    break;
                 case 4: salesConfirmPayment(); break;
                 case 5: salesSimulateBatteryScan(); break;
                 case 6: 
-                    // Reset form and selections
-                    document.getElementById('customerName').value = '';
-                    document.getElementById('customerEmail').value = '';
-                    document.getElementById('customerPhone').value = '';
-                    document.getElementById('customerStreet').value = '';
-                    document.getElementById('customerCity').value = '';
-                    document.getElementById('customerZip').value = '';
-                    selectedVehicle = 'tuktuk2';
-                    selectedPlan = 'weekly';
-                    // Reset vehicle selection UI
-                    document.querySelectorAll('.vehicle-card').forEach(card => card.classList.remove('selected'));
-                    document.querySelector('.vehicle-card[onclick*="tuktuk2"]').classList.add('selected');
-                    // Reset plan selection UI
-                    document.querySelectorAll('#sales-screen-subscription .product-card').forEach(card => card.classList.remove('selected'));
-                    document.querySelector('#sales-screen-subscription .product-card[onclick*="weekly"]').classList.add('selected');
+                    // Complete session and start fresh
+                    SessionManager.completeSession();
+                    hideSessionModeUI('sales');
+                    salesResetFlow();
                     salesGoToScreen(1);
+                    // Start a fresh session
+                    startNewSession('sales');
                     break;
             }
+        }
+        
+        // Save data for current sales step
+        function salesSaveStepData(step, data) {
+            SessionManager.updateStepData(step, data);
         }
 
         function salesGoBack() {
@@ -8930,6 +10477,18 @@
 
         function salesConfirmPayment() {
             showLoading('Confirming payment...');
+            // Save payment data
+            const vehicle = vehicleData[selectedVehicle];
+            const plan = planData[selectedPlan];
+            const total = vehicle.price + plan.price;
+            
+            salesSaveStepData(4, {
+                confirmed: true,
+                txnId: 'TXN-' + Math.floor(100000 + Math.random() * 900000),
+                amount: total,
+                timestamp: new Date().toISOString()
+            });
+            
             setTimeout(() => {
                 hideLoading();
                 salesGoToScreen(5); // Go to battery screen
