@@ -1,0 +1,1431 @@
+/**
+ * Rider Module CSS
+ * Omnivoltaic Station App
+ */
+
+/* ===================== */
+/* RIDER MODULE STYLES   */
+/* ===================== */
+
+/* Bottom Navigation Bar for Rider */
+.rider-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 430px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 8px 16px 24px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .rider-nav {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+}
+
+.rider-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+}
+
+.rider-nav-item:hover {
+    color: var(--text-secondary);
+}
+
+.rider-nav-item.active {
+    color: var(--accent);
+}
+
+.rider-nav-item svg {
+    width: 22px;
+    height: 22px;
+    transition: all 0.2s ease;
+}
+
+.rider-nav-item.active svg {
+    color: var(--accent);
+}
+
+.rider-nav-label {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Rider Dashboard Header */
+.rider-dashboard-header {
+    padding: 0 0 12px;
+}
+
+.rider-greeting {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+}
+
+.rider-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Rider Bike Card - Shows rider's vehicle */
+.rider-bike-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rider-bike-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.rider-bike-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.rider-bike-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.rider-bike-model {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rider-bike-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rider-bike-status.active {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.rider-bike-status.inactive {
+    background: var(--error-soft);
+    color: var(--error);
+}
+
+.rider-bike-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.rider-bike-image {
+    width: 100px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rider-bike-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.rider-bike-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rider-bike-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rider-bike-detail-label {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.rider-bike-detail-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Battery Hero Card - Main dashboard widget */
+.battery-hero-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.battery-hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.battery-hero-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.battery-hero-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.battery-hero-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.battery-hero-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.battery-hero-status.charged {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.battery-hero-status.low {
+    background: var(--error-soft);
+    color: var(--error);
+}
+
+.battery-hero-status.charging {
+    background: var(--info-soft);
+    color: var(--info);
+}
+
+.battery-visual {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Circular battery gauge */
+.battery-gauge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.battery-gauge-bg {
+    stroke: var(--border);
+    fill: none;
+    stroke-width: 8;
+}
+
+.battery-gauge-fill {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dasharray 0.5s ease;
+}
+
+.battery-gauge-fill.good {
+    stroke: var(--success);
+}
+
+.battery-gauge-fill.warning {
+    stroke: #f0a500;
+}
+
+.battery-gauge-fill.critical {
+    stroke: var(--error);
+}
+
+.battery-gauge-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.battery-gauge-percent {
+    font-family: 'DM Mono', monospace;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    line-height: 1;
+}
+
+.battery-gauge-label {
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.battery-hero-info {
+    flex: 1;
+}
+
+.battery-hero-range {
+    margin-bottom: 10px;
+}
+
+.battery-hero-range-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.battery-hero-range-unit {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.battery-hero-range-label {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.battery-hero-stats {
+    display: flex;
+    gap: 16px;
+}
+
+.battery-hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.battery-hero-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.battery-hero-stat-label {
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+/* Account Balance Card */
+.account-balance-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account-balance-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.account-balance-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-balance-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+}
+
+.account-balance-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.account-balance-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.account-balance-action {
+    padding: 8px 14px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.account-balance-action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -4px var(--accent-glow);
+}
+
+/* Section Headers */
+.rider-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.rider-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rider-section-link {
+    font-size: 11px;
+    color: var(--accent);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.rider-section-link:hover {
+    opacity: 0.8;
+}
+
+/* Nearby Stations Map */
+.stations-map-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.stations-map {
+    height: 180px;
+    background: var(--bg-tertiary);
+    position: relative;
+}
+
+.stations-map-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    gap: 8px;
+}
+
+.stations-map-placeholder svg {
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.stations-map-placeholder span {
+    font-size: 11px;
+}
+
+/* Simulated Map with Station Pins */
+.map-visual {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-elevated) 100%);
+    overflow: hidden;
+}
+
+.map-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.5;
+}
+
+.map-user-marker {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 229, 229, 0.5);
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.map-user-pulse {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: mapPulse 2s ease-out infinite;
+    opacity: 0.5;
+}
+
+@keyframes mapPulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+.map-station-pin {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 5;
+}
+
+.map-station-pin:hover {
+    transform: scale(1.1);
+    z-index: 11;
+}
+
+.map-station-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--success);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 217, 160, 0.4);
+}
+
+.map-station-icon svg {
+    width: 14px;
+    height: 14px;
+    color: white;
+    transform: rotate(45deg);
+}
+
+.map-station-label {
+    margin-top: 4px;
+    padding: 2px 6px;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Station List */
+.stations-list {
+    padding: 10px;
+}
+
+.station-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.station-item:last-child {
+    margin-bottom: 0;
+}
+
+.station-item:hover {
+    background: var(--bg-elevated);
+}
+
+.station-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--success-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.station-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--success);
+}
+
+.station-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.station-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.station-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.station-distance {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.station-distance svg {
+    width: 10px;
+    height: 10px;
+}
+
+.station-availability {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.station-availability-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+.station-availability-dot.low {
+    background: #f0a500;
+}
+
+.station-nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.station-nav-btn svg {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+}
+
+.station-nav-btn:hover {
+    background: var(--accent);
+}
+
+.station-nav-btn:hover svg {
+    color: white;
+}
+
+/* History/Activity Screen */
+.activity-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.activity-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.activity-filter {
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.activity-filter:hover {
+    border-color: var(--accent);
+}
+
+.activity-filter.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+}
+
+/* Activity/Transaction List */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-date-header {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 8px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.activity-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.activity-item:hover {
+    border-color: var(--accent);
+}
+
+.activity-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.activity-item-icon.swap {
+    background: var(--accent-soft);
+}
+
+.activity-item-icon.swap svg {
+    color: var(--accent);
+}
+
+.activity-item-icon.payment {
+    background: var(--success-soft);
+}
+
+.activity-item-icon.payment svg {
+    color: var(--success);
+}
+
+.activity-item-icon.topup {
+    background: var(--info-soft);
+}
+
+.activity-item-icon.topup svg {
+    color: var(--info);
+}
+
+.activity-item-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.activity-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-item-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.activity-item-subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.activity-item-meta {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.activity-item-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.activity-item-amount.negative {
+    color: var(--text-primary);
+}
+
+.activity-item-amount.positive {
+    color: var(--success);
+}
+
+.activity-item-time {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+/* Profile/Account Screen */
+.profile-header {
+    text-align: center;
+    padding: 16px 0 24px;
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+    margin: 0 auto 12px;
+    box-shadow: 0 4px 16px -4px var(--accent-glow);
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.profile-phone {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Subscription Card */
+.subscription-card {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.subscription-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.subscription-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.subscription-plan {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.subscription-validity {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 12px;
+}
+
+.subscription-stats {
+    display: flex;
+    gap: 16px;
+}
+
+.subscription-stat {
+    flex: 1;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    text-align: center;
+}
+
+.subscription-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.subscription-stat-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+}
+
+/* Energy Service Card - Profile Page */
+.energy-service-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.energy-service-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.energy-service-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.energy-service-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #0a0f0f;
+}
+
+.energy-service-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.energy-service-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.energy-service-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--success);
+    font-weight: 500;
+}
+
+.energy-service-status .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+.energy-service-visual {
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.energy-service-bike {
+    max-height: 90px;
+    max-width: 160px;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.energy-service-glow {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    background: radial-gradient(ellipse, var(--accent-soft) 0%, transparent 70%);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.energy-service-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.energy-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.energy-stat-card.primary {
+    background: linear-gradient(135deg, var(--accent-soft) 0%, var(--bg-tertiary) 100%);
+    border-color: var(--accent);
+}
+
+.energy-stat-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.energy-stat-card.primary .energy-stat-icon {
+    background: var(--accent);
+}
+
+.energy-stat-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+}
+
+.energy-stat-card.primary .energy-stat-icon svg {
+    color: #0a0f0f;
+}
+
+.energy-stat-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.energy-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.energy-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.energy-service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.energy-plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.energy-plan-validity {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Menu List */
+.menu-list {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.menu-item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.menu-item-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+}
+
+.menu-item-content {
+    flex: 1;
+}
+
+.menu-item-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.menu-item-subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.menu-item-arrow {
+    color: var(--text-muted);
+}
+
+.menu-item-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.menu-item.logout {
+    color: var(--error);
+}
+
+.menu-item.logout .menu-item-icon {
+    background: var(--error-soft);
+}
+
+.menu-item.logout .menu-item-icon svg {
+    color: var(--error);
+}
+
+.menu-item.logout .menu-item-title {
+    color: var(--error);
+}
+
+/* Quick Actions Grid */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.quick-action {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-action:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -4px var(--accent-glow);
+}
+
+.quick-action-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-action-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--accent);
+}
+
+.quick-action-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Full Map Screen */
+.full-map-container {
+    position: relative;
+    height: calc(100vh - 200px);
+    min-height: 400px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.full-map-container .map-visual {
+    position: absolute;
+    inset: 0;
+}
+
+/* Station Detail Card - Floating */
+.station-detail-card {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.4);
+    z-index: 20;
+}
+
+.station-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.station-detail-info {
+    flex: 1;
+}
+
+.station-detail-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.station-detail-address {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.station-detail-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.station-detail-stat {
+    flex: 1;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    text-align: center;
+}
+
+.station-detail-stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.station-detail-stat-label {
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+.station-detail-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.station-detail-actions .btn {
+    font-size: 12px;
+    padding: 10px;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.empty-state-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--text-muted);
+}
+
+.empty-state-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.empty-state-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Rider screen animations */
+.rider-screen {
+    display: none;
+    animation: fadeSlideIn 0.3s ease-out;
+}
+
+.rider-screen.active {
+    display: block;
+}
+
+/* Rider module main area padding adjustment */
+#module-rider .main {
+    padding-bottom: 100px;
+}

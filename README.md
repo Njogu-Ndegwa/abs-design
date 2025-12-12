@@ -220,17 +220,56 @@ font-weight: 500;
 ## File Structure
 
 ```
-test-designs/
-├── index.html          # Single-file app (HTML + CSS + JS)
-├── README.md           # This file
-└── assets/
-    ├── Logo-Oves.png   # App logo
-    ├── Bikes Oves.png  # Hero image (3 bikes)
-    ├── Attendant.png   # Role icon
-    ├── Sales.png       # Role icon
-    ├── Keypad.png      # Role icon
-    └── Rider.png       # Role icon
+/
+├── index.html              # Main HTML (markup only)
+├── README.md               # This file
+│
+├── css/                    # Stylesheets
+│   ├── base.css            # Variables, reset, animations
+│   ├── layout.css          # App structure, header, navigation
+│   ├── components.css      # Buttons, forms, cards, badges
+│   └── modules/
+│       ├── splash.css      # Splash screen styles
+│       ├── onboarding.css  # Onboarding carousel styles
+│       ├── roles.css       # Role selection styles
+│       ├── login.css       # Login screen styles
+│       ├── cards.css       # Battery & customer card styles
+│       ├── attendant.css   # Attendant module (timeline, flow)
+│       ├── sales.css       # Sales module styles
+│       ├── session.css     # Session management UI
+│       └── rider.css       # Rider app styles
+│
+├── js/                     # JavaScript
+│   ├── app.js              # Core app (theme, splash, login, roles)
+│   └── modules/
+│       ├── session.js      # Session management system
+│       ├── attendant.js    # Attendant swap flow logic
+│       ├── sales.js        # Sales registration logic
+│       └── rider.js        # Rider self-service logic
+│
+└── assets/                 # Images
+    ├── Logo-Oves.png       # App logo
+    ├── Bikes Oves.png      # Hero image (3 bikes)
+    ├── Attendant.png       # Role icon
+    ├── Sales.png           # Role icon
+    ├── Keypad.png          # Role icon
+    ├── Rider.png           # Role icon
+    ├── E-3-one.png         # Vehicle images
+    ├── F-3-one.png
+    ├── Tuk-One.png
+    └── Tuk-2.png
 ```
+
+### Adding New Designs
+
+To add a new module/design:
+
+1. **Create CSS file**: Add `css/modules/your-module.css`
+2. **Create JS file**: Add `js/modules/your-module.js`
+3. **Add to index.html**:
+   - Add `<link rel="stylesheet" href="css/modules/your-module.css">` in `<head>`
+   - Add `<script src="js/modules/your-module.js"></script>` before `</body>`
+4. **Add HTML markup**: Add your module's `<div class="module" id="module-your-module">` section
 
 ---
 

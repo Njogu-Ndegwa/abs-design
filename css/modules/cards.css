@@ -1,0 +1,814 @@
+/**
+ * Cards Module CSS
+ * Omnivoltaic Station App
+ */
+
+/* Battery & Customer Cards - Compact */
+.battery-card, .customer-card, .cost-card, .receipt-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.battery-header, .customer-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.battery-id, .customer-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.battery-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.battery-status {
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.battery-status.verified {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.battery-status.pending {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.battery-visual {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0;
+}
+
+.battery-icon-large {
+    width: 32px;
+    height: 48px;
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-tertiary) 100%);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: visible;
+    flex-shrink: 0;
+    margin-top: 10px;
+}
+
+/* Battery terminal cap */
+.battery-icon-large::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 10px;
+    background: var(--border);
+    border-radius: 3px 3px 0 0;
+}
+
+.battery-level {
+    height: var(--level, 35%);
+    background: linear-gradient(180deg, var(--accent) 0%, #00a0a0 100%);
+    transition: height 0.5s ease;
+}
+
+.battery-level.full {
+    background: linear-gradient(180deg, var(--success) 0%, #00a078 100%);
+}
+
+.battery-info {
+    flex: 1;
+}
+
+.battery-charge {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1;
+}
+
+.battery-charge-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.battery-meta {
+    display: flex;
+    gap: 12px;
+}
+
+.battery-meta-item {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.battery-meta-item span {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Compact Battery Return Card - matches other card styles */
+.battery-return-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.battery-return-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.battery-return-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.battery-return-status {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.battery-return-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.battery-return-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.battery-return-charge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+}
+
+.battery-return-icon {
+    width: 18px;
+    height: 12px;
+    border: 2px solid var(--border);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.battery-return-icon::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 0 2px 2px 0;
+}
+
+.battery-return-icon.low {
+    border-color: var(--error);
+}
+
+.battery-return-icon.low::after {
+    background: var(--error);
+}
+
+.battery-return-icon.medium {
+    border-color: #f59e0b;
+}
+
+.battery-return-icon.medium::after {
+    background: #f59e0b;
+}
+
+.battery-return-icon.full {
+    border-color: var(--success);
+}
+
+.battery-return-icon.full::after {
+    background: var(--success);
+}
+
+.battery-return-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--level, 35%);
+}
+
+.battery-return-icon.low .battery-return-fill {
+    background: var(--error);
+}
+
+.battery-return-icon.medium .battery-return-fill {
+    background: #f59e0b;
+}
+
+.battery-return-icon.full .battery-return-fill {
+    background: var(--success);
+}
+
+.battery-return-percent {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.battery-return-unit {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+/* Visual Battery Swap Comparison - Compact */
+.battery-swap-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 14px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+}
+
+.battery-swap-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-top: 8px;
+}
+
+.battery-icon-swap {
+    width: 44px;
+    height: 62px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* Battery terminal/cap on top */
+.battery-icon-swap::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 8px;
+    background: var(--border);
+    border-radius: 2px 2px 0 0;
+}
+
+.battery-icon-swap.low {
+    border-color: var(--error);
+}
+
+.battery-icon-swap.low::before {
+    background: var(--error);
+}
+
+.battery-icon-swap.medium {
+    border-color: #f59e0b;
+}
+
+.battery-icon-swap.medium::before {
+    background: #f59e0b;
+}
+
+.battery-icon-swap.full {
+    border-color: var(--success);
+}
+
+.battery-icon-swap.full::before {
+    background: var(--success);
+}
+
+.battery-level-swap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--level, 50%);
+    transition: height 0.5s ease;
+}
+
+.battery-icon-swap.low .battery-level-swap {
+    background: linear-gradient(180deg, var(--error) 0%, #cc4444 100%);
+}
+
+.battery-icon-swap.medium .battery-level-swap {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+}
+
+.battery-icon-swap.full .battery-level-swap {
+    background: linear-gradient(180deg, var(--success) 0%, #00a878 100%);
+}
+
+.battery-percent {
+    position: relative;
+    z-index: 1;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.battery-swap-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.battery-swap-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-secondary);
+}
+
+.swap-arrow-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--accent-soft);
+    border-radius: 50%;
+}
+
+.swap-arrow-icon svg {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+}
+
+/* Energy Differential Badge - Compact */
+.energy-diff-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    margin: 0 auto 8px;
+    width: fit-content;
+}
+
+.energy-diff-badge svg {
+    width: 14px;
+    height: 14px;
+    color: var(--accent);
+}
+
+.energy-diff-badge span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Customer Info */
+.customer-card {
+    padding: 12px;
+}
+
+.customer-header {
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.customer-avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.customer-name {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+
+.customer-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.detail-item {
+    padding: 8px 10px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+}
+
+.detail-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.detail-value {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Service Plan Summary - Ultra compact quota display */
+.plan-quotas {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.plan-quotas.single {
+    max-width: 50%;
+}
+
+.quota-chip {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px 10px;
+    min-width: 0;
+}
+
+.quota-chip-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.quota-chip-icon svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+}
+
+.quota-chip-icon.energy svg {
+    color: #fbbf24;
+}
+
+.quota-chip-icon.swaps svg {
+    color: var(--accent);
+}
+
+.quota-chip-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.quota-chip-bar {
+    height: 3px;
+    background: var(--bg-elevated);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.quota-chip-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.quota-chip-fill.good {
+    background: var(--success);
+}
+
+.quota-chip-fill.warning {
+    background: #f59e0b;
+}
+
+.quota-chip-fill.critical {
+    background: var(--error);
+}
+
+.quota-chip-text {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.quota-chip-remaining {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.quota-chip-unit {
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+.quota-chip-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+/* Even more compact: inline quota badges */
+.quota-inline {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.quota-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 10px 4px 6px;
+}
+
+.quota-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.quota-badge-dot.good { background: var(--success); }
+.quota-badge-dot.warning { background: #f59e0b; }
+.quota-badge-dot.critical { background: var(--error); }
+
+.quota-badge-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+.quota-badge-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Cost Breakdown - Compact */
+.cost-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.cost-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.cost-row:last-child {
+    border-bottom: none;
+}
+
+.cost-label {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.cost-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+}
+
+.cost-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: var(--accent-soft);
+    border-radius: var(--radius-sm);
+    margin-top: 6px;
+}
+
+.cost-total-label {
+    font-weight: 500;
+    font-size: 11px;
+}
+
+.cost-total-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Payment Scan - Compact */
+.payment-scan {
+    text-align: center;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.payment-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.payment-subtitle {
+    color: var(--text-secondary);
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.qr-scanner-area {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 8px;
+    position: relative;
+}
+
+.qr-scanner-frame {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--accent);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qr-scanner-frame:hover {
+    background: var(--accent-soft);
+    border-style: solid;
+}
+
+.qr-scanner-frame svg {
+    width: 28px;
+    height: 28px;
+    color: var(--accent);
+}
+
+.payment-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 2px;
+}
+
+.payment-status {
+    color: var(--text-muted);
+    font-size: 9px;
+}
+
+/* Success Screen - Compact */
+.success-screen {
+    text-align: center;
+    padding-top: 12px;
+}
+
+.success-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--success-soft);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    animation: successPop 0.5s ease-out;
+}
+
+@keyframes successPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.success-icon svg {
+    width: 26px;
+    height: 26px;
+    color: var(--success);
+}
+
+.success-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.success-message {
+    color: var(--text-secondary);
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border);
+    margin-bottom: 6px;
+}
+
+.receipt-title {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.receipt-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    font-size: 10px;
+}
+
+.receipt-label {
+    color: var(--text-muted);
+}
+
+.receipt-value {
+    font-weight: 500;
+}
+
