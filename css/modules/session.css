@@ -302,6 +302,26 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.session-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.session-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.session-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+}
+
+.session-list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
 }
 
 .session-list-empty {
@@ -462,103 +482,184 @@
     height: 14px;
 }
 
-/* Session Recovery Prompt */
+/* Session Recovery Prompt - DEPRECATED (hidden by default) */
 .session-recovery-prompt {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%) translateY(120%);
-    width: calc(100% - 32px);
-    max-width: 400px;
+    display: none !important;
+}
+
+/* Session Choice Prompt - In-Role Prompt */
+.session-choice-prompt {
+    display: none;
+    margin: 0 16px 16px;
+    padding: 14px 16px;
     background: var(--bg-secondary);
-    border: 1px solid var(--accent);
+    border: 1px solid #ffc107;
     border-radius: var(--radius-lg);
-    padding: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    z-index: 500;
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);
+    animation: slideInFromTop 0.3s ease;
 }
 
-.session-recovery-prompt.visible {
-    transform: translateX(-50%) translateY(0);
+.session-choice-prompt.visible {
+    display: block;
 }
 
-.session-recovery-header {
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.session-choice-header {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
-.session-recovery-icon {
-    width: 40px;
-    height: 40px;
+.session-choice-icon {
+    width: 36px;
+    height: 36px;
     background: rgba(255, 193, 7, 0.15);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-content: center;
     flex-shrink: 0;
 }
 
-.session-recovery-icon svg {
-    width: 20px;
-    height: 20px;
+.session-choice-icon svg {
+    width: 18px;
+    height: 18px;
     color: #ffc107;
 }
 
-.session-recovery-text h4 {
-    font-size: 14px;
+.session-choice-text h4 {
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
+    color: var(--text-primary);
 }
 
-.session-recovery-text p {
-    font-size: 12px;
+.session-choice-text p {
+    font-size: 11px;
     color: var(--text-secondary);
     line-height: 1.4;
+    margin: 0;
 }
 
-.session-recovery-text strong {
+.session-choice-text strong {
     color: var(--accent);
     font-family: 'DM Mono', monospace;
+    font-size: 10px;
 }
 
-.session-recovery-actions {
+.session-choice-actions {
     display: flex;
     gap: 10px;
 }
 
-.session-recovery-btn {
+.session-choice-btn {
     flex: 1;
     padding: 10px 14px;
     border-radius: var(--radius-sm);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
-.session-recovery-btn.primary {
+.session-choice-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.session-choice-btn.primary {
     background: var(--accent);
     border: none;
     color: var(--bg-primary);
 }
 
-.session-recovery-btn.primary:hover {
+.session-choice-btn.primary:hover {
     background: var(--accent-light);
+    transform: translateY(-1px);
 }
 
-.session-recovery-btn.secondary {
-    background: transparent;
+.session-choice-btn.secondary {
+    background: var(--bg-tertiary);
     border: 1px solid var(--border);
     color: var(--text-secondary);
 }
 
-.session-recovery-btn.secondary:hover {
-    border-color: var(--error);
-    color: var(--error);
+.session-choice-btn.secondary:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+/* Timeline Session Mode Colors */
+.flow-timeline.session-mode-active .timeline-step.active .timeline-dot,
+.flow-timeline.session-mode-active .timeline-step.done .timeline-dot {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.flow-timeline.session-mode-active .timeline-step.active .timeline-dot svg,
+.flow-timeline.session-mode-active .timeline-step.done .timeline-dot svg {
+    color: var(--accent);
+}
+
+.flow-timeline.session-mode-active .timeline-connector.active {
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+}
+
+/* Resuming Mode - Amber/Yellow */
+.flow-timeline.session-mode-resuming .timeline-step.active .timeline-dot,
+.flow-timeline.session-mode-resuming .timeline-step.done .timeline-dot {
+    border-color: #ffc107;
+    background: rgba(255, 193, 7, 0.15);
+}
+
+.flow-timeline.session-mode-resuming .timeline-step.active .timeline-dot svg,
+.flow-timeline.session-mode-resuming .timeline-step.done .timeline-dot svg {
+    color: #ffc107;
+}
+
+.flow-timeline.session-mode-resuming .timeline-connector.active {
+    background: linear-gradient(90deg, #ffc107, #ffca28);
+}
+
+.flow-timeline.session-mode-resuming .timeline-step.active .timeline-label,
+.flow-timeline.session-mode-resuming .timeline-step.done .timeline-label {
+    color: #ffc107;
+}
+
+/* Review Mode - Purple */
+.flow-timeline.session-mode-review .timeline-step.active .timeline-dot,
+.flow-timeline.session-mode-review .timeline-step.done .timeline-dot {
+    border-color: #ba68c8;
+    background: rgba(156, 39, 176, 0.15);
+}
+
+.flow-timeline.session-mode-review .timeline-step.active .timeline-dot svg,
+.flow-timeline.session-mode-review .timeline-step.done .timeline-dot svg {
+    color: #ba68c8;
+}
+
+.flow-timeline.session-mode-review .timeline-connector.active {
+    background: linear-gradient(90deg, #ba68c8, #ce93d8);
+}
+
+.flow-timeline.session-mode-review .timeline-step.active .timeline-label,
+.flow-timeline.session-mode-review .timeline-step.done .timeline-label {
+    color: #ba68c8;
 }
 
 /* Review Mode Overlay Effect */

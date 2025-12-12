@@ -9,6 +9,9 @@
 // =====================================================
 // Manages workflow sessions for tracking, recovery, and issue resolution
 
+// Flag to track if user has made a session choice (resume/new)
+let sessionChoiceMade = false;
+
 const SessionManager = {
     // Storage key prefix
     STORAGE_KEY: 'oves-sessions',
@@ -421,18 +424,88 @@ function searchSessions() {
     }
 }
 
+// Generate dummy session data for demo purposes
+function generateDummySessions(workflowType) {
+    const dummySessions = [];
+    const now = new Date();
+    
+    const customerNames = [
+        'Kofi Mensah', 'Ama Owusu', 'Kwame Asante', 'Akua Boateng', 'Yaw Darko',
+        'Abena Osei', 'Kojo Appiah', 'Adwoa Mensah', 'Kwesi Agyeman', 'Efua Nyamaa'
+    ];
+    
+    const statuses = [
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.PAUSED,
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.IN_PROGRESS,
+        SessionManager.STATUS.COMPLETED,
+        SessionManager.STATUS.PAUSED,
+        SessionManager.STATUS.COMPLETED
+    ];
+    
+    for (let i = 0; i < 10; i++) {
+        const hoursAgo = i * 4 + Math.floor(Math.random() * 3);
+        const createdDate = new Date(now.getTime() - hoursAgo * 3600000);
+        const status = statuses[i];
+        const currentStep = status === SessionManager.STATUS.COMPLETED ? 6 : Math.floor(Math.random() * 4) + 2;
+        
+        dummySessions.push({
+            id: `SES-${String(1000 + i).slice(1)}${Math.random().toString(36).substring(2, 6).toUpperCase()}`,
+            type: workflowType,
+            status: status,
+            currentStep: currentStep,
+            highestStep: currentStep,
+            customerId: `CUS-${8800 + i}-KE`,
+            subscriptionId: `SUB-${String(7700 + i)}-${['WK', 'MO', 'LX'][i % 3]}`,
+            customerName: customerNames[i],
+            data: {
+                step1: { name: customerNames[i], id: `CUS-${8800 + i}-KE` },
+                step2: null,
+                step3: null,
+                step4: null,
+                step5: null,
+                step6: null
+            },
+            timestamps: {
+                created: createdDate.toISOString(),
+                lastUpdated: new Date(createdDate.getTime() + Math.random() * 3600000).toISOString(),
+                completed: status === SessionManager.STATUS.COMPLETED ? new Date(createdDate.getTime() + 1800000).toISOString() : null
+            },
+            metadata: {
+                attendantId: 'ATT-001',
+                stationId: 'STN-LOME-001'
+            }
+        });
+    }
+    
+    return dummySessions;
+}
+
 // Load and display session list
 function loadSessionList(workflow) {
     const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
     const searchTerm = document.getElementById('session-search-input').value.trim();
     
-    let sessions;
+    let sessions = SessionManager.getSessionsByType(workflowType);
     
+    // If no real sessions, use dummy data
+    if (sessions.length === 0) {
+        sessions = generateDummySessions(workflowType);
+    }
+    
+    // Filter by search term
     if (searchTerm) {
-        sessions = SessionManager.searchBySubscriptionId(searchTerm);
-        sessions = sessions.filter(s => s.type === workflowType);
-    } else {
-        sessions = SessionManager.getSessionsByType(workflowType);
+        const term = searchTerm.toLowerCase();
+        sessions = sessions.filter(s => {
+            const subId = (s.subscriptionId || '').toLowerCase();
+            const custId = (s.customerId || '').toLowerCase();
+            const custName = (s.customerName || '').toLowerCase();
+            return subId.includes(term) || custId.includes(term) || custName.includes(term);
+        });
     }
     
     // Apply status filter
@@ -443,8 +516,8 @@ function loadSessionList(workflow) {
     // Sort by last updated
     sessions.sort((a, b) => new Date(b.timestamps.lastUpdated) - new Date(a.timestamps.lastUpdated));
     
-    // Limit to 20 most recent
-    sessions = sessions.slice(0, 20);
+    // Limit to 10 most recent
+    sessions = sessions.slice(0, 10);
     
     renderSessionList(sessions, workflow);
 }
@@ -532,9 +605,16 @@ function resumeSessionFromList(sessionId, workflow) {
     if (!session) return;
     
     closeSessionModal();
+    sessionChoiceMade = true;
+    
+    // Hide any choice prompt
+    hideSessionChoicePrompt(workflow);
     
     // Update UI mode
     updateSessionModeUI(workflow, SessionManager.MODE.RESUMING, session);
+    
+    // Update timeline styling
+    updateTimelineForSessionMode(workflow, 'resuming');
     
     // Restore workflow state
     restoreWorkflowState(workflow, session);
@@ -546,9 +626,16 @@ function reviewSessionFromList(sessionId, workflow) {
     if (!session) return;
     
     closeSessionModal();
+    sessionChoiceMade = true;
+    
+    // Hide any choice prompt
+    hideSessionChoicePrompt(workflow);
     
     // Update UI mode
     updateSessionModeUI(workflow, SessionManager.MODE.REVIEW, session);
+    
+    // Update timeline styling
+    updateTimelineForSessionMode(workflow, 'review');
     
     // Restore workflow state (read-only)
     restoreWorkflowState(workflow, session);
@@ -598,6 +685,9 @@ function exitSessionMode(workflow) {
     SessionManager.exitSession();
     hideSessionModeUI(workflow);
     
+    // Reset timeline styling
+    updateTimelineForSessionMode(workflow, 'active');
+    
     // Reset workflow to fresh state
     if (workflow === 'attendant') {
         attResetFlow();
@@ -617,6 +707,8 @@ function startNewSession(workflow) {
     const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
     const session = SessionManager.createSession(workflowType);
     updateSessionModeUI(workflow, SessionManager.MODE.ACTIVE, session);
+    updateTimelineForSessionMode(workflow, 'active');
+    sessionChoiceMade = true;
     return session;
 }
 
@@ -711,13 +803,13 @@ function salesResetFlow() {
 }
 
 // =====================================================
-// SESSION RECOVERY PROMPT
+// SESSION RECOVERY/CHOICE PROMPT (In-Role)
 // =====================================================
 
 let pendingRecoverySession = null;
 let pendingRecoveryWorkflow = null;
 
-// Check for recoverable session and show prompt
+// Check for recoverable session and show choice prompt within role
 function checkSessionRecovery(workflow) {
     const workflowType = workflow === 'attendant' ? 'attendant-swap' : 'sales-registration';
     const session = SessionManager.getRecoverableSession(workflowType);
@@ -725,35 +817,71 @@ function checkSessionRecovery(workflow) {
     if (session) {
         pendingRecoverySession = session;
         pendingRecoveryWorkflow = workflow;
-        showSessionRecoveryPrompt(session);
+        sessionChoiceMade = false;
+        showSessionChoicePrompt(workflow, session);
         return true;
     }
     
+    // No recoverable session - mark choice as made and start fresh
+    sessionChoiceMade = true;
     return false;
 }
 
-// Show session recovery prompt
-function showSessionRecoveryPrompt(session) {
-    const formatted = SessionManager.formatSessionForDisplay(session);
+// Show session choice prompt within the role module
+function showSessionChoicePrompt(workflow, session) {
+    const prefix = workflow === 'attendant' ? 'att' : 'sales';
+    const promptEl = document.getElementById(`${prefix}-session-choice`);
     
-    document.getElementById('recovery-customer-id').textContent = 
-        session.subscriptionId || session.customerId || session.id;
-    document.getElementById('recovery-step').textContent = session.currentStep;
-    
-    document.getElementById('session-recovery-prompt').classList.add('visible');
+    if (promptEl) {
+        const formatted = SessionManager.formatSessionForDisplay(session);
+        
+        // Update prompt content
+        const customerIdEl = document.getElementById(`${prefix}-choice-customer-id`);
+        const stepEl = document.getElementById(`${prefix}-choice-step`);
+        
+        if (customerIdEl) {
+            customerIdEl.textContent = session.subscriptionId || session.customerId || session.id;
+        }
+        if (stepEl) {
+            stepEl.textContent = session.currentStep;
+        }
+        
+        // Show the prompt
+        promptEl.classList.add('visible');
+    }
 }
 
-// Hide session recovery prompt
+// Hide session choice prompt within the role module
+function hideSessionChoicePrompt(workflow) {
+    const prefix = workflow === 'attendant' ? 'att' : 'sales';
+    const promptEl = document.getElementById(`${prefix}-session-choice`);
+    
+    if (promptEl) {
+        promptEl.classList.remove('visible');
+    }
+}
+
+// Hide the old bottom recovery prompt (keeping for backwards compatibility)
 function hideSessionRecovery() {
-    document.getElementById('session-recovery-prompt').classList.remove('visible');
+    const oldPrompt = document.getElementById('session-recovery-prompt');
+    if (oldPrompt) {
+        oldPrompt.classList.remove('visible');
+    }
+    
+    // Also hide the in-role prompts
+    hideSessionChoicePrompt('attendant');
+    hideSessionChoicePrompt('sales');
+    
     pendingRecoverySession = null;
     pendingRecoveryWorkflow = null;
 }
 
-// Dismiss session recovery (start fresh or just dismiss)
-function dismissSessionRecovery(startFresh = false) {
-    if (startFresh && pendingRecoverySession) {
-        // Mark the old session as paused/abandoned
+// Start fresh session (from choice prompt)
+function startFreshSession(workflow) {
+    sessionChoiceMade = true;
+    
+    if (pendingRecoverySession) {
+        // Mark the old session as paused
         SessionManager.currentSession = pendingRecoverySession;
         SessionManager.currentMode = SessionManager.MODE.RESUMING;
         SessionManager.pauseSession();
@@ -762,27 +890,72 @@ function dismissSessionRecovery(startFresh = false) {
         localStorage.removeItem(SessionManager.CURRENT_SESSION_KEY);
     }
     
-    hideSessionRecovery();
+    hideSessionChoicePrompt(workflow);
     
     // Start a new session
-    if (pendingRecoveryWorkflow) {
-        startNewSession(pendingRecoveryWorkflow);
-    }
+    startNewSession(workflow);
+    
+    // Update timeline to show new session color
+    updateTimelineForSessionMode(workflow, 'active');
 }
 
-// Resume the pending recovery session
-function resumeSession() {
-    if (!pendingRecoverySession || !pendingRecoveryWorkflow) return;
+// Resume the pending recovery session (from choice prompt)
+function resumePendingSession(workflow) {
+    if (!pendingRecoverySession) return;
+    
+    sessionChoiceMade = true;
     
     const session = SessionManager.resumeSession(pendingRecoverySession.id);
     if (!session) return;
     
-    hideSessionRecovery();
+    hideSessionChoicePrompt(workflow);
     
     // Update UI mode
-    updateSessionModeUI(pendingRecoveryWorkflow, SessionManager.MODE.RESUMING, session);
+    updateSessionModeUI(workflow, SessionManager.MODE.RESUMING, session);
+    
+    // Update timeline to show resuming color
+    updateTimelineForSessionMode(workflow, 'resuming');
     
     // Restore workflow state
-    restoreWorkflowState(pendingRecoveryWorkflow, session);
+    restoreWorkflowState(workflow, session);
+    
+    pendingRecoverySession = null;
+    pendingRecoveryWorkflow = null;
+}
+
+// Legacy function - now redirects to new flow
+function dismissSessionRecovery(startFresh = false) {
+    if (startFresh && pendingRecoveryWorkflow) {
+        startFreshSession(pendingRecoveryWorkflow);
+    } else {
+        hideSessionRecovery();
+    }
+}
+
+// Legacy function - now redirects to new flow
+function resumeSession() {
+    if (pendingRecoveryWorkflow) {
+        resumePendingSession(pendingRecoveryWorkflow);
+    }
+}
+
+// Update timeline styling based on session mode
+function updateTimelineForSessionMode(workflow, mode) {
+    const prefix = workflow === 'attendant' ? 'att' : 'sales';
+    const timelineEl = document.getElementById(`${prefix}-timeline`);
+    
+    if (timelineEl) {
+        // Remove any existing mode classes
+        timelineEl.classList.remove('session-mode-active', 'session-mode-resuming', 'session-mode-review');
+        
+        // Add the appropriate class
+        if (mode === 'active') {
+            timelineEl.classList.add('session-mode-active');
+        } else if (mode === 'resuming') {
+            timelineEl.classList.add('session-mode-resuming');
+        } else if (mode === 'review') {
+            timelineEl.classList.add('session-mode-review');
+        }
+    }
 }
 
