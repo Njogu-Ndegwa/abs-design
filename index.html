@@ -381,6 +381,36 @@
                     </svg>
                 </button>
             </div>
+            
+            <!-- Session Choice Prompt (Resume vs Start Fresh) -->
+            <div class="session-choice-prompt" id="att-session-choice">
+                <div class="session-choice-header">
+                    <div class="session-choice-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                    </div>
+                    <div class="session-choice-text">
+                        <h4>Previous Session Found</h4>
+                        <p>Customer <strong id="att-choice-customer-id">--</strong> at step <strong id="att-choice-step">--</strong> of 6</p>
+                    </div>
+                </div>
+                <div class="session-choice-actions">
+                    <button class="session-choice-btn secondary" onclick="startFreshSession('attendant')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Start Fresh
+                    </button>
+                    <button class="session-choice-btn primary" onclick="resumePendingSession('attendant')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        Resume
+                    </button>
+                </div>
+            </div>
 
             <!-- Interactive Timeline - 6 steps -->
             <div class="flow-timeline" id="att-timeline">
@@ -930,6 +960,36 @@
                         <path d="M18 6L6 18M6 6l12 12"/>
                     </svg>
                 </button>
+            </div>
+            
+            <!-- Session Choice Prompt (Resume vs Start Fresh) -->
+            <div class="session-choice-prompt" id="sales-session-choice">
+                <div class="session-choice-header">
+                    <div class="session-choice-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                    </div>
+                    <div class="session-choice-text">
+                        <h4>Previous Session Found</h4>
+                        <p>Customer <strong id="sales-choice-customer-id">--</strong> at step <strong id="sales-choice-step">--</strong> of 6</p>
+                    </div>
+                </div>
+                <div class="session-choice-actions">
+                    <button class="session-choice-btn secondary" onclick="startFreshSession('sales')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Start Fresh
+                    </button>
+                    <button class="session-choice-btn primary" onclick="resumePendingSession('sales')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        Resume
+                    </button>
+                </div>
             </div>
 
             <!-- Interactive Timeline - 6 steps -->
