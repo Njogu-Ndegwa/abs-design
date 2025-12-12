@@ -1,0 +1,444 @@
+/**
+ * Components CSS - Buttons, Forms, Cards, and Shared UI Elements
+ * Omnivoltaic Station App
+ */
+
+/* ===================== */
+/* BUTTONS              */
+/* ===================== */
+
+.btn {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #00a0a0 100%);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px var(--accent-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-elevated);
+    border-color: var(--text-muted);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success) 0%, #00a078 100%);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px var(--success-glow);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn.ready {
+    animation: btnPulse 0.3s ease;
+}
+
+/* ===================== */
+/* FORMS                */
+/* ===================== */
+
+.form-section {
+    margin-bottom: 14px;
+}
+
+.form-section-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text-secondary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.input-with-icon .form-input {
+    padding-left: 42px;
+}
+
+/* Input Toggle (Scan vs Manual) */
+.input-toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    background: var(--bg-tertiary);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.toggle-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.toggle-btn.active {
+    background: var(--bg-secondary);
+    color: var(--accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ===================== */
+/* CARDS                */
+/* ===================== */
+
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ===================== */
+/* BADGES               */
+/* ===================== */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.badge-success {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.badge-error {
+    background: var(--error-soft);
+    color: var(--error);
+}
+
+.badge-info {
+    background: var(--info-soft);
+    color: var(--info);
+}
+
+.badge-accent {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* ===================== */
+/* SCANNER              */
+/* ===================== */
+
+.scan-prompt {
+    text-align: center;
+    padding-top: 8px;
+}
+
+.scan-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    letter-spacing: -0.02em;
+}
+
+.scan-subtitle {
+    color: var(--text-secondary);
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.scanner-area {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 12px;
+    position: relative;
+    cursor: pointer;
+}
+
+.scanner-frame {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    position: relative;
+    background: var(--bg-secondary);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.scanner-area:hover .scanner-frame {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+}
+
+.scanner-corners {
+    position: absolute;
+    inset: 12px;
+}
+
+.scanner-corners::before,
+.scanner-corners::after,
+.scanner-corner-bl,
+.scanner-corner-br {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 0;
+}
+
+.scanner-corners::before {
+    top: 0;
+    left: 0;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 6px;
+}
+
+.scanner-corners::after {
+    top: 0;
+    right: 0;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-top-right-radius: 6px;
+}
+
+.scanner-corner-bl {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-bottom-left-radius: 6px;
+}
+
+.scanner-corner-br {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    border-bottom-right-radius: 6px;
+}
+
+.scanner-line {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scanLine 2s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+@keyframes scanLine {
+    0%, 100% { top: 18px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: calc(100% - 18px); opacity: 0; }
+}
+
+.scanner-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-muted);
+}
+
+.scanner-icon svg {
+    width: 36px;
+    height: 36px;
+    stroke-width: 1;
+}
+
+.scan-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.scan-hint svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===================== */
+/* EMPTY STATE          */
+/* ===================== */
+
+.empty-state {
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.empty-state-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--text-muted);
+}
+
+.empty-state-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.empty-state-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ===================== */
+/* HIDDEN UTILITY       */
+/* ===================== */
+
+.hidden {
+    display: none !important;
+}
